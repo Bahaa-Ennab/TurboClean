@@ -39,6 +39,10 @@ public class User {
 	private String lastName;
 	
 	@NotNull
+	@Size(min = 3, max = 30, message = "A location must be provided")
+	private String location;
+	
+	@NotNull
 	@Size(min = 8, max = 200, message = "The password must be between 8 and 200 characters")
 	private String password;
 
@@ -72,15 +76,15 @@ public class User {
 
 	}
 
-	public User(String firstName, String lastName, String password, String confirmPassword, String email) {
+	public User(String firstName, String lastName, String password, String confirmPassword, String email,String location) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.confirmPassword = confirmPassword;
 		this.password = password;
 		this.email = email;
+		this.location=location;
 	}
-
-// other getters and setters removed for brevity
+	// other getters and setters removed for brevity
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
@@ -136,6 +140,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public Date getCreatedAt() {
