@@ -3,11 +3,12 @@ package com.TurboClean.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.TurboClean.models.Item;
 import com.TurboClean.models.Order;
 import com.TurboClean.repositories.ItemRepository;
-
+@Service
 public class ItemService {
 
 	@Autowired
