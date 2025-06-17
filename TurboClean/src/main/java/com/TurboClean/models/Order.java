@@ -18,6 +18,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -34,6 +35,14 @@ public class Order {
 	@NotNull
 	@Size(min = 20, max = 500, message = "Order description must be more than 20 char and less than 500  chars")
 	private String description;
+	
+	@NotNull
+	@Pattern(
+	    regexp = "waiting|in progress|ready|paid",
+	    flags = Pattern.Flag.CASE_INSENSITIVE,
+	    message = "Status must be one of: waiting, in progress, ready, paid"
+	)
+	private String status;
 	
 	@NotNull
 	@Size(min = 4, max = 200, message = "Address mmust be 4 charachter or more")
