@@ -32,7 +32,7 @@ public class Order {
 	private Date date;
 	
 	@NotNull
-	@Size(min = 20, max = 500, message = "Talk description must be more than 20 char and less than 500  chars")
+	@Size(min = 20, max = 500, message = "Order description must be more than 20 char and less than 500  chars")
 	private String description;
 	
 	@NotNull

@@ -19,7 +19,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "items")
 public class Item {
 
 	@Id
@@ -31,7 +31,7 @@ public class Item {
 	private String itemName;
 	
 	@NotNull
-	@Size(min = 20, max = 500, message = "Talk description must be more than 20 char and less than 500  chars")
+	@Size(min = 20, max = 500, message = "Item description must be more than 20 char and less than 500  chars")
 	private String description;
 	
 	@NotNull
