@@ -1,63 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Order Page</title>
+<title>Customer Order</title>
 </head>
 <body>
 <header>
-<div class="navbar">
-    <div class="logo">Turbo Clean</div>
+		<div class="navbar">
+			<div class="logo">Turbo Clean</div>
 
-    <div class="nav-links">
-        <a href="">New Order</a>
-        <a href="">Customer</a>
-        <a href="">All Order</a>
-    </div>
+			<div class="nav-links">
+				<a href="">Home</a> <a href="">ALL Orders</a> <a href="">Messages</a>
+			</div>
 
-    <form action="" method="post" style="margin: 0;">
-        <button type="submit" class="logout-button">Logout</button>
-    </form>
-</div>
-</header>
-<form action="/admin/search" method="get" class="search-form">
-    <input type="text" name="keyword" placeholder="Search by name, ID..." required />
-    <button type="submit">🔍 Search</button>
-</form>
-<article>
-    <form:form action="" modelAttribute="order" method="post">
-	<h1>All Orders</h1>
-        <table>
+			<form action="" method="post" style="margin: 0;">
+				<button type="submit" class="logout-button">Logout</button>
+			</form>
+		</div>
+	</header>
+	
+	<h1>My Orders</h1>
+	<table>
             <tr>
                 <th>ID Order</th>
-                <th>Name</th>
-                <th>Phonenumber</th>
-                <th>Email</th>
-                <th>Location</th>
+                <th>Date</th>
+                <th>Receipt</th>
                 <th>Status</th>
-                <th>Total Cost</th>
+
             </tr>
            <c:forEach var="order" items="${orders}">
                 <tr>
                     <td><c:out value="${order.id}"/></td>
-                    <td><c:out value="${order.customer.name}"/></td>
-                    <td><c:out value="${order.customer.phone}"/></td>
-                    <td><c:out value="${order.customer.email}"/></td>
-                    <td><c:out value="${order.customer.location}"/></td>
+                    <td><c:out value="${order.customer.date}"/></td>
+                    <td><c:out value="${order.customer.details}"/></td>
                     <td><c:out value="${order.status}"/></td>
-                    <td>$<c:out value="${order.totalCost}"/></td>
                 </tr>
             </c:forEach>
         </table>
-
-    </form:form>
-
-</article>
-    <strong>Total Price:</strong> <span id="totalPrice">7</span> $
 <footer class="bg-white border-top mt-20 py-4">
 		<div class="container text-center small text-muted">
 			<p class="mb-1">© 2025 TurboClean – Ramallah, Palestine · Fast ·
@@ -79,5 +60,6 @@
 			</p>
 		</div>
 	</footer>
+	
 </body>
 </html>
