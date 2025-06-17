@@ -1,1 +1,63 @@
 @charset "UTF-8";
+
+body {
+	font-family: 'Segoe UI', sans-serif;
+}
+
+main {
+	background-image: url('https://i.imgur.com/gfYlgXR.png');
+	/* Your logo URL */
+	background-size: contain; /* Keeps full logo visible */
+	background-repeat: no-repeat; /* Prevents tiling */
+	background-position: center; /* Centers logo */
+	background-color: #f0f0f0; /* Light gray background */
+	height: 100vh;
+	margin: 0;
+}
+
+.overlay {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: #333;
+	backdrop-filter: brightness(1.1); /* Optional: brighten slightly */
+}
+
+.navbar-brand span {
+	color: #4576eb;
+}
+
+.hero-title {
+	font-size: 2.5rem;
+	font-weight: bold;
+}
+
+.hero-sub {
+	font-size: 1.5rem;
+	color: #333;
+}
+
+.service-icon {
+	width: 60px;
+	height: 60px;
+	margin-bottom: 10px;
+}
+
+.footer {
+	font-size: 0.9rem;
+}
+
+.icon {
+	font-size: 20px;
+	vertical-align: middle;
+}
+
+a {
+	text-decoration: none;
+}
+
+.blue-text {
+	color: #4576eb;
+}
