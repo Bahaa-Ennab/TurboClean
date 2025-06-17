@@ -22,7 +22,7 @@
 				class="text-primary">Clean</span></a>
 			<div class="d-flex align-items-center gap-2">
 
-				<button class="btn btn-outline-secondary btn-sm">Login</button>
+				<a href="/login"><button class="btn btn-outline-secondary btn-sm">Login</button></a>
 				<button class="btn btn-primary btn-sm">Register</button>
 			</div>
 		</div>
