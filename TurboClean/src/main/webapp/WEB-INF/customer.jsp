@@ -34,16 +34,6 @@
 
 <article>
 
-<form:form action="" modelAttribute="order" method="post">
-        Customer ID: <form:input path="customerId" /><br><br>
-
-        <h3>Your Details:</h3>
-	
-
-        <br><form:textarea path="note" rows="3" cols="40"/><br><br>
-
-        <input type="submit" value="Submit"/>
-    </form:form>
 
     <c:if test="${not empty message}">
         <p style="color:green;">${message}</p>
