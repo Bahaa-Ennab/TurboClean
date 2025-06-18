@@ -62,12 +62,13 @@ h2:hover, h3:hover {
 <!-- Main Content -->
 <main class="d-flex justify-content-center align-items-center"
       style="min-height: 65vh; background-color: #C7EEFF;">
+      
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8">
-                <div class="card shadow border-0 rounded-4 overflow-hidden">
+                <div class="card shadow border-0 rounded-4 overflow-hidden" style=" margin-top: 60px; margin-bottom: 60px;">
                     <div class="row g-0">
-                        <!-- Image section -->
+                        <!-- Image section -->  
                         <div class="col-md-6 d-none d-md-block">
                             <img
                                 src="https://static.vecteezy.com/system/resources/thumbnails/007/147/703/small_2x/laundry-and-dry-cleaning-concept-icon-suites-amenities-idea-thin-line-illustration-cruise-ship-services-iron-washing-machine-and-clean-clothes-isolated-outline-drawing-editable-stroke-vector.jpg"
