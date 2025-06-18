@@ -61,3 +61,10 @@ a {
 .blue-text {
 	color: #4576eb;
 }
+
+
+  #carouselExampleSlidesOnly .carousel-inner img {
+    width: 100%;          /* Full width of container */
+    height: 500px;        /* Fixed height */
+    object-fit: cover;    /* Cover area without distortion */
+  }

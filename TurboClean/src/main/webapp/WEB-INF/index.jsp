@@ -12,7 +12,10 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-	
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+
 </head>
 <body>
 
@@ -23,7 +26,8 @@
 				class="text-primary">Clean</span></a>
 			<div class="d-flex align-items-center gap-2">
 
-				<a href="/login"><button class="btn btn-outline-secondary btn-sm">Login</button></a>
+				<a href="/login"><button
+						class="btn btn-outline-secondary btn-sm">Login</button></a>
 				<button class="btn btn-primary btn-sm">Register</button>
 			</div>
 		</div>
@@ -35,12 +39,35 @@
 			<h2 class="display-5 fw-bold">
 				Turbo<span class="text-primary">Clean</span>
 			</h2>
-			<img src="https://i.imgur.com/P8g4YdS.png" alt="Washer Icon"
-				class="mb-3" width="250" height="250">
 			<p class="lead mb-4">For An Extraordinary Dry Clean Experience</p>
 		</div>
 	</section>
-
+	<div style="max-width: 800px; margin: 40px auto;">
+		<div id="carouselExampleSlidesOnly" class="carousel slide"
+			data-bs-ride="carousel" data-bs-interval="1500">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="https://i.imgur.com/uoaiUtN.jpeg"
+						class="d-block w-100  rounded" height="500px" alt="Washer Icon">
+				</div>
+				<div class="carousel-item">
+					<img src="https://i.imgur.com/ESS4bjE.jpeg"
+						class="d-block w-100 rounded" height="500px"
+						alt="Eco-Friendly Dry Clean">
+				</div>
+				<div class="carousel-item">
+					<img src="https://i.imgur.com/mAMZNZd.jpeg"
+						class="d-block w-100 rounded" height="500px"
+						alt="Professional Pressing">
+				</div>
+				<div class="carousel-item">
+					<img src="https://i.imgur.com/GRG0EI7.jpeg"
+						class="d-block w-100 rounded" height="500px"
+						alt="Fast Delivery Service">
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Services Section -->
 	<section class="py-2 mb-15 #f8f9fa pb-5">
 		<div class="container">
@@ -52,6 +79,10 @@
 							<img src="https://img.icons8.com/ios/100/towel.png"
 								alt="Dry Clean" class="mb-3" width="50" height="50">
 							<h5 class="card-title">Dry Clean</h5>
+							<p>We offer professional dry cleaning services using advanced
+								techniques and eco-friendly products to safely clean delicate
+								fabrics, remove tough stains, and keep your clothes looking like
+								new.</p>
 						</div>
 					</div>
 				</div>
@@ -61,6 +92,9 @@
 							<img src="https://img.icons8.com/ios/100/iron.png" alt="Pressing"
 								class="mb-3" width="50" height="50">
 							<h5 class="card-title">Pressing</h5>
+							<p>Our expert pressing service gives your clothes a crisp,
+								polished look. Whether it’s for work, events, or daily wear, we
+								make sure your garments are neatly pressed and wrinkle-free.</p>
 						</div>
 					</div>
 				</div>
@@ -70,12 +104,17 @@
 							<img src="https://img.icons8.com/ios/100/delivery.png"
 								alt="Fast Delivery" class="mb-3" width="50" height="50">
 							<h5 class="card-title">Fast Delivery</h5>
+							<p>Our fast delivery service ensures that your cleaned and
+								pressed garments are delivered to your doorstep on time, saving
+								you time and making laundry completely hassle-free.</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+
 
 	<!-- About us Section -->
 	<section class="py-5 bg-light">
@@ -84,15 +123,16 @@
 			<div class="row g-4 text-center">
 				<div>
 					<div class="card-body">
-						<p>
-							<em>Turbo Clean is a modern dry cleaning service redefining
-								convenience in Ramallah.</em>
-						</p>
-						<p>
-							<em>With our mobile van service, we collect and deliver your
-								clothes directly to your doorstep - all managed through a simple
-								online order.</em>
-						</p>
+						<p>At Turbo Clean, we are committed to providing
+							high-quality dry cleaning and garment care services with a focus
+							on convenience, reliability, and customer satisfaction. We
+							understand how important your clothes are, which is why we handle
+							every item with care and attention to detail. From expert dry
+							cleaning to fast delivery, precise pressing, and professional
+							folding, we aim to make your life easier while keeping your
+							wardrobe looking its best. Whether you're a busy professional or
+							a family on the go, we’re here to serve you with trust,
+							efficiency, and a smile.</p>
 					</div>
 				</div>
 			</div>
@@ -159,8 +199,7 @@
 				reserved.</div>
 		</div>
 	</footer>
-
 	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
