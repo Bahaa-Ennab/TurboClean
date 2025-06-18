@@ -17,7 +17,7 @@
 			<div class="logo">Turbo Clean</div>
 
 			<div class="nav-links">
-				<a href="">Home</a> <a href="">ALL Orders</a> <a href="">Messages</a>
+				<a href="/customer/home">Home</a> <a href="/customer/orders">ALL Orders</a> <a href="/customer/messages">Messages</a>
 			</div>
 
 			<form action="" method="post" style="margin: 0;">
@@ -34,14 +34,13 @@
 
 <article>
 
-<form:form action="" modelAttribute="order" method="post">
-        Customer ID: <form:input path="customerId" /><br><br>
+<form:form action="/customer/sendMessage" modelAttribute="customerMessage" method="post">
 
         <h3>Your Details:</h3>
 	
 
-        <br><form:textarea path="note" rows="3" cols="40"/><br><br>
-
+        <br><form:textarea path="messageDetails" rows="3" cols="40"/><br><br>
+			<form:input type="datetime-local" path="pickupTime"/><br><br>
         <input type="submit" value="Submit"/>
     </form:form>
 

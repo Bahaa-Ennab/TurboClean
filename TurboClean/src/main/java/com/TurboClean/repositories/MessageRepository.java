@@ -13,7 +13,7 @@ import com.TurboClean.models.Message;
 public interface MessageRepository extends CrudRepository<Message, Long> {
 	List<Message> findAll();
 	List<Message> findAllByCustomer(Customer customer);
-	List<Message> findAllByadmin(Admin admin);
+	List<Message> findAllByAdmin(Admin admin);
 
 	Optional<Message> findById(Long id);
 }
