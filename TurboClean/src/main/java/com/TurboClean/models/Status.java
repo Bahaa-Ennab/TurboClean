@@ -47,4 +47,6 @@ public class Status {
 	}
 	
 	
+public class Status {
+
 }
