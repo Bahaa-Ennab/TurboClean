@@ -35,7 +35,7 @@ public class CustomerController {
 			return "index.jsp";
 		}
 		session.setAttribute("loggedCustomer", customer);
-		return "redirect:/home";
+		return "redirect:/customer";
 	}
 
 	@GetMapping("/register")
@@ -54,7 +54,11 @@ public class CustomerController {
 			return "index.jsp";
 		}
 		session.setAttribute("loggedCustomer", signedUpCustomer);
-		return "redirect:/home";
+		return "redirect:/customer";
 	}
-
+	
+	@GetMapping("/customer")
+	public String customer() {
+		return "customer.jsp";
+}
 }

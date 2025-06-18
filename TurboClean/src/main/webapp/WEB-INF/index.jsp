@@ -28,7 +28,7 @@
 
 				<a href="/login"><button
 						class="btn btn-outline-secondary btn-sm">Login</button></a>
-				<button class="btn btn-primary btn-sm">Register</button>
+				<a href="/register" class="btn btn-primary btn-sm">Register</a>
 			</div>
 		</div>
 	</nav>

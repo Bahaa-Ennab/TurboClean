@@ -45,8 +45,19 @@ public class Status {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-	
-	
-public class Status {
 
+	public Status(Long id, @NotNull @Size(min = 4, max = 200, message = "condition must be provided") String condition,
+			Order order) {
+		super();
+		this.id = id;
+		this.condition = condition;
+		this.order = order;
+	}
+
+	public Status() {
+		super();
+	}
+	
+	
+	
 }

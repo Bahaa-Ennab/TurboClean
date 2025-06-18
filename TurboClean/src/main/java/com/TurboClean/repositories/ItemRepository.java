@@ -12,7 +12,8 @@ import com.TurboClean.models.Order;
 @Repository
 public interface ItemRepository extends CrudRepository<Item, Long> {
 	List<Item> findAll();
-	List<Item> findAllByOrder(Order order);
 	Optional<Item> findById(Long id);
+	List<Item> findAllByOrders(Order order);
+
 
 }

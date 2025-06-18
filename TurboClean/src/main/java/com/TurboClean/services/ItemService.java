@@ -25,7 +25,7 @@ public class ItemService {
         return itemRepository.findById(id).orElse(null);
     }
 	public List<Item> findAllByOrder(Order order){
-		return itemRepository.findAllByOrder(order);
+		return itemRepository.findAllByOrders(order);
 	}
 	
 	public void deleteItem(Long id) {
