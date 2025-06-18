@@ -1,24 +1,23 @@
-package com.TurboClean.services;
-
-
-import java.util.Optional;
-
-import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
-
-import com.TurboClean.models.LoginUser;
-import com.TurboClean.models.User;
-import com.TurboClean.repositories.UserRepository;
-
-@Service
-public class UserService {
-	
-	
-	@Autowired
-	UserRepository userRepo;
-	
+//package com.TurboClean.services;
+//
+//
+//import java.util.Optional;
+//
+//import org.mindrot.jbcrypt.BCrypt;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Service;
+//import org.springframework.validation.BindingResult;
+//
+//import com.TurboClean.models.LoginUser;
+//import com.TurboClean.repositories.UserRepository;
+//
+//@Service
+//public class UserService {
+//	
+//	
+//	@Autowired
+//	UserRepository userRepo;
+//	
 //	public User getUserById(Long Id) {
 //		return userRepo.findById(Id).orElse(null);
 //	}
@@ -72,4 +71,4 @@ public class UserService {
 //		return userRepo.save(user);
 //
 //	}
-}
+//}
