@@ -1,32 +1,72 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page isErrorPage="true"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Login - TurboClean</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<style>
+.brand-hover span.turbo:hover {
+	color: orange;
+}
+
+.custom-login-btn {
+	background-color: #cccdcd !important;
+	color: black !important;
+	border: none !important;
+}
+/* Hero section background */
+.hero-section {
+	background-color: #C7EEFF !important;
+}
+
+/* Hover effect for all major headers */
+h2:hover, h3:hover {
+	color: orange !important;
+	cursor: pointer;
+}
+
+.custom-login-btn:hover {
+	background-color: orange !important;
+	color: white !important;
+}
+</style>
+<body class="bg-light" >
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="#">Turbo<span class="text-primary">Clean</span></a>
-        <div class="d-flex gap-2">
-            <a href="/login" class="btn btn-outline-secondary btn-sm">Login</a>
-            <a href="/register" class="btn btn-primary btn-sm">Register</a>
-        </div>
-    </div>
-</nav>
+	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
+		style="background-color: #303841;">
+		<div class="container">
+
+			<a class="navbar-brand fw-bold brand-hover" href="#"
+				style="font-size: 28px;"> <span class="turbo">Turbo</span><span
+				class="text-primary">Clean</span>
+			</a>
+			<div class="d-flex align-items-center gap-2">
+				<a href="/login">
+					<button class="btn btn-sm custom-login-btn">Login</button>
+				</a> <a href="/register" class="btn btn-primary btn-sm">Register</a>
+			</div>
+		</div>
+	</nav>
 
 <!-- Main Content -->
-<main class="d-flex justify-content-center align-items-center" style="min-height: 65vh;">
-    <div class="container">
+<main class="d-flex justify-content-center align-items-center"
+      style="min-height: 80vh; background-color: #C7EEFF;">
+    <div class="container-fluid px-5">
         <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-8">
+            <div class="col-xl-10 col-xxl-8">
                 <div class="card shadow border-0 rounded-4 overflow-hidden">
                     <div class="row g-0">
                         <!-- Image section -->
@@ -35,26 +75,26 @@
                         </div>
 
                         <!-- Form section -->
-                        <div class="col-md-6 p-4">
-                            <h4 class="mb-4 text-center">User Login</h4>
+                        <div class="col-md-6 p-5">
+                            <h3 class="mb-4 text-center fw-bold">User Login</h3>
                             <form:form action="/customerlogin" method="post" modelAttribute="newCustomer">
                                 <!-- Email -->
-                                <div class="mb-3">
-                                    <form:label path="email" cssClass="form-label">Email</form:label>
-                                    <form:input path="email" cssClass="form-control" placeholder="Enter your email"/>
+                                <div class="mb-4">
+                                    <form:label path="email" cssClass="form-label fs-5">Email</form:label>
+                                    <form:input path="email" cssClass="form-control form-control-lg" placeholder="Enter your email"/>
                                     <form:errors path="email" cssClass="text-danger small" />
                                 </div>
 
                                 <!-- Password -->
-                                <div class="mb-3">
-                                    <form:label path="password" cssClass="form-label">Password</form:label>
-                                    <form:input path="password" type="password" cssClass="form-control" placeholder="Enter your password"/>
+                                <div class="mb-4">
+                                    <form:label path="password" cssClass="form-label fs-5">Password</form:label>
+                                    <form:input path="password" type="password" cssClass="form-control form-control-lg" placeholder="Enter your password"/>
                                     <form:errors path="password" cssClass="text-danger small" />
                                 </div>
 
                                 <!-- Submit Button -->
                                 <div class="d-grid">
-                                    <input type="submit" class="btn btn-primary" value="Login" />
+                                    <input type="submit" class="btn btn-primary btn-lg" value="Login" />
                                 </div>
                             </form:form>
                         </div>
@@ -65,49 +105,68 @@
     </div>
 </main>
 
-<!-- Footer -->
-<footer class="text-muted border-top">
-    <div class="container">
-        <div class="row">
-            <!-- Company Info -->
-            <div class="col-md-4 mb-4">
-                <h5 class="text-uppercase fw-bold">TurboClean</h5>
-                <p>Fast · Reliable · Door-to-door dry cleaning service based in Ramallah. Book online, and we'll handle the rest.</p>
-            </div>
+	<!-- Footer -->
+	<footer class="pt-5 pb-4 border-top"
+		style="background-color: #303841; color: white;">
+		<div class="container">
+			<div class="row">
 
-            <!-- Quick Links -->
-            <div class="col-md-2 mb-4">
-                <h6 class="fw-bold mb-3">Quick Links</h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-reset text-decoration-none">Home</a></li>
-                    <li><a href="#" class="text-reset text-decoration-none">Services</a></li>
-                    <li><a href="#" class="text-reset text-decoration-none">About Us</a></li>
-                    <li><a href="#" class="text-reset text-decoration-none">Contact</a></li>
-                    <li><a href="#" class="text-reset text-decoration-none">Policy</a></li>
-                </ul>
-            </div>
+				<!-- Company Info -->
+				<div class="col-md-4 mb-4">
+					<h3 class="text-uppercase fw-bold">TurboClean</h3>
+					<p>Fast · Reliable · Door-to-door dry cleaning service based in
+						Ramallah. Book online, and we'll handle the rest.</p>
+				</div>
 
-            <!-- Contact Info (No icons) -->
-            <div class="col-md-3 mb-4">
-                <h6 class="fw-bold mb-3">Contact</h6>
-                <p>Ramallah, Palestine</p>
-                <p>+970 595 000 000</p>
-                <p>info@turboclean.ps</p>
-            </div>
+				<!-- Quick Links -->
+				<div class="col-md-2 mb-4">
+					<h3 class="fw-bold mb-3">Quick Links</h3>
+					<ul class="list-unstyled">
+						<li><a href="#" class="text-decoration-none"
+							style="color: white;">Home</a></li>
+						<li><a href="#" class="text-decoration-none"
+							style="color: white;">Services</a></li>
+						<li><a href="#" class="text-decoration-none"
+							style="color: white;">About Us</a></li>
+						<li><a href="#" class="text-decoration-none"
+							style="color: white;">Contact</a></li>
+						<li><a href="#" class="text-decoration-none"
+							style="color: white;">Policy</a></li>
+					</ul>
+				</div>
 
-            <!-- Social Links (Text only) -->
-            <div class="col-md-3 mb-4">
-                <h6 class="fw-bold mb-3">Follow Us</h6>
-                <p><a href="#" class="text-reset text-decoration-none">Facebook</a></p>
-                <p><a href="#" class="text-reset text-decoration-none">Instagram</a></p>
-                <p><a href="#" class="text-reset text-decoration-none">WhatsApp</a></p>
-            </div>
-        </div>
-        <hr>
-        <div class="text-center small">© 2025 TurboClean. All rights reserved.</div>
-    </div>
-</footer>
+				<!-- Contact Info -->
+				<div class="col-md-3 mb-4">
+					<h3 class="fw-bold mb-3">Contact</h3>
+					<p>
+						<i class="bi bi-geo-alt-fill me-2"></i> Ramallah, Palestine
+					</p>
+					<p>
+						<i class="bi bi-telephone-fill me-2"></i> +970 595 000 000
+					</p>
+					<p>
+						<i class="bi bi-envelope-fill me-2"></i> info@turboclean.ps
+					</p>
+				</div>
 
+				<!-- Social Links -->
+				<div class="col-md-3 mb-4">
+					<h3 class="fw-bold mb-3">Follow Us</h3>
+					<a href="#" class="d-block mb-2" style="color: white;"><i
+						class="bi bi-facebook me-1"></i> Facebook</a> <a href="#"
+						class="d-block mb-2" style="color: white;"><i
+						class="bi bi-instagram me-1"></i> Instagram</a> <a href="#"
+						class="d-block mb-2" style="color: white;"><i
+						class="bi bi-whatsapp me-1"></i> WhatsApp</a>
+				</div>
+
+			</div>
+
+			<hr style="border-color: rgba(255, 255, 255, 0.2);">
+			<div class="text-center small">© 2025 TurboClean. All rights
+				reserved.</div>
+		</div>
+	</footer>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -24,10 +24,14 @@ main {
 	color: #333;
 	backdrop-filter: brightness(1.1); /* Optional: brighten slightly */
 }
-
+body .navabr{
+		background-color:#3A4750;
+	
+}
 .navbar-brand span {
 	color: #4576eb;
 }
+
 
 .hero-title {
 	font-size: 2.5rem;
@@ -47,6 +51,8 @@ main {
 
 .footer {
 	font-size: 0.9rem;
+	background-color: #303841; /* Light gray background */
+	
 }
 
 .icon {
