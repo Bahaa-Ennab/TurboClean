@@ -14,7 +14,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -40,13 +39,13 @@ public class Item {
 	@NotNull
 	private double cost;
 	
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "items_orders", 
-        joinColumns = @JoinColumn(name = "item_id"), 
-        inverseJoinColumns = @JoinColumn(name = "order_id")
-    )
-    private List<Order> orders;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+	    name = "orders_items",
+	    joinColumns = @JoinColumn(name = "item_id"),
+	    inverseJoinColumns = @JoinColumn(name = "order_id")
+	)
+	private List<Order> orders;
     
 
 	@Column(updatable = false)
