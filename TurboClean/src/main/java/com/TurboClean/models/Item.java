@@ -1,6 +1,7 @@
 package com.TurboClean.models;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,6 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -35,13 +38,17 @@ public class Item {
 	private String description;
 	
 	@NotNull
-	private double total_cost;
+	private double cost;
 	
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "order_id")
-	private Order order;
-	
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "items_orders", 
+        joinColumns = @JoinColumn(name = "item_id"), 
+        inverseJoinColumns = @JoinColumn(name = "order_id")
+    )
+    private List<Order> orders;
+    
+
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
@@ -55,19 +62,11 @@ public class Item {
 			 String itemName, String description, double total_cost) {
 		this.itemName = itemName;
 		this.description = description;
-		this.total_cost = total_cost;
+		this.cost = total_cost;
 	}
 	
 	
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getItemName() {
 		return itemName;
 	}
@@ -84,20 +83,20 @@ public class Item {
 		this.description = description;
 	}
 
-	public double getTotal_cost() {
-		return total_cost;
+	public double getCost() {
+		return cost;
 	}
 
-	public void setTotal_cost(double total_cost) {
-		this.total_cost = total_cost;
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 
-	public Order getOrder() {
-		return order;
+	public List<Order> getOrders() {
+		return orders;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	public Date getCreatedAt() {

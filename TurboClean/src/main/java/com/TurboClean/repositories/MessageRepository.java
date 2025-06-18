@@ -6,12 +6,14 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.TurboClean.models.Admin;
+import com.TurboClean.models.Customer;
 import com.TurboClean.models.Message;
-import com.TurboClean.models.Order;
-import com.TurboClean.models.User;
 @Repository
 public interface MessageRepository extends CrudRepository<Message, Long> {
 	List<Message> findAll();
-	List<Message> findAllByUser(User user);
+	List<Message> findAllByCustomer(Customer customer);
+	List<Message> findAllByadmin(Admin admin);
+
 	Optional<Message> findById(Long id);
 }

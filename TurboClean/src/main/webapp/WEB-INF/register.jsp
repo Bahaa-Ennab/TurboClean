@@ -44,8 +44,8 @@
 							<!-- Form section -->
 							<div class="col-md-6 p-4 mb-3">
 								<h4 class="mb-4 text-center">User Register</h4>
-								<form:form action="/register" method="post"
-									modelAttribute="newUser">
+								<form:form action="/customerregister" method="post"
+									modelAttribute="newCustomer">
 
 									<!-- Name (First + Last) -->
 									<div class="row g-3 mb-3">
@@ -97,7 +97,14 @@
 										<form:errors path="location"
 											cssClass="text-danger small" />
 									</div>
-
+									<!-- phoneNumber -->
+									<div class="form-floating mb-4">
+										<form:input path="phoneNumber"
+											cssClass="form-control" placeholder="phoneNumber" />
+										<form:label path="phoneNumber">Phone Number</form:label>
+										<form:errors path="phoneNumber"
+											cssClass="text-danger small" />
+									</div>
 
 									<!-- Submit -->
 									<button type="submit"

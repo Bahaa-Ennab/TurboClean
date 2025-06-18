@@ -37,7 +37,7 @@
                         <!-- Form section -->
                         <div class="col-md-6 p-4">
                             <h4 class="mb-4 text-center">User Login</h4>
-                            <form:form action="/userlogin" method="post" modelAttribute="newLogin">
+                            <form:form action="/customerlogin" method="post" modelAttribute="newCustomer">
                                 <!-- Email -->
                                 <div class="mb-3">
                                     <form:label path="email" cssClass="form-label">Email</form:label>
