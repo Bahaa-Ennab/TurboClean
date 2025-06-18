@@ -21,11 +21,12 @@ import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "customers")
+public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -42,6 +43,15 @@ public class User {
 	@Size(min = 3, max = 30, message = "A location must be provided")
 	private String location;
 	
+	@NotNull(message = "Email cannot be null")
+	@Email(message = "Invalid email address format")
+	@Column(unique = true , nullable = false)
+	private String email;
+	
+	@NotNull
+	@Pattern(regexp = "\\d{10}", message = "Phone number must be exactly 10 digits")
+	private String phoneNumber;
+	
 	@NotNull
 	@Size(min = 8, max = 200, message = "The password must be between 8 and 200 characters")
 	private String password;
@@ -51,40 +61,21 @@ public class User {
 	@Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
 	private String confirmPassword;
 
-	@NotNull(message = "Email cannot be null")
-	@Email(message = "Invalid email address format")
-	@Column(unique = true , nullable = false)
-	private String email;
-
-
-	// This will not allow the createdAt column to be updated after creation
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-	
 
-	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="customer", fetch = FetchType.LAZY)
     private List<Order> orders;
 	
-	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="customer", fetch = FetchType.LAZY)
     private List<Message> messages;
 
 
-	public User() {
-
-	}
-
-	public User(String firstName, String lastName, String password, String confirmPassword, String email,String location) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.confirmPassword = confirmPassword;
-		this.password = password;
-		this.email = email;
-		this.location=location;
-	}
-	// other getters and setters removed for brevity
+	
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
@@ -95,68 +86,7 @@ public class User {
 		this.updatedAt = new Date();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getlastName() {
-		return lastName;
-	}
-
-	public void setlastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
 	
 }
 
