@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +7,13 @@
 <title>Customer Order</title>
 </head>
 <body>
-<header>
+	<header>
 		<div class="navbar">
 			<div class="logo">Turbo Clean</div>
 
 			<div class="nav-links">
-				<a href="">Home</a> <a href="">ALL Orders</a> <a href="">Messages</a>
+				<a href="/customer/home">Home</a> <a href="/customer/orders">ALL
+					Orders</a> <a href="/customer/messages">Messages</a>
 			</div>
 
 			<form action="" method="post" style="margin: 0;">
@@ -20,26 +21,28 @@
 			</form>
 		</div>
 	</header>
-	
+
 	<h1>My Orders</h1>
 	<table>
-            <tr>
-                <th>ID Order</th>
-                <th>Date</th>
-                <th>Receipt</th>
-                <th>Status</th>
+		<tr>
+			<th>ID Order</th>
+			<th>Date</th>
+			<th>Receipt</th>
+			<th>Status</th>
 
-            </tr>
-           <c:forEach var="order" items="${orders}">
-                <tr>
-                    <td><c:out value="${order.id}"/></td>
-                    <td><c:out value="${order.customer.date}"/></td>
-                    <td><c:out value="${order.customer.details}"/></td>
-                    <td><c:out value="${order.status}"/></td>
-                </tr>
-            </c:forEach>
-        </table>
-<footer class="bg-white border-top mt-20 py-4">
+		</tr>
+		<c:forEach var="order" items="${orders}">
+			<tr>
+				<td><c:out value="${order.id}" /></td>
+				<td><c:out value="${order.date}" /></td>
+				<td><c:out value="${order.address}" /></td>
+				<td><c:out value="${order.total_cost}" /></td>
+				<td><c:out value="${order.status.condition}" /></td>
+
+			</tr>
+		</c:forEach>
+	</table>
+	<footer class="bg-white border-top mt-20 py-4">
 		<div class="container text-center small text-muted">
 			<p class="mb-1">© 2025 TurboClean – Ramallah, Palestine · Fast ·
 				Reliable · Door-to-Door Dry Cleaning</p>
@@ -60,6 +63,6 @@
 			</p>
 		</div>
 	</footer>
-	
+
 </body>
 </html>
