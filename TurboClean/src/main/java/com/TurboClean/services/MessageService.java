@@ -15,25 +15,25 @@ public class MessageService {
 	@Autowired
 	MessageRepository messageRepository;
 	
-	public List<Message> allMessages() {
-        return messageRepository.findAll();
-    }
-	public Message createMessage(Message m) {
-        return messageRepository.save(m);
-    }
-	
-	public Message findMessage(Long id) {
-        return messageRepository.findById(id).orElse(null);
-    }
-	public List<Message> findAllByUser(User user){
-		return messageRepository.findAllByUser(user);
-	}
-	
-	public void deleteMessage(Long id) {
-		messageRepository.deleteById(id);
-	}
-	
-	public Message updateMessage(Message m) {
-		return messageRepository.save(m);
-	}
+//	public List<Message> allMessages() {
+//        return messageRepository.findAll();
+//    }
+//	public Message createMessage(Message m) {
+//        return messageRepository.save(m);
+//    }
+//	
+//	public Message findMessage(Long id) {
+//        return messageRepository.findById(id).orElse(null);
+//    }
+//	public List<Message> findAllByUser(User user){
+//		return messageRepository.findAllByUser(user);
+//	}
+//	
+//	public void deleteMessage(Long id) {
+//		messageRepository.deleteById(id);
+//	}
+//	
+//	public Message updateMessage(Message m) {
+//		return messageRepository.save(m);
+//	}
 }

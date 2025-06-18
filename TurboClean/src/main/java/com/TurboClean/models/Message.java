@@ -1,7 +1,6 @@
 package com.TurboClean.models;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,51 +30,27 @@ public class Message {
 	@Size(min = 20, max = 500, message = "Message Details must be more than 20 char and less than 500  chars")
 	private String messageDetails;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User user;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	private Date pickupTime;
 	
 	@Column(updatable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date createdAt;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date updatedAt;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "admin_id")
+	private Admin admin;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "customer_id")
+	private Customer customer;
+	
 	public Message() {
 	}
-	public Message(String messageDetails, User user) {
-		this.messageDetails = messageDetails;
-		this.user = user;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getMessageDetails() {
-		return messageDetails;
-	}
-	public void setMessageDetails(String messageDetails) {
-		this.messageDetails = messageDetails;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
+	
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
