@@ -41,10 +41,6 @@ public class Admin {
 	@Email(message = "Invalid email address format")
 	@Column(unique = true , nullable = false)
 	private String email;
-
-	@NotNull
-	@Pattern(regexp = "\\d{10}", message = "Phone number must be exactly 10 digits")
-	private String phoneNumber;
 	
 	@NotNull
 	@Size(min = 8, max = 200, message = "The password must be between 8 and 200 characters")
@@ -76,6 +72,21 @@ public class Admin {
 	@PreUpdate
 	protected void onUpdate() {
 	    this.updatedAt = new Date();
+	}
+
+	
+	public Admin() {
+	}
+
+	public Admin(String firstName, String lastName, String email, String password, String confirmPassword, List<Order> orders, List<Message> messages) {
+
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.confirmPassword = confirmPassword;
+		this.orders = orders;
+		this.messages = messages;
 	}
 
 	public Long getId() {
@@ -110,13 +121,6 @@ public class Admin {
 		this.email = email;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
 
 	public String getPassword() {
 		return password;
@@ -165,6 +169,7 @@ public class Admin {
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
+
 	
 	
 

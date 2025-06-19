@@ -21,22 +21,28 @@ public class Status {
 	
 	@NotNull
 	@Size(min = 4, max = 200, message = "condition must be provided")
-	private String condition;
+	private String Stauscondition;
 	
 	@OneToOne(mappedBy="status", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Order order;
 
-	public Status(String condition) {
-		this.condition = condition;
+	public Status(String Stauscondition) {
+		this.Stauscondition = Stauscondition;
 	}
+
+
 
 	public String getCondition() {
-		return condition;
+		return Stauscondition;
 	}
 
-	public void setCondition(String condition) {
-		this.condition = condition;
+
+
+	public void setCondition(String Stauscondition) {
+		this.Stauscondition = Stauscondition;
 	}
+
+
 
 	public Order getOrder() {
 		return order;
@@ -46,11 +52,11 @@ public class Status {
 		this.order = order;
 	}
 
-	public Status(Long id, @NotNull @Size(min = 4, max = 200, message = "condition must be provided") String condition,
+	public Status(Long id, @NotNull @Size(min = 4, max = 200, message = "condition must be provided") String Stauscondition,
 			Order order) {
 		super();
 		this.id = id;
-		this.condition = condition;
+		this.Stauscondition = Stauscondition;
 		this.order = order;
 	}
 

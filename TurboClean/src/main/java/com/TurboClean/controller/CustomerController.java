@@ -61,4 +61,9 @@ public class CustomerController {
 	public String customer() {
 		return "customer.jsp";
 }
+	 @GetMapping("/logout")
+	    public String logout(HttpSession session) {
+	        session.invalidate();
+	        return "redirect:/";
+	    }
 }
