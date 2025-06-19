@@ -122,6 +122,8 @@ h2:hover, h3:hover {
 
 <article>
     <div class="form-container">
+    <h2>Welcome, ${loggedCustomer.firstName} (ID: ${loggedCustomer.id})</h2>
+    
         <form:form action="/customer/sendMessage" modelAttribute="customerMessage" method="post">
 
             <h3>Your Details:</h3>
@@ -137,7 +139,6 @@ h2:hover, h3:hover {
                 <label class="form-label">Pickup Time:</label>
                 <form:input type="datetime-local" path="pickupTime" cssClass="form-control" />
             </div>
-
             <!-- Submit button -->
             <div class="text-end">
                 <input type="submit" value="Submit" />
