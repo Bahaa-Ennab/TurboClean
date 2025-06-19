@@ -1,5 +1,6 @@
 package com.TurboClean.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.TurboClean.models.Admin;
-import com.TurboClean.models.Customer;
 import com.TurboClean.models.LoginAdmin;
 import com.TurboClean.repositories.AdminRepository;
 
@@ -65,7 +65,27 @@ public class AdminServices {
 		String hashedPassword = BCrypt.hashpw(admin.getPassword(), BCrypt.gensalt());
 		admin.setPassword(hashedPassword);
 		return adminRepository.save(admin);
+		
 
+	}
+	public List<Admin> allAdmin() {
+        return adminRepository.findAll();
+    }
+	public Admin createAdmin(Admin a) {
+        return adminRepository.save(a);
+    }
+	
+	public Admin findAdmin(Long id) {
+        return adminRepository.findById(id).orElse(null);
+    }
+
+	
+	public void deleteAdmin(Long id) {
+		adminRepository.deleteById(id);
+	}
+	
+	public Admin updateAdmin(Admin a) {
+		return adminRepository.save(a);
 	}
 
 }

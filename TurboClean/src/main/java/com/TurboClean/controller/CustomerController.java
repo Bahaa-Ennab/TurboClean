@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.TurboClean.models.Admin;
 import com.TurboClean.models.Customer;
 import com.TurboClean.models.LoginCustomer;
 import com.TurboClean.models.Message;
 import com.TurboClean.models.Order;
+import com.TurboClean.services.AdminServices;
 import com.TurboClean.services.CustomerService;
 import com.TurboClean.services.MessageService;
 import com.TurboClean.services.OrderService;
@@ -26,6 +28,9 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService customerSerivce;
+	
+	@Autowired
+	AdminServices adminSerivce;
 	
 	@Autowired
 	MessageService messageService;
@@ -88,6 +93,8 @@ public class CustomerController {
 		}
 		Customer custom=(Customer) session.getAttribute("loggedCustomer");
 		customerMessage.setCustomer(custom);
+		Admin admin=adminSerivce.findAdmin(1L);
+		customerMessage.setAdmin(admin);
 		messageService.createMessage(customerMessage);
 		return "redirect:/customer/messages";
 	}
