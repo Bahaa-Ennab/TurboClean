@@ -98,7 +98,7 @@ h2:hover, h3:hover {
 		style="background-color: #303841; margin-bottom: 0;">
 		<div class="container">
 <a class="navbar-brand d-flex align-items-center" href="/">
-  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="50" height="50"
+  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="40" height="40"
        class="d-inline-block align-text-top rounded-circle me-2">
   <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
     <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
@@ -111,13 +111,35 @@ h2:hover, h3:hover {
 					href="/customer/messages" class="nav-link-custom">Messages</a>
 			</nav>
 			<!-- Logout Button -->
-			<form action="" method="post" class="mb-0">
-				<button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button>
-			</form>
+            <a href="/logout"><button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button></a>
+
 		</div>
 	</nav>
 	
-	
+	<!-- Messages Article -->
+<article class="container my-5 p-4 bg-light rounded shadow-sm" style="min-height: 300px;">
+    <h2 class="mb-4 text-center">Messages</h2>
+
+    <!-- Example: Show messages here -->
+<c:if test="${not empty messages}">
+    <div class="row g-3">
+        <c:forEach var="msg" items="${messages}">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">${msg}</p>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+</c:if>
+
+
+    <c:if test="${empty messages}">
+        <p class="text-center text-muted">No messages to display.</p>
+    </c:if>
+</article>
 	
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"

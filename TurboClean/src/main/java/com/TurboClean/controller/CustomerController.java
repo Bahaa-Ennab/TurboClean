@@ -80,9 +80,10 @@ public class CustomerController {
 	@GetMapping("/customer/home")
 	public String customer(Model model, HttpSession session) {
 		model.addAttribute("customerMessage", new Message());
+
 		Customer custom = (Customer) session.getAttribute("loggedCustomer");
 		model.addAttribute("customer", custom);
-//		System.out.println(session.getAttribute("loggedCustomer"));
+
 		return "customer.jsp";
 	}
 

@@ -1,99 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Customer Home Page</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-</head>
-<style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customer Home Page</title>
 
-    body > .container, body > main {
-        flex: 1;
-    }
-
-    footer {
-        margin-top: auto;
-    }
-.brand-hover span.turbo:hover {
-	color: orange;
-}
-
-/* Hover effect for all major headers */
-h2:hover, h3:hover {
-	color: orange !important;
-	cursor: pointer;
-}
-
-.nav-link-custom {
-	color: #ffffff;
-	font-weight: bold;
-	text-decoration: none;
-	font-size: 22px; /* Slightly bigger */
-	transition: color 0.3s ease;
-}
-
-.nav-link-custom:hover {
-	color: #FFA726; /* Light orange */
-}
-
-.btn-outline-light:hover {
-	background-color: orange !important;
-	border-color: orange !important;
-	color: white !important;
-}
-   .form-container {
-        max-width: 600px;
-        margin: 70px auto; /* top-bottom: 70px, left-right: auto center */
-        padding: 30px;
-        border-radius: 16px;
-        background-color: #f8f9fa;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-container h3 {
-        margin-bottom: 20px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .form-container input[type="submit"] {
-        background-color: #ff8800;
-        color: white;
-        border: none;
-        padding: 10px 25px;
-        font-weight: 500;
-        border-radius: 8px;
-        transition: background-color 0.3s ease;
-    }
-
-    .form-container input[type="submit"]:hover {
-        background-color: #ff6a00;
-    }
-
-    .success-message {
-        margin-top: 15px;
-        color: green;
-        font-weight: bold;
-    }
-</style>
-<body>
-
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Navbar -->
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
@@ -125,98 +42,216 @@ h2:hover, h3:hover {
     <div class="form-container">
     <h2>Welcome, ${customer.firstName}</h2>
     
-        <form:form action="/customer/sendMessage" modelAttribute="customerMessage" method="post">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        .custom-btn-orange {
+            background-color: #f5a623;
+            color: white;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
 
-            <h3>Your Details:</h3>
+        .custom-btn-orange:hover {
+            background-color: #e07b00;
+            color: white;
+        }
 
-            <!-- Message textarea -->
-            <div class="mb-3">
-                <label class="form-label">Message Details:</label>
-                <form:textarea path="messageDetails" cssClass="form-control" rows="4" />
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body > .container, body > main {
+            flex: 1;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        .brand-hover span.turbo:hover {
+            color: orange;
+        }
+
+        h2:hover, h3:hover , a:hover{
+            color: orange !important;
+            cursor: pointer;
+        }
+
+        .nav-link-custom {
+            color: #ffffff;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 22px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link-custom:hover {
+            color: #FFA726;
+        }
+
+        .btn-outline-light:hover {
+            background-color: orange !important;
+            border-color: orange !important;
+            color: white !important;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 70px auto;
+            padding: 30px;
+            border-radius: 16px;
+            background-color: #f8f9fa;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h3 {
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #ff8800;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #ff6a00;
+        }
+
+        .success-message {
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="background-color: #303841;">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top rounded-circle me-2">
+                <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
+                    <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
+                </span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="d-flex gap-4 flex-wrap my-2 my-md-0">
+                <a href="/customer/home" class="nav-link-custom">Home</a>
+                <a href="/customer/orders" class="nav-link-custom">ALL Orders</a>
+                <a href="/customer/messages" class="nav-link-custom">Messages</a>
             </div>
 
-            <!-- Pickup time input -->
-            <div class="mb-3">
-                <label class="form-label">Pickup Time:</label>
-                <form:input type="datetime-local" path="pickupTime" cssClass="form-control" />
+            <!-- Logout Button -->
+            <a href="/logout"><button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button></a>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <main class="py-5" style="background-color: #cad1d1;">
+        <div class="container">
+            <article class="mb-4 text-center">
+                <!-- Optional banner or intro -->
+            </article>
+
+            <article>
+                <div class="card shadow-lg border-0 rounded-4 p-4" style="background-color: #5f7081;">
+                    <h2 class="fw-bold mb-4" style="color: white;">
+                        Welcome, ${loggedCustomer.firstName} (ID: ${loggedCustomer.id})
+                    </h2>
+
+                    <!-- Form -->
+                    <form:form action="/customer/sendMessage" modelAttribute="customerMessage" method="post">
+                        <h4 class="fw-semibold mb-3" style="color: white;">Your Details</h4>
+
+                        <!-- Message textarea -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" style="color: white;">Message Details:</label>
+                            <form:textarea path="messageDetails" cssClass="form-control" rows="4"/>
+                        </div>
+
+                        <!-- Pickup time input -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" style="color: white;">Pickup Time:</label>
+                            <form:input type="datetime-local" path="pickupTime" cssClass="form-control" />
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-lg px-4 custom-btn-orange">Submit</button>
+                        </div>
+                    </form:form>
+
+                    <!-- Success message -->
+                    <c:if test="${not empty message}">
+                        <div class="alert alert-success mt-4" role="alert">
+                            ${message}
+                        </div>
+                    </c:if>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-5 pb-4 border-top" style="background-color: #303841; color: white;">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-md-4 mb-4">
+                    <h3 class="text-uppercase fw-bold">TurboClean</h3>
+                    <p>Fast · Reliable · Door-to-door dry cleaning service based in Ramallah. Book online, and we'll handle the rest.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-2 mb-4">
+                    <h3 class="fw-bold mb-3">Quick Links</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none" style="color: white;">Home</a></li>
+                        <li><a href="#" class="text-decoration-none" style="color: white;">Services</a></li>
+                        <li><a href="#" class="text-decoration-none" style="color: white;">About Us</a></li>
+                        <li><a href="#" class="text-decoration-none" style="color: white;">Contact</a></li>
+                        <li><a href="#" class="text-decoration-none" style="color: white;">Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-md-3 mb-4">
+                    <h3 class="fw-bold mb-3">Contact</h3>
+                    <p><i class="bi bi-geo-alt-fill me-2"></i> Ramallah, Palestine</p>
+                    <p><i class="bi bi-telephone-fill me-2"></i> +970 595 000 000</p>
+                    <p><i class="bi bi-envelope-fill me-2"></i> info@turboclean.ps</p>
+                </div>
+
+                <!-- Social Links -->
+                <div class="col-md-3 mb-4">
+                    <h3 class="fw-bold mb-3">Follow Us</h3>
+                    <a href="#" class="d-block mb-2" style="color: white;"><i class="bi bi-facebook me-1"></i> Facebook</a>
+                    <a href="#" class="d-block mb-2" style="color: white;"><i class="bi bi-instagram me-1"></i> Instagram</a>
+                    <a href="#" class="d-block mb-2" style="color: white;"><i class="bi bi-whatsapp me-1"></i> WhatsApp</a>
+                </div>
             </div>
-            <!-- Submit button -->
-            <div class="text-end">
-                <input type="submit" value="Submit" />
-            </div>
-        </form:form>
 
-        <!-- Success message -->
-        <c:if test="${not empty message}">
-            <p class="success-message">${message}</p>
-        </c:if>
-    </div>
-</article>
+            <hr style="border-color: rgba(255, 255, 255, 0.2);">
+            <div class="text-center small">© 2025 TurboClean. All rights reserved.</div>
+        </div>
+    </footer>
 
-
-	<!-- Footer -->
-	<footer class="pt-5 pb-4 border-top"
-		style="background-color: #303841; color: white;">
-		<div class="container">
-			<div class="row">
-
-				<!-- Company Info -->
-				<div class="col-md-4 mb-4">
-					<h3 class="text-uppercase fw-bold">TurboClean</h3>
-					<p>Fast · Reliable · Door-to-door dry cleaning service based in
-						Ramallah. Book online, and we'll handle the rest.</p>
-				</div>
-
-				<!-- Quick Links -->
-				<div class="col-md-2 mb-4">
-					<h3 class="fw-bold mb-3">Quick Links</h3>
-					<ul class="list-unstyled">
-						<li><a href="#" class="text-decoration-none"
-							style="color: white;">Home</a></li>
-						<li><a href="#" class="text-decoration-none"
-							style="color: white;">Services</a></li>
-						<li><a href="#" class="text-decoration-none"
-							style="color: white;">About Us</a></li>
-						<li><a href="#" class="text-decoration-none"
-							style="color: white;">Contact</a></li>
-						<li><a href="#" class="text-decoration-none"
-							style="color: white;">Policy</a></li>
-					</ul>
-				</div>
-
-				<!-- Contact Info -->
-				<div class="col-md-3 mb-4">
-					<h3 class="fw-bold mb-3">Contact</h3>
-					<p>
-						<i class="bi bi-geo-alt-fill me-2"></i> Ramallah, Palestine
-					</p>
-					<p>
-						<i class="bi bi-telephone-fill me-2"></i> +970 595 000 000
-					</p>
-					<p>
-						<i class="bi bi-envelope-fill me-2"></i> info@turboclean.ps
-					</p>
-				</div>
-
-				<!-- Social Links -->
-				<div class="col-md-3 mb-4">
-					<h3 class="fw-bold mb-3">Follow Us</h3>
-					<a href="#" class="d-block mb-2" style="color: white;"><i
-						class="bi bi-facebook me-1"></i> Facebook</a> <a href="#"
-						class="d-block mb-2" style="color: white;"><i
-						class="bi bi-instagram me-1"></i> Instagram</a> <a href="#"
-						class="d-block mb-2" style="color: white;"><i
-						class="bi bi-whatsapp me-1"></i> WhatsApp</a>
-				</div>
-
-			</div>
-
-			<hr style="border-color: rgba(255, 255, 255, 0.2);">
-			<div class="text-center small">© 2025 TurboClean. All rights
-				reserved.</div>
-		</div>
-	</footer>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -45,23 +45,26 @@ h2:hover, h3:hover , a:hover{
 <body class="bg-light" >
 
 	<!-- Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
-		style="background-color: #303841; margin-bottom: 0;">
-		<div class="container">
-<a class="navbar-brand d-flex align-items-center" href="/">
-  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="50" height="50"
-       class="d-inline-block align-text-top rounded-circle me-2">
-  <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
-    <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
-  </span>
-</a>
-			<div class="d-flex align-items-center gap-2">
-				<a href="/login">
-					<button class="btn btn-sm custom-login-btn">Login</button>
-				</a> <a href="/register" class="btn btn-primary btn-sm">Register</a>
-			</div>
+	<nav class="navbar navbar-expand-lg navbar-light"
+	style="background-color: #303841; margin-bottom: 0; box-shadow: 0 6px 10px -2px rgba(0,0,0,0.4);">
+	<div class="container">
+		<a class="navbar-brand d-flex align-items-center" href="/">
+			<img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="40" height="40"
+				class="d-inline-block align-text-top rounded-circle me-2">
+			<span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
+				<span class="turbo">Turbo</span><span class="text-primary">Clean</span>
+			</span>
+		</a>
+
+		<div class="d-flex align-items-center gap-2">
+			<a href="/login">
+				<button class="btn btn-sm custom-login-btn">Login</button>
+			</a>
+			<a href="/register" class="btn btn-primary btn-sm">Register</a>
 		</div>
-	</nav>
+	</div>
+</nav>
+
 
 <!-- Main Content -->
 <main class="d-flex justify-content-center align-items-center"
