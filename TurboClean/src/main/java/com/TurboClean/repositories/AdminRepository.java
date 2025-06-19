@@ -14,4 +14,5 @@ public interface AdminRepository extends CrudRepository<Admin, Long> {
 	Optional<Admin> findByEmail(String email);
 	List<Admin> findAll();
 	Optional<Admin> findById(Long id);
+
 }

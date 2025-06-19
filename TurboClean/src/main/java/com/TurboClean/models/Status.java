@@ -1,5 +1,5 @@
 package com.TurboClean.models;
-
+ 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,7 +10,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
+ 
 @Entity
 @Table(name = "status")
 public class Status {
@@ -30,36 +30,31 @@ public class Status {
 		this.Stauscondition = Stauscondition;
 	}
 
-
-
 	public String getCondition() {
 		return Stauscondition;
 	}
-
-
 
 	public void setCondition(String Stauscondition) {
 		this.Stauscondition = Stauscondition;
 	}
 
-
-
 	public Order getOrder() {
 		return order;
 	}
-
+ 
 	public void setOrder(Order order) {
 		this.order = order;
 	}
 
 	public Status(Long id, @NotNull @Size(min = 4, max = 200, message = "condition must be provided") String Stauscondition,
+
 			Order order) {
 		super();
 		this.id = id;
 		this.Stauscondition = Stauscondition;
 		this.order = order;
 	}
-
+ 
 	public Status() {
 		super();
 	}
@@ -67,3 +62,4 @@ public class Status {
 	
 	
 }
+ 

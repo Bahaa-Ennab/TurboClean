@@ -51,6 +51,13 @@ public class Message {
 	public Message() {
 	}
 	
+	public Message(String messageDetails, Date pickupTime, Admin admin, Customer customer) {
+		this.messageDetails = messageDetails;
+		this.pickupTime = pickupTime;
+		this.admin = admin;
+		this.customer = customer;
+	}
+
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
