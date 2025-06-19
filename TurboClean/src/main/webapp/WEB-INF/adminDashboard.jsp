@@ -13,7 +13,7 @@
 			<div class="logo">Turbo Clean</div>
 
 			<div class="nav-links">
-				<a href="">New Order</a> <a href="">Customer</a> <a href="">All
+				<a href="">New Order</a> <a href="/admin/customers">Customer</a> <a href="">All
 					Order</a> <a href="">Messages</a>
 
 			</div>

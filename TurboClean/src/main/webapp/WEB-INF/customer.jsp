@@ -11,6 +11,36 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Navbar -->
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
+		style="background-color: #303841; margin-bottom: 0;">
+		<div class="container">
+<a class="navbar-brand d-flex align-items-center" href="/">
+  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="50" height="50"
+       class="d-inline-block align-text-top rounded-circle me-2">
+  <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
+    <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
+  </span>
+</a>
+			<!-- Navigation Links -->
+			<nav class="d-flex gap-4 flex-wrap my-2 my-md-0">
+				<a href="/customer/home" class="nav-link-custom">Home</a> <a
+					href="/customer/orders" class="nav-link-custom">ALL Orders</a> <a
+					href="/customer/messages" class="nav-link-custom">Messages</a>
+			</nav>
+			<!-- Logout Button -->
+				<a href="/logout"><button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button></a>
+		</div>
+	</nav>
+
+	<article>
+	
+	</article>
+
+<article>
+    <div class="form-container">
+    <h2>Welcome, ${customer.firstName}</h2>
     
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
