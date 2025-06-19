@@ -79,6 +79,12 @@ public class CustomerController {
 		System.out.println(session.getAttribute("loggedCustomer"));
 		return "customer.jsp";
 }
+	 @GetMapping("/logout")
+	    public String logout(HttpSession session) {
+	        session.invalidate();
+	        return "redirect:/";
+	    }
+
 	@PostMapping("/customer/sendMessage")
 	public String sendMessage(@Valid @ModelAttribute("customerMessage") Message customerMessage, BindingResult result, Model model,
 			HttpSession session) {

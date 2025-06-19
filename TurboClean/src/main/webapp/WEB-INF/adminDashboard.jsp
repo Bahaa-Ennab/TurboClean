@@ -39,32 +39,6 @@
 All Item Order
 </article>
 
-<article>
-    <form:form action="" modelAttribute="order" method="post">
-        Customer ID: <form:input path="customerId" /><br><br>
-
-        <h4>Items</h4>
-        <!-- For now, just static inputs. Later, use JavaScript to add dynamic rows -->
-        <table>
-            <tr><th>Name</th><th>Number</th><th>Price</th><th>Total Price</th></tr>
-
-            <tr>
-                <td><input type="" name="items[1].name" value="T-Shirt"/></td> <!-- Number of item -->
-                <td><input type="" name="items[1].quantity" value="2"/></td><!-- Number of Peices -->
-                <td><input type="" name="items[1].price" value="6"/></td><!-- Total Price -->
-            </tr>
-        </table>
-
-        <br>Note: <form:textarea path="note" rows="3" cols="40"/><br><br>
-
-        <input type="submit" value="Submit"/>
-    </form:form>
-
-    <c:if test="${not empty message}">
-        <p style="color:green;">${message}</p>
-    </c:if>
-</article>
-
 <footer class="bg-white border-top mt-20 py-4">
 		<div class="container text-center small text-muted">
 			<p class="mb-1">© 2025 TurboClean – Ramallah, Palestine · Fast ·
