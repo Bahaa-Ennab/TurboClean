@@ -19,8 +19,9 @@
 			<a class="navbar-brand fw-bold" href="#">Turbo<span
 				class="text-primary">Clean</span></a>
 			<div class="d-flex gap-2">
-				<a href="/login" class="btn btn-outline-secondary btn-sm">Login</a>
-				<a href="/register" class="btn btn-primary btn-sm">Register</a>
+				<a href="/admin/login" class="btn btn-outline-secondary btn-sm">Login</a>
+				<a href="/register/admin" class="btn btn-primary btn-sm">Register</a>
+
 			</div>
 		</div>
 	</nav>
@@ -43,7 +44,8 @@
 
 							<!-- Form section -->
 							<div class="col-md-6 p-4 mb-3">
-								<h4 class="mb-4 text-center">User Register</h4>
+								<h4 class="mb-4 text-center">Admin Register</h4>
+
 								<form:form action="/admin/register" method="post"
 									modelAttribute="adminSignup">
 

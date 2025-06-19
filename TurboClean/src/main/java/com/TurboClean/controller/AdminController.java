@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.TurboClean.models.Admin;
-import com.TurboClean.models.Customer;
 import com.TurboClean.models.LoginAdmin;
 import com.TurboClean.services.AdminServices;
 
@@ -24,34 +23,34 @@ public class AdminController {
 	
 	 @GetMapping("/admin/login")
 	    public String showAdminLogin(Model model) {
-	        model.addAttribute("adminLogin", new LoginAdmin());   // modelAttribute واحد فقط
-	        return "admin/login.jsp";                             // /WEB-INF/admin/login.jsp
+	        model.addAttribute("adminLogin", new LoginAdmin()); 
+	        model.addAttribute("newAdmin", new Admin());  
+	        return "Adminlogin.jsp";                            
 	    }
-
-	    @PostMapping("/admin/login")
-	    public String processAdminLogin(
-	            @Valid @ModelAttribute("adminLogin") LoginAdmin adminLogin,
-	            BindingResult result,
-	            HttpSession session,
-	            Model model) {
-
-	        Admin admin = adminService.login(adminLogin, result);
-
-	        if (result.hasErrors()) {
-	            // أعِد نفس الكائن ليَظهر مع رسائل الخطأ
-	            return "admin/login.jsp";
-	        }
-
-	        session.setAttribute("loggedAdmin", admin);
-	        return "redirect:/admin/dashboard";                   // عدِّل المسار كما تريد
-	    }
+	    
+		@PostMapping("/admin/login")
+		public String login(@Valid @ModelAttribute("adminLogin") LoginAdmin newLogin, BindingResult result, Model model,
+				HttpSession session) {
+			Admin admin = adminService.login(newLogin, result);
+			if (result.hasErrors()) {
+				model.addAttribute("adminLogin", new Admin());
+				return "index.jsp";
+			}
+			session.setAttribute("loggedAdmin", admin);
+			return "redirect:/admin/dashboard";
+		}
+		
+		
+		
+		
+		
 
 	    /* ========== 2) صفحة التسجيل ========== */
 
 	    @GetMapping("/register/admin")
 	    public String showAdminRegister(Model model) {
 	        model.addAttribute("adminSignup", new Admin());
-	        System.out.println("alooooooooooo");
+
 	        return "adminRegister.jsp";                          // /WEB-INF/admin/register.jsp
 	    }
 
@@ -63,18 +62,19 @@ public class AdminController {
 			Admin signedUpAdmin = adminService.register(admin, result);
 
 	        if (result.hasErrors()) {
-		        System.out.println("meeeeeeeeeeeeen");
 
 	            return "adminRegister.jsp";
 	        }
 	        
 	        session.setAttribute("loggedAdmin", admin);
-	        return "redirect:/adminDashboard";
+	        return "redirect:/admin/dashboard";
+
 	    }
 
 	    /* ========== 3) لوحة التحكم ========== */
 	    
-		 @GetMapping("/adminDashboard")
+		 @GetMapping("/admin/dashboard")
+
 		    public String showAdmindashboard(Model model) {
 		        return "adminDashboard.jsp";                             // /WEB-INF/admin/login.jsp
 		    }
