@@ -123,7 +123,7 @@ h2:hover, h3:hover {
 
 <article>
     <div class="form-container">
-    <h2>Welcome, ${loggedCustomer.firstName} (ID: ${loggedCustomer.id})</h2>
+    <h2>Welcome, ${customer.firstName}</h2>
     
         <form:form action="/customer/sendMessage" modelAttribute="customerMessage" method="post">
 
