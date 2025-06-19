@@ -15,5 +15,4 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
 	Optional<Item> findById(Long id);
 	List<Item> findAllByOrders(Order order);
 
-
 }

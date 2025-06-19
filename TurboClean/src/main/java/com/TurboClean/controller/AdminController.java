@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.TurboClean.models.Admin;
 import com.TurboClean.models.Customer;
 import com.TurboClean.models.LoginAdmin;
+import com.TurboClean.repositories.ItemRepository;
 import com.TurboClean.services.AdminServices;
 import com.TurboClean.services.CustomerService;
 
@@ -25,6 +26,7 @@ public class AdminController {
 	AdminServices adminService;
 	
 	@Autowired
+	ItemRepository itemRepository;
 	CustomerService customerService;
 	
 	
@@ -44,12 +46,10 @@ public class AdminController {
 				model.addAttribute("adminLogin", new Admin());
 				return "index.jsp";
 			}
+			
 			session.setAttribute("loggedAdmin", admin);
 			return "redirect:/admin/dashboard";
 		}
-		
-		
-		
 		
 		
 
@@ -82,18 +82,19 @@ public class AdminController {
 	    /* ========== 3) لوحة التحكم ========== */
 	    
 		 @GetMapping("/admin/dashboard")
-
 		    public String showAdmindashboard(Model model) {
-		        return "adminDashboard.jsp";                             // /WEB-INF/admin/login.jsp
-		    }
-		 
+		        model.addAttribute("items", itemRepository.findAll());
+		        System.out.println("Items count: " + itemRepository.findAll().size());
+
+		        return "adminDashboard.jsp";      
+		        }
+
 		 @GetMapping("/admin/customers")
 		    public String showCustomers(Model model) {
 			 	List<Customer> customers=customerService.allCustomers();
 			 	model.addAttribute("customers", customers);
 		        return "allCustomer.jsp";                             
 		    }
-		 
-		 
+		 		 
 		 
 }
