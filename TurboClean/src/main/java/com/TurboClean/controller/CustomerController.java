@@ -46,7 +46,7 @@ public class CustomerController {
 		Customer customer = customerSerivce.Login(newLogin, result);
 		if (result.hasErrors()) {
 			model.addAttribute("newCustomer", new Customer());
-			return "index.jsp";
+			return "login.jsp";
 		}
 		session.setAttribute("loggedCustomer", customer);
 		return "redirect:/customer/home";
@@ -65,7 +65,7 @@ public class CustomerController {
 		Customer signedUpCustomer = customerSerivce.register(newCustomer, result);
 		if (result.hasErrors()) {
 			model.addAttribute("newCustomer", new LoginCustomer());
-			return "index.jsp";
+			return "register.jsp";
 		}
 		session.setAttribute("loggedCustomer", signedUpCustomer);
 		return "redirect:/customer/home";

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.TurboClean.models.Admin;
 import com.TurboClean.models.LoginAdmin;
+import com.TurboClean.repositories.ItemRepository;
 import com.TurboClean.services.AdminServices;
 
 import jakarta.servlet.http.HttpSession;
@@ -19,6 +20,9 @@ import jakarta.validation.Valid;
 public class AdminController {
 	@Autowired
 	AdminServices adminService;
+	
+	@Autowired
+	ItemRepository itemRepository;
 	
 	
 	 @GetMapping("/admin/login")
@@ -36,12 +40,10 @@ public class AdminController {
 				model.addAttribute("adminLogin", new Admin());
 				return "index.jsp";
 			}
+			
 			session.setAttribute("loggedAdmin", admin);
 			return "redirect:/admin/dashboard";
 		}
-		
-		
-		
 		
 		
 
@@ -74,8 +76,12 @@ public class AdminController {
 	    /* ========== 3) لوحة التحكم ========== */
 	    
 		 @GetMapping("/admin/dashboard")
-
 		    public String showAdmindashboard(Model model) {
-		        return "adminDashboard.jsp";                             // /WEB-INF/admin/login.jsp
-		    }
+		        model.addAttribute("items", itemRepository.findAll());
+		        System.out.println("Items count: " + itemRepository.findAll().size());
+
+		        return "adminDashboard.jsp";      
+		        }
+		 
+		 
 }

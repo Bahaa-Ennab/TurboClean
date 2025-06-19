@@ -1,88 +1,178 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Create Order - TurboClean</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
 </head>
-<body>
-	<header>
-		<div class="navbar">
-			<div class="logo">Turbo Clean</div>
+<body class="container py-4">
 
-			<div class="nav-links">
-				<a href="">New Order</a> <a href="">Customer</a> <a href="">All
-					Order</a> <a href="">Messages</a>
+	<h2 class="mb-4">Create New Order</h2>
 
-			</div>
-
-<article>
-    <form:form action="" modelAttribute="order" method="post">
-        Customer ID: <form:input path="customerId" /><br><br>
-
-        <h4>Items</h4>
-        <!-- For now, just static inputs. Later, use JavaScript to add dynamic rows -->
-        <table>
-            <tr><th>Name</th><th>Number</th><th>Price</th><th>Total Price</th></tr>
-
-            <tr>
-                <td><input type="" name="items[1].name" value="T-Shirt"/></td> <!-- Number of item -->
-                <td><input type="" name="items[1].quantity" value="2"/></td><!-- Number of Peices -->
-                <td><input type="" name="items[1].price" value="6"/></td><!-- Total Price -->
-            </tr>
-        </table>
-
-        <br>Note: <form:textarea path="note" rows="3" cols="40"/><br><br>
-
-        <input type="submit" value="Submit"/>
-    </form:form>
-
-    <c:if test="${not empty message}">
-        <p style="color:green;">${message}</p>
-    </c:if>
-</article>
-
-<footer class="bg-white border-top mt-20 py-4">
-			<a href="/logout"><button type="submit"
-					class="btn btn-outline-light btn-sm px-4">Logout</button></a>
-
-		</div>
-	</header>
-	<div class="status-tabs">
-		<div class="status-tab ${tab == 'waiting' ? 'active' : ''}"
-			onclick="window.location.href='/admin/orders?status=waiting'">
-			Waiting</div>
-		<div class="status-tab ${tab == 'inprogress' ? 'active' : ''}"
-			onclick="window.location.href='/admin/orders?status=inprogress'">
-			InProgress</div>
-		<div class="status-tab ${tab == 'finished' ? 'active' : ''}"
-			onclick="window.location.href='/admin/orders?status=finished'">
-			Finished</div>
+	<!-- Customer Info -->
+	<div class="mb-3">
+		<label for="customerId" class="form-label">Customer ID</label> <input
+			type="number" class="form-control" id="customerId" required>
 	</div>
-	<article>All Item Order</article>
 
-	<footer class="bg-white border-top mt-20 py-4">
-		<div class="container text-center small text-muted">
-			<p class="mb-1">© 2025 TurboClean – Ramallah, Palestine · Fast ·
-				Reliable · Door-to-Door Dry Cleaning</p>
-			<p
-				class="mb-0 d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">
-				<span> <img
-					src="https://img.icons8.com/ios-filled/20/phone.png"
-					alt="Phone Icon" class="me-1" /> <a href="#"
-					class="text-decoration-none">+970595000000</a>
-				</span> <span> <img
-					src="https://img.icons8.com/ios-filled/20/marker.png"
-					alt="Location Icon" class="me-1" /> Ramallah, Palestine
-				</span> <span> Follow us: <a href="#"
-					class="text-decoration-none ms-1">Facebook</a> <a href="#"
-					class="text-decoration-none ms-1">Instagram</a> <a href="#"
-					class="text-decoration-none ms-1">WhatsApp</a>
-				</span>
-			</p>
-		</div>
-	</footer>
+	<div class="mb-3">
+		<label for="address" class="form-label">Address</label> <input
+			type="text" class="form-control" id="address" required>
+	</div>
+
+	<!-- Items Grid -->
+	<h4>Select Items</h4>
+	<div class="row g-3 mb-4" id="itemGrid">
+		<c:forEach items="${items}" var="item">
+			<div class="col-3">
+				<button type="button"
+					class="btn btn-outline-primary w-100 item-button"
+					data-id="${item.id}" data-name="${item.itemName}"
+					data-price="${item.cost}">
+					<img src="/img/item.png" class="img-fluid rounded mb-1" />
+					<div class="text-center">${item.itemName}</div>
+				</button>
+			</div>
+		</c:forEach>
+	</div>
+
+	<!-- Order Table -->
+	<h4>Order Summary</h4>
+	<table class="table table-bordered" id="orderTable">
+		<thead class="table-light">
+			<tr>
+				<th>Item</th>
+				<th>Qty</th>
+				<th>Price</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3" class="text-end fw-bold">Grand Total</td>
+				<td id="grandTotal" class="fw-bold">0</td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<button class="btn btn-success" onclick="submitOrder()">Submit
+		Order</button>
+
+	<script>
+    let orderItems = {};
+
+    function renderTable() {
+        console.log("Rendering table...");
+        const tbody = document.querySelector("#orderTable tbody");
+        tbody.innerHTML = "";
+
+        let total = 0;
+
+        for (let id in orderItems) {
+            const item = orderItems[id];
+            const qty = item.qty;
+            const price = item.price;
+            const itemTotal = qty * price;
+            total += itemTotal;
+
+            const row = document.createElement("tr");
+
+            const tdName = document.createElement("td");
+            tdName.textContent = item.name;
+
+            const tdQty = document.createElement("td");
+            const inputQty = document.createElement("input");
+            inputQty.type = "number";
+            inputQty.min = "1";
+            inputQty.value = qty;
+            inputQty.className = "form-control form-control-sm";
+            inputQty.onchange = function () {
+                updateQty(id, inputQty.value);
+            };
+            tdQty.appendChild(inputQty);
+
+            const tdPrice = document.createElement("td");
+            tdPrice.textContent = price.toFixed(2);
+
+            const tdTotal = document.createElement("td");
+            tdTotal.textContent = itemTotal.toFixed(2);
+
+            row.appendChild(tdName);
+            row.appendChild(tdQty);
+            row.appendChild(tdPrice);
+            row.appendChild(tdTotal);
+
+            tbody.appendChild(row);
+        }
+
+        document.getElementById("grandTotal").innerText = total.toFixed(2);
+    }
+
+
+    function updateQty(id, qty) {
+        const intQty = parseInt(qty);
+        if (intQty > 0) {
+            orderItems[id].qty = intQty;
+            renderTable();
+        }
+    }
+
+    // مهم جدًا: تأكد أن DOM جاهز
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".item-button").forEach(btn => {
+            btn.addEventListener("click", function () {
+                const id = this.dataset.id;
+                const name = this.dataset.name;
+                const price = parseFloat(this.dataset.price);
+
+                console.log("CLICKED:", { id, name, price });
+
+                if (orderItems[id]) {
+                    orderItems[id].qty += 1;
+                } else {
+                    orderItems[id] = {
+                        name: name,
+                        price: price,
+                        qty: 1
+                    };
+                }
+
+                renderTable();
+            });
+        });
+    });
+
+    function submitOrder() {
+        const customerId = document.getElementById("customerId").value;
+        const address = document.getElementById("address").value;
+        const itemIds = Object.keys(orderItems).map(id => parseInt(id));
+
+        const data = {
+            adminId: 1,
+            customerId,
+            address,
+            itemIds
+        };
+
+        fetch("/admin/orders", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        }).then(res => {
+            if (res.ok) {
+                alert("Order saved!");
+                location.reload();
+            } else {
+                alert("Failed to save order");
+            }
+        });
+    }
+</script>
+
 </body>
 </html>

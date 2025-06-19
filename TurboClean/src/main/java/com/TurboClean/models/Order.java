@@ -52,7 +52,7 @@ public class Order {
 	
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name = "items_orders", 
+        name = "orders_items", 
         joinColumns = @JoinColumn(name = "order_id"), 
         inverseJoinColumns = @JoinColumn(name = "item_id")
     )
