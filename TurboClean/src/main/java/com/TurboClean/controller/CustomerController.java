@@ -73,9 +73,10 @@ public class CustomerController {
 	//-------------------------------------------------------------------------------------------------------
 	
 	@GetMapping("/customer/home")
-	public String customer(Model model) {
+	public String customer(Model model,HttpSession session) {
 		model.addAttribute("customerMessage", new Message());
-
+//		Customer custom=(Customer) session.getAttribute("loggedCustomer");
+		System.out.println(session.getAttribute("loggedCustomer"));
 		return "customer.jsp";
 }
 	@PostMapping("/customer/sendMessage")
@@ -85,6 +86,8 @@ public class CustomerController {
 		if (result.hasErrors()) {
 			return "customer.jsp";
 		}
+		Customer custom=(Customer) session.getAttribute("loggedCustomer");
+		customerMessage.setCustomer(custom);
 		messageService.createMessage(customerMessage);
 		return "redirect:/customer/messages";
 	}
@@ -100,8 +103,8 @@ public class CustomerController {
 
 	@GetMapping("/customer/orders")
 	public String customerOrders(Model model,HttpSession session) {
-		Customer customer=(Customer) session.getAttribute("signedUpCustomer");
-		List<Order> orders= orderService.findAllByCustomer(customer);
+		Customer custom=(Customer) session.getAttribute("signedUpCustomer");
+		List<Order> orders= orderService.findAllByCustomer(custom);
 		model.addAttribute("orders",orders);
 		
 		return "customerOrder.jsp";
