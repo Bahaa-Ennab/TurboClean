@@ -15,6 +15,9 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 
 </head>
 <style>
@@ -33,7 +36,7 @@
 }
 
 /* Hover effect for all major headers */
-h2:hover, h3:hover {
+h2:hover, h3:hover, a:hover {
 	color: orange !important;
 	cursor: pointer;
 }
@@ -42,18 +45,25 @@ h2:hover, h3:hover {
 	background-color: orange !important;
 	color: white !important;
 }
+
+.custom-navbar {
+	background-color: #303841;
+	margin-bottom: 0 !important;
+}
 </style>
 <body>
 
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
-		style="background-color: #303841;">
+		style="background-color: #303841; margin-bottom: 0;">
 		<div class="container">
-
-			<a class="navbar-brand fw-bold brand-hover" href="#"
-				style="font-size: 28px;"> <span class="turbo">Turbo</span><span
-				class="text-primary">Clean</span>
-			</a>
+<a class="navbar-brand d-flex align-items-center" href="/">
+  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="50" height="50"
+       class="d-inline-block align-text-top rounded-circle me-2">
+  <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
+    <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
+  </span>
+</a>
 			<div class="d-flex align-items-center gap-2">
 				<a href="/login">
 					<button class="btn btn-sm custom-login-btn">Login</button>
@@ -62,8 +72,47 @@ h2:hover, h3:hover {
 		</div>
 	</nav>
 
+	<div class="mt-0"
+		style="max-width: 100%; margin-left: auto; margin-right: auto; margin-top: 0; background-color: #cad1d1;">
+		<div id="carouselExampleSlidesOnly" class="carousel slide"
+			data-bs-ride="carousel" data-bs-interval="1500">
+			<div class="carousel-inner">
+				<div class="carousel-item active" >
+					<img src="https://i.imgur.com/3GHPKAh.jpeg"
+						class="d-block w-100  rounded" height="600px" alt="Washer Icon">
+				</div>
+				
+				<div class="carousel-item">
+					<img src="https://i.imgur.com/ESS4bjE.jpeg"
+						class="d-block w-100 rounded" height="600px"
+						alt="Eco-Friendly Dry Clean">
+				</div>
+				<div class="carousel-item">
+					<img src="https://i.imgur.com/mAMZNZd.jpeg"
+						class="d-block w-100 rounded" height="600px"
+						alt="Professional Pressing">
+				</div>
+				<div class="carousel-item">
+					<img src="https://i.imgur.com/TUXQqFp.jpeg"
+						class="d-block w-100 rounded" height="600px"
+						alt="Fast Delivery Service">
+				</div>
+				<div class="carousel-item">
+					<img src="https://i.imgur.com/GRG0EI7.jpeg"
+						class="d-block w-100 rounded" height="600px"
+						alt="Fast Delivery Service">
+				</div>
+				<div class="carousel-item">
+					<img src="https://i.imgur.com/O11g0un.jpeg"
+						class="d-block w-100 rounded" height="600px"
+						alt="Fast Delivery Service">
+				</div>
+				
+			</div>
+		</div>
+	</div>
 	<!-- Hero Section -->
-	<section class="text-center py-2" style="background-color: #C7EEFF;">
+	<section class="text-center py-2" style="background-color: #cad1d1;">
 
 		<div class="container">
 			<h2 class="display-5 fw-bold hero-title">
@@ -73,32 +122,6 @@ h2:hover, h3:hover {
 				An Extraordinary Dry Clean Experience</p>
 		</div>
 
-		<div style="max-width: 800px; margin: 40px auto;">
-			<div id="carouselExampleSlidesOnly" class="carousel slide"
-				data-bs-ride="carousel" data-bs-interval="1500">
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="https://i.imgur.com/uoaiUtN.jpeg"
-							class="d-block w-100  rounded" height="500px" alt="Washer Icon">
-					</div>
-					<div class="carousel-item">
-						<img src="https://i.imgur.com/ESS4bjE.jpeg"
-							class="d-block w-100 rounded" height="500px"
-							alt="Eco-Friendly Dry Clean">
-					</div>
-					<div class="carousel-item">
-						<img src="https://i.imgur.com/mAMZNZd.jpeg"
-							class="d-block w-100 rounded" height="500px"
-							alt="Professional Pressing">
-					</div>
-					<div class="carousel-item">
-						<img src="https://i.imgur.com/GRG0EI7.jpeg"
-							class="d-block w-100 rounded" height="500px"
-							alt="Fast Delivery Service">
-					</div>
-				</div>
-			</div>
-		</div>
 
 		<!-- Services Section -->
 		<div class="container">
@@ -107,40 +130,45 @@ h2:hover, h3:hover {
 			<div class="row g-4 text-center">
 				<div class="col-md-4">
 					<div class="card border-0 shadow-sm h-100"
-						style="background-color: #cccdcd; color: white;">
+						style="background-color: #5F7081; color: white; border-radius: 20px;">
 						<div class="card-body">
 							<img src="https://img.icons8.com/ios/100/towel.png"
-								alt="Dry Clean" class="mb-3" width="50" height="50">
-							<h3 class="card-title" style="color: black;">Dry Clean</h3>
-							<p style="color: black;">We offer professional dry cleaning
+								alt="Dry Clean" class="mb-3" width="50" height="50"
+								style="filter: brightness(0) invert(1);">
+							<h3 class="card-title" style="color: white;">Dry Clean</h3>
+							<p style="color: white;">We offer professional dry cleaning
 								services using advanced techniques and eco-friendly products to
 								safely clean delicate fabrics, remove tough stains, and keep
 								your clothes looking like new.</p>
 						</div>
 					</div>
 				</div>
+
 				<div class="col-md-4">
 					<div class="card border-0 shadow-sm h-100"
-						style="background-color: #cccdcd; color: white;">
+						style="background-color: #5F7081; color: white; border-radius: 20px;">
 						<div class="card-body">
 							<img src="https://img.icons8.com/ios/100/iron.png" alt="Pressing"
-								class="mb-3" width="50" height="50">
-							<h3 class="card-title" style="color: black;">Pressing</h3>
-							<p style="color: black;">Our expert pressing service gives
+								class="mb-3" width="50" height="50"
+								style="filter: brightness(0) invert(1);">
+							<h3 class="card-title" style="color: white;">Pressing</h3>
+							<p style="color: white;">Our expert pressing service gives
 								your clothes a crisp, polished look. Whether it’s for work,
 								events, or daily wear, we make sure your garments are neatly
 								pressed and wrinkle-free.</p>
 						</div>
 					</div>
 				</div>
+
 				<div class="col-md-4">
 					<div class="card border-0 shadow-sm h-100"
-						style="background-color: #cccdcd; color: white;">
+						style="background-color: #5F7081; color: white; border-radius: 20px;">
 						<div class="card-body">
 							<img src="https://img.icons8.com/ios/100/delivery.png"
-								alt="Fast Delivery" class="mb-3" width="50" height="50">
-							<h3 class="card-title" style="color: black;">Fast Delivery</h3>
-							<p style="color: black;">Our fast delivery service ensures
+								alt="Fast Delivery" class="mb-3" width="50" height="50"
+								style="filter: brightness(0) invert(1);">
+							<h3 class="card-title" style="color: white;">Fast Delivery</h3>
+							<p style="color: white;">Our fast delivery service ensures
 								that your cleaned and pressed garments are delivered to your
 								doorstep on time, saving you time and making laundry completely
 								hassle-free.</p>
@@ -154,14 +182,14 @@ h2:hover, h3:hover {
 
 
 	<!-- About us Section -->
-	<section class="py-5" style="background-color: #C7EEFF;">
+	<section class="py-5" style="background-color: #cad1d1;">
 		<div class="container">
 			<h3 class="text-center mb-2 fw-bold">About Us</h3>
 			<div class="row g-4 text-center">
 				<div>
 					<div class="card-body"
-						style="background-color: #cccdcd; color: white; padding: 30px;">
-						<p style="color: black; font-size: 1.2rem; line-height: 1.6;">
+						style="background-color: #5F7081; padding: 30px; border-radius: 20px;">
+						<p style="color: white; font-size: 1.2rem; line-height: 1.6;">
 							At Turbo Clean, we are committed to providing high-quality dry
 							cleaning and garment care services with a focus on convenience,
 							reliability, and customer satisfaction. We understand how
@@ -176,7 +204,6 @@ h2:hover, h3:hover {
 			</div>
 		</div>
 	</section>
-
 
 
 	<!-- Footer -->
@@ -196,7 +223,7 @@ h2:hover, h3:hover {
 				<div class="col-md-2 mb-4">
 					<h3 class="fw-bold mb-3">Quick Links</h3>
 					<ul class="list-unstyled">
-						<li><a href="#" class="text-decoration-none"
+						<li><a href="/" class="text-decoration-none"
 							style="color: white;">Home</a></li>
 						<li><a href="#" class="text-decoration-none"
 							style="color: white;">Services</a></li>
@@ -226,9 +253,9 @@ h2:hover, h3:hover {
 				<!-- Social Links -->
 				<div class="col-md-3 mb-4">
 					<h3 class="fw-bold mb-3">Follow Us</h3>
-					<a href="#" class="d-block mb-2" style="color: white;"><i
-						class="bi bi-facebook me-1"></i> Facebook</a> <a href="#"
-						class="d-block mb-2" style="color: white;"><i
+					<a href="/www.facebook.com" class="d-block mb-2"
+						style="color: white;"><i class="bi bi-facebook me-1"></i>
+						Facebook</a> <a href="#" class="d-block mb-2" style="color: white;"><i
 						class="bi bi-instagram me-1"></i> Instagram</a> <a href="#"
 						class="d-block mb-2" style="color: white;"><i
 						class="bi bi-whatsapp me-1"></i> WhatsApp</a>
@@ -241,6 +268,8 @@ h2:hover, h3:hover {
 				reserved.</div>
 		</div>
 	</footer>
+	<script
+		src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

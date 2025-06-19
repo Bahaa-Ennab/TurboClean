@@ -30,7 +30,7 @@
 }
 
 /* Hover effect for all major headers */
-h2:hover, h3:hover {
+h2:hover, h3:hover , a:hover{
 	color: orange !important;
 	cursor: pointer;
 }
@@ -42,15 +42,17 @@ h2:hover, h3:hover {
 </style>
 <body class="bg-light">
 
-<!-- Navbar -->
+	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
-		style="background-color: #303841;">
+		style="background-color: #303841; margin-bottom: 0;">
 		<div class="container">
-
-			<a class="navbar-brand fw-bold brand-hover" href="#"
-				style="font-size: 28px;"> <span class="turbo">Turbo</span><span
-				class="text-primary">Clean</span>
-			</a>
+<a class="navbar-brand d-flex align-items-center" href="/">
+  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="50" height="50"
+       class="d-inline-block align-text-top rounded-circle me-2">
+  <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
+    <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
+  </span>
+</a>
 			<div class="d-flex align-items-center gap-2">
 				<a href="/login">
 					<button class="btn btn-sm custom-login-btn">Login</button>
@@ -61,89 +63,90 @@ h2:hover, h3:hover {
 
 <!-- Main Content -->
 <main class="d-flex justify-content-center align-items-center"
-      style="min-height: 65vh; background-color: #C7EEFF;">
-      
-    <div class="container">
+      style="min-height: 80vh; background-color: #cad1d1;">
+
+    <div class="container-fluid px-5">
         <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-8">
-                <div class="card shadow border-0 rounded-4 overflow-hidden" style=" margin-top: 60px; margin-bottom: 60px;">
+            <div class="col-xl-10 col-xxl-8">
+                <div class="card shadow border-0 rounded-4 overflow-hidden" style="margin: 70px 0;">
                     <div class="row g-0">
                         <!-- Image section -->  
                         <div class="col-md-6 d-none d-md-block">
                             <img
                                 src="https://static.vecteezy.com/system/resources/thumbnails/007/147/703/small_2x/laundry-and-dry-cleaning-concept-icon-suites-amenities-idea-thin-line-illustration-cruise-ship-services-iron-washing-machine-and-clean-clothes-isolated-outline-drawing-editable-stroke-vector.jpg"
-                                alt="Login Image" class="img-fluid h-100 w-100"
+                                alt="Register Image" class="img-fluid h-100 w-100"
                                 style="object-fit: cover;">
                         </div>
 
                         <!-- Form section -->
-                        <div class="col-md-6 p-4 mb-3">
-                            <h4 class="mb-4 text-center">User Register</h4>
-                            <form:form action="/customerregister" method="post"
-                                      modelAttribute="newCustomer">
+                        <div class="col-md-6 p-5" style="background-color: #5f7081; color: white;">
+                            <h3 class="mb-4 text-center fw-bold">User Register</h3>
+                            <form:form action="/customerregister" method="post" modelAttribute="newCustomer">
 
                                 <!-- Name (First + Last) -->
                                 <div class="row g-3 mb-3">
-                                    <div class="col-md-6 form-floating">
+                                    <div class="col-md-6 mb-3">
+                                        <form:label path="firstName">First Name</form:label>
                                         <form:input path="firstName" cssClass="form-control"
                                                     placeholder="First Name" />
-                                        <form:label path="firstName">First Name</form:label>
                                         <form:errors path="firstName" cssClass="text-danger small" />
                                     </div>
 
-                                    <div class="col-md-6 form-floating">
+                                    <div class="col-md-6 mb-3">
+                                        <form:label path="lastName">Last Name</form:label>
                                         <form:input path="lastName" cssClass="form-control"
                                                     placeholder="Last Name" />
-                                        <form:label path="lastName">Last Name</form:label>
                                         <form:errors path="lastName" cssClass="text-danger small" />
                                     </div>
                                 </div>
 
                                 <!-- Email -->
-                                <div class="form-floating mb-3">
+                                <div class="mb-3">
+                                    <form:label path="email">Email address</form:label>
                                     <form:input path="email" cssClass="form-control"
                                                 placeholder="Email address" />
-                                    <form:label path="email">Email address</form:label>
                                     <form:errors path="email" cssClass="text-danger small" />
                                 </div>
 
                                 <!-- Password -->
-                                <div class="form-floating mb-3">
+                                <div class="mb-3">
+                                    <form:label path="password">Password</form:label>
                                     <form:input path="password" type="password"
                                                 cssClass="form-control" placeholder="Password" />
-                                    <form:label path="password">Password</form:label>
                                     <form:errors path="password" cssClass="text-danger small" />
                                 </div>
 
                                 <!-- Confirm Password -->
-                                <div class="form-floating mb-4">
+                                <div class="mb-4">
+                                    <form:label path="confirmPassword">Confirm password</form:label>
                                     <form:input path="confirmPassword" type="password"
                                                 cssClass="form-control" placeholder="Confirm password" />
-                                    <form:label path="confirmPassword">Confirm password</form:label>
                                     <form:errors path="confirmPassword" cssClass="text-danger small" />
                                 </div>
 
                                 <!-- Location -->
-                                <div class="form-floating mb-4">
-                                    <form:input path="location" type="location"
-                                                cssClass="form-control" placeholder="Location" />
+                                <div class="mb-4">
                                     <form:label path="location">Location</form:label>
+                                    <form:input path="location" cssClass="form-control"
+                                                placeholder="Location" />
                                     <form:errors path="location" cssClass="text-danger small" />
                                 </div>
 
                                 <!-- Phone Number -->
-                                <div class="form-floating mb-4">
+                                <div class="mb-4">
+                                    <form:label path="phoneNumber">Phone Number</form:label>
                                     <form:input path="phoneNumber"
                                                 cssClass="form-control" placeholder="Phone Number" />
-                                    <form:label path="phoneNumber">Phone Number</form:label>
                                     <form:errors path="phoneNumber" cssClass="text-danger small" />
                                 </div>
 
                                 <!-- Submit -->
-                                <button type="submit"
-                                        class="btn btn-primary w-100 py-2 fw-semibold">
-                                    Apply!
-                                </button>
+                                <div class="d-grid">
+                                    <button type="submit"
+                                            class="btn btn-primary btn-lg fw-semibold">
+                                        Apply!
+                                    </button>
+                                </div>
 
                             </form:form>
 
@@ -154,6 +157,7 @@ h2:hover, h3:hover {
         </div>
     </div>
 </main>
+
 
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"

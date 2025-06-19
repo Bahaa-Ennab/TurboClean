@@ -92,18 +92,20 @@ h2:hover, h3:hover {
         font-weight: bold;
     }
 </style>
-<body>
+<body style="background-color: #cad1d1; ">
 
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
-		style="background-color: #303841;">
+		style="background-color: #303841; margin-bottom: 0;">
 		<div class="container">
-
-			<a class="navbar-brand fw-bold brand-hover" href="#"
-				style="font-size: 28px;"> <span class="turbo">Turbo</span><span
-				class="text-primary">Clean</span>
-			</a>
-			<!-- Navigation Links -->
+<a class="navbar-brand d-flex align-items-center" href="/">
+  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="50" height="50"
+       class="d-inline-block align-text-top rounded-circle me-2">
+  <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
+    <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
+  </span>
+</a>
+<!-- Navigation Links -->
 			<nav class="d-flex gap-4 flex-wrap my-2 my-md-0">
 				<a href="/customer/home" class="nav-link-custom">Home</a> <a
 					href="/customer/orders" class="nav-link-custom">ALL Orders</a> <a
@@ -115,27 +117,44 @@ h2:hover, h3:hover {
 			</form>
 		</div>
 	</nav>
+<main style="padding: 20px; max-width: 1000px; margin: auto;background-color: #5f7081; ">
 
-	<h1>My Orders</h1>
-	<table>
-		<tr>
-			<th>ID Order</th>
-			<th>Date</th>
-			<th>Receipt</th>
-			<th>Status</th>
+	<!-- Search Input -->
+	<div style="margin-bottom: 20px;">
+		<input type="text" id="searchInput" placeholder="Search by ID, Date, or Status"
+		       style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px;">
+	</div>
 
-		</tr>
-		<c:forEach var="order" items="${orders}">
+	<h1 style="text-align: center; margin-bottom: 30px;">My Orders</h1>
+
+	<!-- Orders Table -->
+	<table style="width: 100%; border-collapse: collapse; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+		<thead style="background-color: #f2f2f2;">
 			<tr>
-				<td><c:out value="${order.id}" /></td>
-				<td><c:out value="${order.date}" /></td>
-				<td><c:out value="${order.address}" /></td>
-				<td><c:out value="${order.total_cost}" /></td>
-				<td><c:out value="${order.status.condition}" /></td>
-
+				<th style="padding: 12px;">ID Order</th>
+				<th style="padding: 12px;">Date</th>
+				<th style="padding: 12px;">Receipt</th>
+				<th style="padding: 12px;">Total</th>
+				<th style="padding: 12px;">Status</th>
 			</tr>
-		</c:forEach>
+		</thead>
+		<tbody id="orderTable">
+			<%-- Initial orders loaded here --%>
+			<c:forEach var="order" items="${orders}">
+				<tr>
+					<td style="padding: 12px;"><c:out value="${order.id}" /></td>
+					<td style="padding: 12px;"><c:out value="${order.date}" /></td>
+					<td style="padding: 12px;"><c:out value="${order.address}" /></td>
+					<td style="padding: 12px;"><c:out value="${order.total_cost}" /></td>
+					<td style="padding: 12px;"><c:out value="${order.status.condition}" /></td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
+</main>
+
+	
+	
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"
 		style="background-color: #303841; color: white;">
@@ -198,6 +217,17 @@ h2:hover, h3:hover {
 				reserved.</div>
 		</div>
 	</footer>
+	<script>
+	document.getElementById("searchInput").addEventListener("input", function () {
+		let keyword = this.value;
+
+		fetch('/searchOrders?keyword=' + encodeURIComponent(keyword))
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById("orderTable").innerHTML = data;
+			});
+	});
+</script>
 <script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -93,15 +93,17 @@ h2:hover, h3:hover {
     }
 </style>
 <body>
-<!-- Navbar -->
+	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
-		style="background-color: #303841;">
+		style="background-color: #303841; margin-bottom: 0;">
 		<div class="container">
-
-			<a class="navbar-brand fw-bold brand-hover" href="#"
-				style="font-size: 28px;"> <span class="turbo">Turbo</span><span
-				class="text-primary">Clean</span>
-			</a>
+<a class="navbar-brand d-flex align-items-center" href="/">
+  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="50" height="50"
+       class="d-inline-block align-text-top rounded-circle me-2">
+  <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
+    <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
+  </span>
+</a>
 			<!-- Navigation Links -->
 			<nav class="d-flex gap-4 flex-wrap my-2 my-md-0">
 				<a href="/customer/home" class="nav-link-custom">Home</a> <a

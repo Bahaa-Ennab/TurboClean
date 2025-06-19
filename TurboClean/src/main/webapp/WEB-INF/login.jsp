@@ -32,7 +32,7 @@
 }
 
 /* Hover effect for all major headers */
-h2:hover, h3:hover {
+h2:hover, h3:hover , a:hover{
 	color: orange !important;
 	cursor: pointer;
 }
@@ -44,15 +44,17 @@ h2:hover, h3:hover {
 </style>
 <body class="bg-light" >
 
-<!-- Navbar -->
+	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
-		style="background-color: #303841;">
+		style="background-color: #303841; margin-bottom: 0;">
 		<div class="container">
-
-			<a class="navbar-brand fw-bold brand-hover" href="#"
-				style="font-size: 28px;"> <span class="turbo">Turbo</span><span
-				class="text-primary">Clean</span>
-			</a>
+<a class="navbar-brand d-flex align-items-center" href="/">
+  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="50" height="50"
+       class="d-inline-block align-text-top rounded-circle me-2">
+  <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
+    <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
+  </span>
+</a>
 			<div class="d-flex align-items-center gap-2">
 				<a href="/login">
 					<button class="btn btn-sm custom-login-btn">Login</button>
@@ -63,7 +65,7 @@ h2:hover, h3:hover {
 
 <!-- Main Content -->
 <main class="d-flex justify-content-center align-items-center"
-      style="min-height: 80vh; background-color: #C7EEFF;">
+      style="min-height: 80vh; background-color: #cad1d1;">
     <div class="container-fluid px-5">
         <div class="row justify-content-center">
             <div class="col-xl-10 col-xxl-8">
@@ -75,7 +77,7 @@ h2:hover, h3:hover {
                         </div>
 
                         <!-- Form section -->
-                        <div class="col-md-6 p-5">
+                        <div class="col-md-6 p-5" style=" background-color: #5f7081; color:white">
                             <h3 class="mb-4 text-center fw-bold">User Login</h3>
                             <form:form action="/customerlogin" method="post" modelAttribute="newCustomer">
                                 <!-- Email -->
