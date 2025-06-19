@@ -79,6 +79,10 @@ public class CustomerController {
 		System.out.println(session.getAttribute("loggedCustomer"));
 		return "customer.jsp";
 }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 	@PostMapping("/customer/sendMessage")
 	public String sendMessage(@Valid @ModelAttribute("customerMessage") Message customerMessage, BindingResult result, Model model,
 			HttpSession session) {
@@ -91,7 +95,6 @@ public class CustomerController {
 		messageService.createMessage(customerMessage);
 		return "redirect:/customer/messages";
 	}
-	
 	
 	@GetMapping("/customer/messages")
 	public String customerMessages() {

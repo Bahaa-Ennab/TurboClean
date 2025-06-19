@@ -110,9 +110,7 @@ h2:hover, h3:hover {
 					href="/customer/messages" class="nav-link-custom">Messages</a>
 			</nav>
 			<!-- Logout Button -->
-			<form action="" method="post" class="mb-0">
-				<button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button>
-			</form>
+				<a href="/logout"><button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button></a>
 		</div>
 	</nav>
 
