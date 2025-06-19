@@ -21,6 +21,7 @@
 			<div class="d-flex gap-2">
 				<a href="/admin/login" class="btn btn-outline-secondary btn-sm">Login</a>
 				<a href="/register/admin" class="btn btn-primary btn-sm">Register</a>
+
 			</div>
 		</div>
 	</nav>
@@ -44,6 +45,7 @@
 							<!-- Form section -->
 							<div class="col-md-6 p-4 mb-3">
 								<h4 class="mb-4 text-center">Admin Register</h4>
+
 								<form:form action="/admin/register" method="post"
 									modelAttribute="adminSignup">
 

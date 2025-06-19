@@ -33,6 +33,7 @@ public class AdminServices {
 		// Reject if BCrypt password match fails
 		if (!BCrypt.checkpw(adminLogin.getPassword(), admin.getPassword())) {
 		    bindingResult.rejectValue("password", "invalid", "Email or Password does not exist");
+
 		}
 
 		// Return null if result has errors

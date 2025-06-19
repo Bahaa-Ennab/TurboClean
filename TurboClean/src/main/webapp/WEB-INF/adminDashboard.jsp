@@ -18,7 +18,6 @@
 
 			</div>
 
-<<<<<<< Updated upstream
 <article>
     <form:form action="" modelAttribute="order" method="post">
         Customer ID: <form:input path="customerId" /><br><br>
@@ -46,7 +45,6 @@
 </article>
 
 <footer class="bg-white border-top mt-20 py-4">
-=======
 			<a href="/logout"><button type="submit"
 					class="btn btn-outline-light btn-sm px-4">Logout</button></a>
 
@@ -66,7 +64,6 @@
 	<article>All Item Order</article>
 
 	<footer class="bg-white border-top mt-20 py-4">
->>>>>>> Stashed changes
 		<div class="container text-center small text-muted">
 			<p class="mb-1">© 2025 TurboClean – Ramallah, Palestine · Fast ·
 				Reliable · Door-to-Door Dry Cleaning</p>

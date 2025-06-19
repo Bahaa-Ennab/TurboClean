@@ -50,6 +50,7 @@ public class AdminController {
 	    @GetMapping("/register/admin")
 	    public String showAdminRegister(Model model) {
 	        model.addAttribute("adminSignup", new Admin());
+
 	        return "adminRegister.jsp";                          // /WEB-INF/admin/register.jsp
 	    }
 
@@ -61,16 +62,19 @@ public class AdminController {
 			Admin signedUpAdmin = adminService.register(admin, result);
 
 	        if (result.hasErrors()) {
+
 	            return "adminRegister.jsp";
 	        }
 	        
 	        session.setAttribute("loggedAdmin", admin);
 	        return "redirect:/admin/dashboard";
+
 	    }
 
 	    /* ========== 3) لوحة التحكم ========== */
 	    
 		 @GetMapping("/admin/dashboard")
+
 		    public String showAdmindashboard(Model model) {
 		        return "adminDashboard.jsp";                             // /WEB-INF/admin/login.jsp
 		    }
