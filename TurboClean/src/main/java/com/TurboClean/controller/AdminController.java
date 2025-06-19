@@ -1,5 +1,7 @@
 package com.TurboClean.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.TurboClean.models.Admin;
+import com.TurboClean.models.Customer;
 import com.TurboClean.models.LoginAdmin;
 import com.TurboClean.services.AdminServices;
+import com.TurboClean.services.CustomerService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -19,6 +23,10 @@ import jakarta.validation.Valid;
 public class AdminController {
 	@Autowired
 	AdminServices adminService;
+	
+	@Autowired
+	CustomerService customerService;
+	
 	
 	
 	 @GetMapping("/admin/login")
@@ -78,4 +86,14 @@ public class AdminController {
 		    public String showAdmindashboard(Model model) {
 		        return "adminDashboard.jsp";                             // /WEB-INF/admin/login.jsp
 		    }
+		 
+		 @GetMapping("/admin/customers")
+		    public String showCustomers(Model model) {
+			 	List<Customer> customers=customerService.allCustomers();
+			 	model.addAttribute("customers", customers);
+		        return "allCustomer.jsp";                             
+		    }
+		 
+		 
+		 
 }

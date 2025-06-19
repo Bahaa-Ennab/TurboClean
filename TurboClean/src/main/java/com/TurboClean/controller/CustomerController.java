@@ -28,16 +28,16 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService customerSerivce;
-	
+
 	@Autowired
 	AdminServices adminSerivce;
-	
+
 	@Autowired
 	MessageService messageService;
 
 	@Autowired
 	OrderService orderService;
-	
+
 	@GetMapping("/login")
 	public String index(Model model) {
 		model.addAttribute("newCustomer", new Customer());
@@ -65,8 +65,8 @@ public class CustomerController {
 	}
 
 	@PostMapping("/customerregister")
-	public String register(@Valid @ModelAttribute("newCustomer") Customer newCustomer, BindingResult result, Model model,
-			HttpSession session) {
+	public String register(@Valid @ModelAttribute("newCustomer") Customer newCustomer, BindingResult result,
+			Model model, HttpSession session) {
 		Customer signedUpCustomer = customerSerivce.register(newCustomer, result);
 		if (result.hasErrors()) {
 			model.addAttribute("newCustomer", new LoginCustomer());
@@ -75,46 +75,48 @@ public class CustomerController {
 		session.setAttribute("loggedCustomer", signedUpCustomer);
 		return "redirect:/customer/home";
 	}
-	//-------------------------------------------------------------------------------------------------------
-	
+	// -------------------------------------------------------------------------------------------------------
+
 	@GetMapping("/customer/home")
-	public String customer(Model model,HttpSession session) {
+	public String customer(Model model, HttpSession session) {
 		model.addAttribute("customerMessage", new Message());
-//		Customer custom=(Customer) session.getAttribute("loggedCustomer");
-		System.out.println(session.getAttribute("loggedCustomer"));
+		Customer custom = (Customer) session.getAttribute("loggedCustomer");
+		model.addAttribute("customer", custom);
+//		System.out.println(session.getAttribute("loggedCustomer"));
 		return "customer.jsp";
-}
+	}
+
 	@PostMapping("/customer/sendMessage")
-	public String sendMessage(@Valid @ModelAttribute("customerMessage") Message customerMessage, BindingResult result, Model model,
-			HttpSession session) {
-		
+	public String sendMessage(@Valid @ModelAttribute("customerMessage") Message customerMessage, BindingResult result,
+			Model model, HttpSession session) {
+
 		if (result.hasErrors()) {
 			return "customer.jsp";
 		}
-		Customer custom=(Customer) session.getAttribute("loggedCustomer");
+		Customer custom = (Customer) session.getAttribute("loggedCustomer");
 		customerMessage.setCustomer(custom);
-		Admin admin=adminSerivce.findAdmin(1L);
+		Admin admin = adminSerivce.findAdmin(1L);
 		customerMessage.setAdmin(admin);
 		messageService.createMessage(customerMessage);
 		return "redirect:/customer/messages";
 	}
-	
+
 	@GetMapping("/customer/messages")
 	public String customerMessages() {
 		return "customerMessages.jsp";
-	
+
 	}
-	
-	//-------------------------------------------------------------------------------------------------------
+
+	// -------------------------------------------------------------------------------------------------------
 
 	@GetMapping("/customer/orders")
-	public String customerOrders(Model model,HttpSession session) {
-		Customer custom=(Customer) session.getAttribute("signedUpCustomer");
-		List<Order> orders= orderService.findAllByCustomer(custom);
-		model.addAttribute("orders",orders);
-		
+	public String customerOrders(Model model, HttpSession session) {
+		Customer custom = (Customer) session.getAttribute("signedUpCustomer");
+		List<Order> orders = orderService.findAllByCustomer(custom);
+		model.addAttribute("orders", orders);
+
 		return "customerOrder.jsp";
-	
+
 	}
-	
+
 }
