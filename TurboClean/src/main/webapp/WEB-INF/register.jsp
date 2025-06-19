@@ -43,23 +43,25 @@ h2:hover, h3:hover , a:hover{
 <body class="bg-light">
 
 	<!-- Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
-		style="background-color: #303841; margin-bottom: 0;">
-		<div class="container">
-<a class="navbar-brand d-flex align-items-center" href="/">
-  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="50" height="50"
-       class="d-inline-block align-text-top rounded-circle me-2">
-  <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
-    <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
-  </span>
-</a>
-			<div class="d-flex align-items-center gap-2">
-				<a href="/login">
-					<button class="btn btn-sm custom-login-btn">Login</button>
-				</a> <a href="/register" class="btn btn-primary btn-sm">Register</a>
-			</div>
+<nav class="navbar navbar-expand-lg navbar-light"
+	style="background-color: #303841; margin-bottom: 0; box-shadow: 0 6px 10px -2px rgba(0,0,0,0.4);">
+	<div class="container">
+		<a class="navbar-brand d-flex align-items-center" href="/">
+			<img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="40" height="40"
+				class="d-inline-block align-text-top rounded-circle me-2">
+			<span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
+				<span class="turbo">Turbo</span><span class="text-primary">Clean</span>
+			</span>
+		</a>
+
+		<div class="d-flex align-items-center gap-2">
+			<a href="/login">
+				<button class="btn btn-sm custom-login-btn">Login</button>
+			</a>
+			<a href="/register" class="btn btn-primary btn-sm">Register</a>
 		</div>
-	</nav>
+	</div>
+</nav>
 
 <!-- Main Content -->
 <main class="d-flex justify-content-center align-items-center"
@@ -67,19 +69,19 @@ h2:hover, h3:hover , a:hover{
 
     <div class="container-fluid px-5">
         <div class="row justify-content-center">
-            <div class="col-xl-10 col-xxl-8">
+            <div class="col-12" style="max-width: 1200px;">
                 <div class="card shadow border-0 rounded-4 overflow-hidden" style="margin: 70px 0;">
                     <div class="row g-0">
-                        <!-- Image section -->  
+                        <!-- Image section -->
                         <div class="col-md-6 d-none d-md-block">
                             <img
-                                src="https://static.vecteezy.com/system/resources/thumbnails/007/147/703/small_2x/laundry-and-dry-cleaning-concept-icon-suites-amenities-idea-thin-line-illustration-cruise-ship-services-iron-washing-machine-and-clean-clothes-isolated-outline-drawing-editable-stroke-vector.jpg"
+                                src="https://i.imgur.com/bdg6PIF.jpeg"
                                 alt="Register Image" class="img-fluid h-100 w-100"
                                 style="object-fit: cover;">
                         </div>
 
                         <!-- Form section -->
-                        <div class="col-md-6 p-5" style="background-color: #5f7081; color: white;">
+                        <div class="col-md-6 p-4" style="background-color: #5f7081; color: white;">
                             <h3 class="mb-4 text-center fw-bold">User Register</h3>
                             <form:form action="/customerregister" method="post" modelAttribute="newCustomer">
 

@@ -76,7 +76,6 @@ public class CustomerController {
 	public String customer(Model model,HttpSession session) {
 		model.addAttribute("customerMessage", new Message());
 //		Customer custom=(Customer) session.getAttribute("loggedCustomer");
-		System.out.println(session.getAttribute("loggedCustomer"));
 		return "customer.jsp";
 }
 	@PostMapping("/customer/sendMessage")
