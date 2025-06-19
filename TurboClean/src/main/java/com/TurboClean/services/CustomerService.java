@@ -1,6 +1,7 @@
 package com.TurboClean.services;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -10,6 +11,7 @@ import org.springframework.validation.BindingResult;
 
 import com.TurboClean.models.Customer;
 import com.TurboClean.models.LoginCustomer;
+import com.TurboClean.models.Order;
 import com.TurboClean.repositories.CustomerRepository;
 
 @Service
@@ -23,6 +25,9 @@ public class CustomerService {
 		return Customerrepo.findById(Id).orElse(null);
 	}
 	
+	public List<Customer> allCustomers() {
+        return Customerrepo.findAll();
+    }
 	public Customer Login(LoginCustomer customerLogin, BindingResult bindingResult) {
 		
 		// Find user in the DB by email

@@ -7,35 +7,51 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Customer Home Page</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+
+<!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-</head>
+<!-- Bootstrap Icons -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+	rel="stylesheet">
+
 <style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-    }
+.custom-btn-orange {
+	background-color: #f5a623;
+	color: white;
+	border: none;
+	transition: background-color 0.3s ease;
+}
 
-    body > .container, body > main {
-        flex: 1;
-    }
+.custom-btn-orange:hover {
+	background-color: #e07b00;
+	color: white;
+}
 
-    footer {
-        margin-top: auto;
-    }
+html, body {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+body>.container, body>main {
+	flex: 1;
+}
+
+footer {
+	margin-top: auto;
+}
+
 .brand-hover span.turbo:hover {
 	color: orange;
 }
 
-/* Hover effect for all major headers */
-h2:hover, h3:hover {
+h2:hover, h3:hover, a:hover {
 	color: orange !important;
 	cursor: pointer;
 }
@@ -44,12 +60,12 @@ h2:hover, h3:hover {
 	color: #ffffff;
 	font-weight: bold;
 	text-decoration: none;
-	font-size: 22px; /* Slightly bigger */
+	font-size: 22px;
 	transition: color 0.3s ease;
 }
 
 .nav-link-custom:hover {
-	color: #FFA726; /* Light orange */
+	color: #FFA726;
 }
 
 .btn-outline-light:hover {
@@ -57,109 +73,154 @@ h2:hover, h3:hover {
 	border-color: orange !important;
 	color: white !important;
 }
-   .form-container {
-        max-width: 600px;
-        margin: 70px auto; /* top-bottom: 70px, left-right: auto center */
-        padding: 30px;
-        border-radius: 16px;
-        background-color: #f8f9fa;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    }
 
-    .form-container h3 {
-        margin-bottom: 20px;
-        font-weight: bold;
-        color: #333;
-    }
+.form-container {
+	max-width: 600px;
+	margin: 70px auto;
+	padding: 30px;
+	border-radius: 16px;
+	background-color: #f8f9fa;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
 
-    .form-container input[type="submit"] {
-        background-color: #ff8800;
-        color: white;
-        border: none;
-        padding: 10px 25px;
-        font-weight: 500;
-        border-radius: 8px;
-        transition: background-color 0.3s ease;
-    }
+.form-container h3 {
+	margin-bottom: 20px;
+	font-weight: bold;
+	color: #333;
+}
 
-    .form-container input[type="submit"]:hover {
-        background-color: #ff6a00;
-    }
+.form-container input[type="submit"] {
+	background-color: #ff8800;
+	color: white;
+	border: none;
+	padding: 10px 25px;
+	font-weight: 500;
+	border-radius: 8px;
+	transition: background-color 0.3s ease;
+}
 
-    .success-message {
-        margin-top: 15px;
-        color: green;
-        font-weight: bold;
-    }
+.form-container input[type="submit"]:hover {
+	background-color: #ff6a00;
+}
+
+.success-message {
+	margin-top: 15px;
+	color: green;
+	font-weight: bold;
+}
 </style>
+</head>
+
 <body>
 
 	<!-- Navbar -->
-	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
-		style="background-color: #303841; margin-bottom: 0;">
+		style="background-color: #303841;">
 		<div class="container">
-<a class="navbar-brand d-flex align-items-center" href="/">
-  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="50" height="50"
-       class="d-inline-block align-text-top rounded-circle me-2">
-  <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
-    <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
-  </span>
-</a>
+			<a class="navbar-brand d-flex align-items-center" href="/"> <img
+				src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="40"
+				height="40"
+				class="d-inline-block align-text-top rounded-circle me-2"> <span
+				class="fw-bold brand-hover" style="font-size: 28px; color: white;">
+					<span class="turbo">Turbo</span><span class="text-primary">Clean</span>
+			</span>
+			</a>
+
 			<!-- Navigation Links -->
-			<nav class="d-flex gap-4 flex-wrap my-2 my-md-0">
+			<div class="d-flex gap-4 flex-wrap my-2 my-md-0">
 				<a href="/customer/home" class="nav-link-custom">Home</a> <a
 					href="/customer/orders" class="nav-link-custom">ALL Orders</a> <a
 					href="/customer/messages" class="nav-link-custom">Messages</a>
-			</nav>
+			</div>
+
 			<!-- Logout Button -->
-				<a href="/logout"><button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button></a>
+			<a href="/logout"><button type="submit"
+					class="btn btn-outline-light btn-sm px-4">Logout</button></a>
 		</div>
 	</nav>
 
-	<article>
-	
-	</article>
+<main class="py-5" style="background-color: #cad1d1;">
+  <div class="container">
+    <div class="d-flex gap-4 overflow-auto pb-4" style="scroll-snap-type: x mandatory;">
+     <!-- Image Gallery: 3x3 Grid -->
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+  <div class="col text-center">
+    <img src="https://i.imgur.com/RsOelut.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 1">
+    <h6 class="fw-bold">Coat 5$</h6>
+  </div>
+  <div class="col text-center">
+    <img src="https://i.imgur.com/2p1JfkJ.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 2">
+    <h6 class="fw-bold">Shirt 2$</h6>
+  </div>
+  <div class="col text-center">
+    <img src="https://i.imgur.com/5uGwD6k.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 3">
+    <h6 class="fw-bold">Dress 10$</h6>
+  </div>
+  <div class="col text-center">
+    <img src="https://i.imgur.com/njYMh1c.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 4">
+    <h6 class="fw-bold">Jacket 4$</h6>
+  </div>
+  <div class="col text-center">
+    <img src="https://i.imgur.com/SuBzoAZ.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 5">
+    <h6 class="fw-bold">Suit 8$</h6>
+  </div>
+  <div class="col text-center">
+    <img src="https://i.imgur.com/ELsNPQ9.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 6">
+    <h6 class="fw-bold">T-shirt 2$</h6>
+  </div>
+  <div class="col text-center">
+    <img src="https://i.imgur.com/oWY8mrZ.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 7">
+    <h6 class="fw-bold">Man Thobe 7$</h6>
+  </div>
+  <div class="col text-center">
+    <img src="https://i.imgur.com/J2YwZA3.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 8">
+    <h6 class="fw-bold">Women Thobe 10$</h6>
+  </div>
+  <div class="col text-center">
+    <img src="https://i.imgur.com/h5qQRiN.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 9">
+    <h6 class="fw-bold">Trouser 2$</h6>
+  </div>
+</div>
 
-<article>
-    <div class="form-container">
-    <h2>Welcome, ${loggedCustomer.firstName} (ID: ${loggedCustomer.id})</h2>
-    
+      <!-- Form Section -->
+      <div class="card shadow-lg border-0 rounded-4 p-4" style="min-width: 800px;margin-left:40px; background-color: #5f7081; scroll-snap-align: start;">
+        <h2 class="fw-bold mb-4 text-white">Welcome, ${loggedCustomer.firstName}</h2>
+
         <form:form action="/customer/sendMessage" modelAttribute="customerMessage" method="post">
+          <h4 class="fw-semibold mb-3 text-white">Your Details</h4>
 
-            <h3>Your Details:</h3>
+          <!-- Message Textarea -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-white">Message Details:</label>
+            <form:textarea path="messageDetails" cssClass="form-control" rows="4" />
+          </div>
 
-            <!-- Message textarea -->
-            <div class="mb-3">
-                <label class="form-label">Message Details:</label>
-                <form:textarea path="messageDetails" cssClass="form-control" rows="4" />
-            </div>
+          <!-- Pickup Time -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-white">Pickup Time:</label>
+            <form:input type="datetime-local" path="pickupTime" cssClass="form-control" />
+          </div>
 
-            <!-- Pickup time input -->
-            <div class="mb-3">
-                <label class="form-label">Pickup Time:</label>
-                <form:input type="datetime-local" path="pickupTime" cssClass="form-control" />
-            </div>
-            <!-- Submit button -->
-            <div class="text-end">
-                <input type="submit" value="Submit" />
-            </div>
+          <!-- Submit Button -->
+          <div class="text-end">
+            <button type="submit" class="btn btn-lg px-4 custom-btn-orange">Submit</button>
+          </div>
         </form:form>
 
-        <!-- Success message -->
+        <!-- Success Message -->
         <c:if test="${not empty message}">
-            <p class="success-message">${message}</p>
+          <div class="alert alert-success mt-4" role="alert">${message}</div>
         </c:if>
+      </div>
     </div>
-</article>
-
+  </div>
+</main>
 
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"
 		style="background-color: #303841; color: white;">
 		<div class="container">
 			<div class="row">
-
 				<!-- Company Info -->
 				<div class="col-md-4 mb-4">
 					<h3 class="text-uppercase fw-bold">TurboClean</h3>
@@ -208,7 +269,6 @@ h2:hover, h3:hover {
 						class="d-block mb-2" style="color: white;"><i
 						class="bi bi-whatsapp me-1"></i> WhatsApp</a>
 				</div>
-
 			</div>
 
 			<hr style="border-color: rgba(255, 255, 255, 0.2);">
@@ -216,6 +276,8 @@ h2:hover, h3:hover {
 				reserved.</div>
 		</div>
 	</footer>
+
+	<!-- Bootstrap JS -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.TurboClean.models.Admin;
 import com.TurboClean.models.Customer;
 import com.TurboClean.models.LoginCustomer;
 import com.TurboClean.models.Message;
 import com.TurboClean.models.Order;
+import com.TurboClean.services.AdminServices;
 import com.TurboClean.services.CustomerService;
 import com.TurboClean.services.MessageService;
 import com.TurboClean.services.OrderService;
@@ -26,13 +28,16 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService customerSerivce;
-	
+
+	@Autowired
+	AdminServices adminSerivce;
+
 	@Autowired
 	MessageService messageService;
 
 	@Autowired
 	OrderService orderService;
-	
+
 	@GetMapping("/login")
 	public String index(Model model) {
 		model.addAttribute("newCustomer", new Customer());
@@ -60,8 +65,8 @@ public class CustomerController {
 	}
 
 	@PostMapping("/customerregister")
-	public String register(@Valid @ModelAttribute("newCustomer") Customer newCustomer, BindingResult result, Model model,
-			HttpSession session) {
+	public String register(@Valid @ModelAttribute("newCustomer") Customer newCustomer, BindingResult result,
+			Model model, HttpSession session) {
 		Customer signedUpCustomer = customerSerivce.register(newCustomer, result);
 		if (result.hasErrors()) {
 			model.addAttribute("newCustomer", new LoginCustomer());
@@ -70,44 +75,49 @@ public class CustomerController {
 		session.setAttribute("loggedCustomer", signedUpCustomer);
 		return "redirect:/customer/home";
 	}
-	//-------------------------------------------------------------------------------------------------------
-	
+	// -------------------------------------------------------------------------------------------------------
+
 	@GetMapping("/customer/home")
-	public String customer(Model model,HttpSession session) {
+	public String customer(Model model, HttpSession session) {
 		model.addAttribute("customerMessage", new Message());
-//		Customer custom=(Customer) session.getAttribute("loggedCustomer");
-		System.out.println(session.getAttribute("loggedCustomer"));
+
+		Customer custom = (Customer) session.getAttribute("loggedCustomer");
+		model.addAttribute("customer", custom);
+
 		return "customer.jsp";
-}
+	}
+
 	@PostMapping("/customer/sendMessage")
-	public String sendMessage(@Valid @ModelAttribute("customerMessage") Message customerMessage, BindingResult result, Model model,
-			HttpSession session) {
-		
+	public String sendMessage(@Valid @ModelAttribute("customerMessage") Message customerMessage, BindingResult result,
+			Model model, HttpSession session) {
+
 		if (result.hasErrors()) {
 			return "customer.jsp";
 		}
-		Customer custom=(Customer) session.getAttribute("loggedCustomer");
+		Customer custom = (Customer) session.getAttribute("loggedCustomer");
 		customerMessage.setCustomer(custom);
+		Admin admin = adminSerivce.findAdmin(1L);
+		customerMessage.setAdmin(admin);
 		messageService.createMessage(customerMessage);
 		return "redirect:/customer/messages";
 	}
-	
+
 	@GetMapping("/customer/messages")
 	public String customerMessages() {
 		return "customerMessages.jsp";
-	
+
 	}
-	
-	//-------------------------------------------------------------------------------------------------------
+
+	// -------------------------------------------------------------------------------------------------------
 
 	@GetMapping("/customer/orders")
-	public String customerOrders(Model model,HttpSession session) {
-		Customer custom=(Customer) session.getAttribute("signedUpCustomer");
-		List<Order> orders= orderService.findAllByCustomer(custom);
-		model.addAttribute("orders",orders);
-		
+	public String customerOrders(Model model, HttpSession session) {
+		Customer custom = (Customer) session.getAttribute("signedUpCustomer");
+		List<Order> orders = orderService.findAllByCustomer(custom);
+		model.addAttribute("orders", orders);
+
 		return "customerOrder.jsp";
-	
+
 	}
-	
+
 }
