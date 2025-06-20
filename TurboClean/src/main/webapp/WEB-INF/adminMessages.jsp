@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page isErrorPage="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +26,28 @@
     </form>
 </div>
 </header>
+<table>
+				<tr>
+					<th>ID</th>
+					<th>Customer Name</th>
+					<th>Phonenumber</th>
+					<th>pickupTime</th>
+					<th>messageDetails</th>
+					<th>Location</th>
 
+				</tr>
+				<c:forEach var="message" items="${messages}">
+					<tr>
+						<td><c:out value="${message.id}" /></td>
+						<td><c:out value="${message.customer.firstName} ${message.customer.lastName}" /></td>
+						<td><c:out value="${message.customer.phoneNumber}" /></td>
+						<td><c:out value="${message.pickupTime}" /></td>
+						<td><c:out value="${message.messageDetails}" /></td>
+						<td><c:out value="${message.customer.location}" /></td>
+
+					</tr>
+				</c:forEach>
+			</table>
 
 
 <footer class="bg-white border-top mt-20 py-4">
