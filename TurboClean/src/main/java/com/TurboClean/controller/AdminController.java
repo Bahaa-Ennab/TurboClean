@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.TurboClean.models.Admin;
 import com.TurboClean.models.Customer;
 import com.TurboClean.models.LoginAdmin;
+import com.TurboClean.models.Message;
 import com.TurboClean.repositories.ItemRepository;
 import com.TurboClean.services.AdminServices;
 import com.TurboClean.services.CustomerService;
+import com.TurboClean.services.MessageService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -27,9 +29,12 @@ public class AdminController {
 	
 	@Autowired
 	ItemRepository itemRepository;
+	
+	@Autowired
 	CustomerService customerService;
 	
-	
+	@Autowired
+	MessageService messageService;
 	
 	 @GetMapping("/admin/login")
 	    public String showAdminLogin(Model model) {
@@ -95,5 +100,11 @@ public class AdminController {
 		        return "allCustomer.jsp";                             
 		    }
 		 		 
+		 @GetMapping("/admin/messages")
+		    public String showMessages(Model model) {
+			 	List<Message> messages=messageService.allMessages();
+			 	model.addAttribute("messages", messages);
+		        return "adminMessages.jsp";                             
+		    }
 		 
 }

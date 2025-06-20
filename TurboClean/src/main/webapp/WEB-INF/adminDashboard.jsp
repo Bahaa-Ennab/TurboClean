@@ -14,7 +14,7 @@
 	<h2 class="mb-4">Create New Order</h2>
 			<div class="nav-links">
 				<a href="">New Order</a> <a href="/admin/customers">Customer</a> <a href="">All
-					Order</a> <a href="">Messages</a>
+					Order</a> <a href="/admin/messages">Messages</a>
 
 	<!-- Customer Info -->
 	<div class="mb-3">
