@@ -151,15 +151,24 @@
     });
 
     function submitOrder() {
-        const customerId = document.getElementById("customerId").value;
-        const address = document.getElementById("address").value;
-        const itemIds = Object.keys(orderItems).map(id => parseInt(id));
+        const customerId = document.getElementById("customerId").value.trim();
+        const address = document.getElementById("address").value.trim();
+
+        if (!customerId || !address || Object.keys(orderItems).length === 0) {
+            alert("يرجى تعبئة كل الحقول واختيار عناصر.");
+            return;
+        }
+
+        const items = Object.entries(orderItems).map(([id, item]) => ({
+            id: parseInt(id),
+            qty: item.qty
+        }));
 
         const data = {
             adminId: 1,
             customerId,
             address,
-            itemIds
+            items
         };
 
         fetch("/admin/orders", {
@@ -171,10 +180,17 @@
                 alert("Order saved!");
                 location.reload();
             } else {
-                alert("Failed to save order");
+                res.text().then(err => {
+                    console.error("Error response:", err);
+                    alert("فشل حفظ الطلب: " + err);
+                });
             }
+        }).catch(err => {
+            console.error("Network error:", err);
+            alert("فشل في الاتصال بالخادم.");
         });
     }
+
 </script>
 
 </body>

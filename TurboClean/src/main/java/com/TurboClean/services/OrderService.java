@@ -1,5 +1,6 @@
 package com.TurboClean.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,11 +11,16 @@ import com.TurboClean.models.Admin;
 import com.TurboClean.models.Customer;
 import com.TurboClean.models.Item;
 import com.TurboClean.models.Order;
+import com.TurboClean.models.OrderItem;
 import com.TurboClean.models.OrderRequestDTO;
+import com.TurboClean.models.Status;
 import com.TurboClean.repositories.AdminRepository;
 import com.TurboClean.repositories.CustomerRepository;
 import com.TurboClean.repositories.ItemRepository;
 import com.TurboClean.repositories.OrderRepository;
+import com.TurboClean.repositories.StausRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class OrderService {
@@ -22,15 +28,17 @@ public class OrderService {
 	@Autowired
 	OrderRepository orderRepository;
 	
-
     @Autowired
-    private ItemRepository itemRepo;
+    private ItemRepository itemRepository;
     
     @Autowired
-    private AdminRepository adminRepo;
+    private AdminRepository adminRepository;
     
     @Autowired
-    private CustomerRepository customerRepo;
+    private CustomerRepository customerRepository;
+    
+    @Autowired
+    private StausRepository statusRepository;
 	
 	public List<Order> allOrders() {
         return orderRepository.findAll();
@@ -53,27 +61,46 @@ public class OrderService {
 	public Order updateOrder(Order o) {
 		return orderRepository.save(o);
 	}
-	
-	 public Order saveOrder(OrderRequestDTO dto) {
-	        Order order = new Order();
+		  
+	@Transactional
+	public Order createOrder(Long adminId, Long customerId, String address, List<OrderRequestDTO.ItemQuantity> items) throws Exception {
+        Admin admin = adminRepository.findById(adminId)
+                .orElseThrow(() -> new Exception("Admin not found"));
 
-	        // جلب العناصر المرتبطة
-	        List<Item> items =(List<Item>) itemRepo.findAllById(dto.getItems());
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new Exception("Customer not found"));
 
-	        // حساب التكلفة الكلية
-	        double totalCost = items.stream().mapToDouble(Item::getCost).sum();
+        // مثلاً حالة الطلب الافتراضية
+        Status defaultStatus = statusRepository.findById(1L).orElse(null);
 
-	        order.setItems(items);
-	        order.setTotal_cost(totalCost);
-	        order.setAddress(dto.getAddress());
-	        order.setDate(new Date());
+        Order order = new Order();
+        order.setAdmin(admin);
+        order.setCustomer(customer);
+        order.setAddress(address);
+        order.setDate(new Date());
+        order.setStatus(defaultStatus);
 
-	        Admin admin = adminRepo.findById(dto.getCustomerId()).orElseThrow();
-	        Customer customer = customerRepo.findById(dto.getCustomerId()).orElseThrow();
+        List<OrderItem> orderItems = new ArrayList<>();
+        double totalCost = 0;
 
-	        order.setAdmin(admin);
-	        order.setCustomer(customer);
+        for (OrderRequestDTO.ItemQuantity iq : items) {
+            Item item = itemRepository.findById(iq.getId())
+                    .orElseThrow(() -> new Exception("Item not found, id: " + iq.getId()));
 
-	        return orderRepository.save(order);
-	    }
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+            orderItem.setItem(item);
+            orderItem.setQuantity(iq.getQty());
+
+            orderItems.add(orderItem);
+
+            totalCost += item.getCost() * iq.getQty();
+        }
+
+        order.setOrderItems(orderItems);
+        order.setTotal_cost(totalCost);
+
+        // عند الحفظ سيحفظ الأوامر والعناصر بسبب CascadeType.ALL في العلاقة
+        return orderRepository.save(order);
+    }
 }
