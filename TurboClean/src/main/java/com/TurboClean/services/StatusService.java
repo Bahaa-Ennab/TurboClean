@@ -19,4 +19,9 @@ public class StatusService {
 	    return statusRepository.findByStatuscondition(inProgress)
 	                           .orElseThrow(() -> new RuntimeException("Status not found"));
 	}
+  
+  	public Status findStatus(Long id) {
+        return statusRepository.findById(id).orElse(null);
+    }
+
 }

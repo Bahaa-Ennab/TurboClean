@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.TurboClean.models.Admin;
 import com.TurboClean.models.Order;
+import com.TurboClean.models.Status;
 import com.TurboClean.services.OrderService;
 import com.TurboClean.services.StatusService;
 
@@ -24,14 +25,13 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
+
 	@Autowired
 	StatusService statusService;
 
 	@GetMapping("/all")
 	public String allOrders(Model model, HttpSession session) {
-		Admin admin = (Admin) session.getAttribute("loggedAdmin");
 		List<Order> orders = orderService.allOrders();
-		Order ord =orderService.findOrder(1L);
 		model.addAttribute("orders", orders);
 		return "AllOrdersForAdmin.jsp";
 
@@ -44,4 +44,40 @@ public class OrderController {
 		ord.setStatus(statusService.findByStatuscondition("In Progress"));
 		orderService.saveOrder(ord);
 		return "redirect:/orders/all";	}
+
+	@GetMapping("/waiting_display")
+	public String waiting(Model model, HttpSession session) {
+		Status status = statusService.findStatus(1L);
+		List<Order> orders = orderService.findAllByStatus(status);
+		model.addAttribute("orders", orders);
+		return "waiting.jsp";
+
+	}
+	
+	@GetMapping("/inprogress_display")
+	public String inProgress(Model model, HttpSession session) {
+		Status status = statusService.findStatus(2L);
+		List<Order> orders = orderService.findAllByStatus(status);
+		model.addAttribute("orders", orders);
+		return "inProgress.jsp";
+
+	}
+	
+	@GetMapping("/finished_display")
+	public String finished(Model model, HttpSession session) {
+		Status status = statusService.findStatus(3L);
+		List<Order> orders = orderService.findAllByStatus(status);
+		model.addAttribute("orders", orders);
+		return "finished.jsp";
+
+	}
+	
+	@GetMapping("/paid_display")
+	public String paid(Model model, HttpSession session) {
+		Status status = statusService.findStatus(4L);
+		List<Order> orders = orderService.findAllByStatus(status);
+		model.addAttribute("orders", orders);
+		return "waiting.jsp";
+
+	}
 }
