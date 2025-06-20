@@ -43,6 +43,11 @@ public class OrderService {
 	public List<Order> allOrders() {
         return orderRepository.findAll();
     }
+	
+	public List<Order> findAllByStatus(Status status){
+		return orderRepository.findAllByStatus(status);
+	}
+	
 	public Order createOrder(Order o) {
         return orderRepository.save(o);
     }

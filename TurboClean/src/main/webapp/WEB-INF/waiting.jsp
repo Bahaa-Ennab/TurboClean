@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page isErrorPage="true"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,39 +202,53 @@ tr:nth-child(even) {
 	</div>
 </div>
 <form action="/admin/search" method="get" class="search-form">
+
+<title>Order Page</title>
+</head>
+<body>
+<header>
+<div class="navbar">
+    <div class="logo">Turbo Clean</div>
+
+    <div class="nav-links">
+        <a href="/admin/dashboard">New Order</a>
+        <a href="">Customer</a>
+        <a href="">All Order</a>
+        <a href="">Messages</a>
+        
+    </div>
+
+        <button type="submit" class="logout-button">Logout</button>
+</div>
+</header>
     <input type="text" name="keyword" placeholder="Search by name, ID..." required />
     <button type="submit">🔍 Search</button>
-</form>
 <article>
-    <form:form action="" modelAttribute="order" method="post">
 	<h1>All Orders</h1>
-        <table>
+        <table border="1">
             <tr>
                 <th>ID Order</th>
-                <th>Customer Name</th>
+                <th>Name</th>
                 <th>Phonenumber</th>
-                <th>Date</th>
+                <th>Email</th>
+                <th>Location</th>
                 <th>Status</th>
-                <th>Receipt</th>
-                <th>Action</th>
+                <th>Total Cost</th>
             </tr>
            <c:forEach var="order" items="${orders}">
                 <tr>
-                    <td><c:out value="${order.id}"/></td>
-                    <td><c:out value="${order.customer.name}"/></td>
-                    <td><c:out value="${order.customer.phone}"/></td>
-                    <td><c:out value="${order.date}"/></td>
-                    <td><c:out value="${order.status}"/></td>
-                    <td><c:out value="${order.details}"/></td>
-                    <td>$<c:out value="${order.action}"/></td><!-- linke to change status to finished -->
+                    <td><a href="/orders/${order.id}"><c:out value="${order.id}"/></a></td>
+                    <td><c:out value="${order.customer.firstName}"/>  <c:out value="${order.customer.lastName}"/></td>
+                    <td><c:out value="${order.customer.phoneNumber}"/></td>
+                    <td><c:out value="${order.customer.email}"/></td>
+                    <td><c:out value="${order.customer.location}"/></td>
+                    <td><c:out value="${order.status.statuscondition}"/></td>
+                    <td>$<c:out value="${order.total_cost}"/></td>
                 </tr>
             </c:forEach>
         </table>
 
-    </form:form>
-
 </article>
-
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"
 		style="background-color: #303841; color: white;">
@@ -284,6 +299,7 @@ tr:nth-child(even) {
 			<hr style="border-color: rgba(255, 255, 255, 0.2);">
 			<div class="text-center small">© 2025 TurboClean. All rights
 				reserved.</div>
+
 		</div>
 	</footer>
 
