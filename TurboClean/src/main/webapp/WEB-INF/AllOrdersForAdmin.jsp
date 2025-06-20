@@ -124,77 +124,73 @@ tr:nth-child(even) {
 			</span>
 			</a>
 
-						<div class="d-flex gap-4 flex-wrap my-2 my-md-0">
+			<div class="d-flex gap-4 flex-wrap my-2 my-md-0">
 
-	<a href="/admin/dashboard" class="nav-link-custom d-flex align-items-center gap-1">
-		<img src="https://img.icons8.com/ios-filled/20/ffffff/add-shopping-cart.png" />
-		New Order
-	</a>
+				<a href="/admin/dashboard"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/add-shopping-cart.png" />
+					New Order
+				</a> <a href="/admin/customers"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/user-group-man-man.png" />
+					All Customers
+				</a> <a href="/orders/all"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/purchase-order.png" />
+					All Orders
+				</a> <a href="/admin/messages"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/sms.png" />
+					Messages
+				</a>
 
-	<a href="/admin/customers" class="nav-link-custom d-flex align-items-center gap-1">
-	<img src="https://img.icons8.com/ios-filled/20/ffffff/user-group-man-man.png" />
-	All Customers
-</a>
-
-	<a href="/orders/all" class="nav-link-custom d-flex align-items-center gap-1">
-		<img src="https://img.icons8.com/ios-filled/20/ffffff/purchase-order.png" />
-		All Orders
-	</a>
-
-	<a href="/admin/messages" class="nav-link-custom d-flex align-items-center gap-1">
-		<img src="https://img.icons8.com/ios-filled/20/ffffff/sms.png" />
-		Messages
-	</a>
-
-</div>
+			</div>
 
 			<a href="/logout">
 				<button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button>
 			</a>
 		</div>
 	</nav>
-	
+
 	<div class="container mt-4">
-	<div class="row justify-content-center text-center g-4" >
+		<div class="row justify-content-center text-center g-4">
 
-		<!-- Waiting -->
-		<div class="col-6 col-md-3" >
-			<a href="/admin/orders/waiting"
-				class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
-				style="background-color: #5f7081; color: white;">
-				<i class="bi bi-hourglass-split fs-3 d-block mb-2"></i>
-				Waiting
-			</a>
-		</div>
+			<!-- Waiting -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/waiting"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-hourglass-split fs-3 d-block mb-2"></i> Waiting
+				</a>
+			</div>
 
-		<!-- In Progress -->
-		<div class="col-6 col-md-3">
-			<a href="/admin/orders/inprogress"
-				class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
-				style="background-color: #5f7081; color: white;">
-				<i class="bi bi-gear-wide-connected fs-3 d-block mb-2"></i>
-				In Progress
-			</a>
-		</div>
+			<!-- In Progress -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/inprogress"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-gear-wide-connected fs-3 d-block mb-2"></i> In
+					Progress
+				</a>
+			</div>
 
-		<!-- Finished -->
-		<div class="col-6 col-md-3">
-			<a href="/admin/orders/finished"
-				class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
-				style="background-color: #5f7081; color: white;">
-				<i class="bi bi-check-circle fs-3 d-block mb-2"></i>
-				Finished
-			</a>
-		</div>
+			<!-- Finished -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/finished"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-check-circle fs-3 d-block mb-2"></i> Finished
+				</a>
+			</div>
 
-		<!-- Paid -->
-		<div class="col-6 col-md-3">
-			<a href="/admin/orders/paid"
-				class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
-				style="background-color: #5f7081; color: white;">
-				<i class="bi bi-cash-stack fs-3 d-block mb-2"></i>
-				Paid
-			</a>
+			<!-- Paid -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/paid"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-cash-stack fs-3 d-block mb-2"></i> Paid
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
@@ -249,7 +245,6 @@ tr:nth-child(even) {
 
     </div>
 </main>
-
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"
 		style="background-color: #303841; color: white;">
