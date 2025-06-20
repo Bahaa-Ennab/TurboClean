@@ -110,7 +110,6 @@ tr:nth-child(even) {
 }
 </style>
 </head>
-
 <body style="background-color: #cad1d1;">
 
 	<!-- Navbar -->
@@ -216,30 +215,35 @@ tr:nth-child(even) {
     <!-- Table -->
     <div class="bg-white p-4 rounded-4 shadow" style="overflow-x: auto;">
         <table class="table table-bordered" style="min-width: 800px;">
-            <thead class="table-light">
-                <tr>
-                    <th>ID Order</th>
-                    <th>Name</th>
-                    <th>Phone Number</th>
-                    <th>Email</th>
-                    <th>Location</th>
-                    <th>Status</th>
-                    <th>Total Cost</th>
-                </tr>
-            </thead>
-            <tbody id="ordersTableBody">
-                <c:forEach var="order" items="${orders}">
-                    <tr>
-                        <td><a href="/orders/${order.id}" class="text-decoration-none text-primary fw-bold"><c:out value="${order.id}" /></a></td>
-                        <td><c:out value="${order.customer.firstName}" /> <c:out value="${order.customer.lastName}" /></td>
-                        <td><c:out value="${order.customer.phoneNumber}" /></td>
-                        <td><c:out value="${order.customer.email}" /></td>
-                        <td><c:out value="${order.customer.location}" /></td>
-                        <td><span class="badge text-bg-warning"><c:out value="${order.status.statuscondition}" /></span></td>
-                        <td>$<c:out value="${order.total_cost}" /></td>
-                    </tr>
-                </c:forEach>
-            </tbody>
+			<tr>
+				<th>ID Order</th>
+				<th>Name</th>
+				<th>Phonenumber</th>
+				<th>Email</th>
+				<th>Location</th>
+				<th>Status</th>
+				<th>Total Cost</th>
+				<th>Action</th>
+			</tr>
+			<c:forEach var="order" items="${orders}">
+				<tr>
+					<td><a href="/orders/${order.id}"><c:out
+								value="${order.id}" /></a></td>
+					<td><c:out value="${order.customer.firstName}" /> <c:out
+							value="${order.customer.lastName}" /></td>
+					<td><c:out value="${order.customer.phoneNumber}" /></td>
+					<td><c:out value="${order.customer.email}" /></td>
+					<td><c:out value="${order.customer.location}" /></td>
+					<td><c:out value="${order.status.statuscondition}" /></td>
+					<td>$<c:out value="${order.total_cost}" /></td>
+					<td><form action="/inprogress/${order.id}"
+							method="post">
+							<button type="submit" class="btn btn-link p-0 m-0 align-baseline">move
+								it to in progress</button>
+						</form></td>
+
+				</tr>
+			</c:forEach>
         </table>
 
 

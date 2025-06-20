@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.TurboClean.models.Admin;
@@ -14,6 +16,7 @@ import com.TurboClean.models.Status;
 import com.TurboClean.services.OrderService;
 import com.TurboClean.services.StatusService;
 
+import ch.qos.logback.core.status.Status;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -22,7 +25,7 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
-	
+
 	@Autowired
 	StatusService statusService;
 
@@ -34,6 +37,14 @@ public class OrderController {
 
 	}
 	
+	
+	@PostMapping("/inprogress/{id}")
+	public String moveToInprogress(@PathVariable Long id, Model model, HttpSession session) {
+		Order ord =orderService.findOrder(id);
+		ord.setStatus(statusService.findByStatuscondition("In Progress"));
+		orderService.saveOrder(ord);
+		return "redirect:/orders/all";	}
+
 	@GetMapping("/waiting_display")
 	public String waiting(Model model, HttpSession session) {
 		Status status = statusService.findStatus(1L);
