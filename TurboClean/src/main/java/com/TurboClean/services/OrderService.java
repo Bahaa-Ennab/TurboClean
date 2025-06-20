@@ -18,7 +18,7 @@ import com.TurboClean.repositories.AdminRepository;
 import com.TurboClean.repositories.CustomerRepository;
 import com.TurboClean.repositories.ItemRepository;
 import com.TurboClean.repositories.OrderRepository;
-import com.TurboClean.repositories.StausRepository;
+import com.TurboClean.repositories.StatusRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -38,7 +38,7 @@ public class OrderService {
     private CustomerRepository customerRepository;
     
     @Autowired
-    private StausRepository statusRepository;
+    private StatusRepository statusRepository;
 	
 	public List<Order> allOrders() {
         return orderRepository.findAll();
@@ -79,7 +79,7 @@ public class OrderService {
         order.setAddress(address);
         order.setDate(new Date());
         order.setStatus(defaultStatus);
-
+        System.out.print(defaultStatus.getStatuscondition());
         List<OrderItem> orderItems = new ArrayList<>();
         double totalCost = 0;
 
@@ -91,7 +91,6 @@ public class OrderService {
             orderItem.setOrder(order);
             orderItem.setItem(item);
             orderItem.setQuantity(iq.getQty());
-
             orderItems.add(orderItem);
 
             totalCost += item.getCost() * iq.getQty();
