@@ -16,20 +16,21 @@
 	rel="stylesheet">
 </head>
 <style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-    }
+html, body {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+}
 
-    body > .container, body > main {
-        flex: 1;
-    }
+body>.container, body>main {
+	flex: 1;
+}
 
-    footer {
-        margin-top: auto;
-    }
+footer {
+	margin-top: auto;
+}
+
 .brand-hover span.turbo:hover {
 	color: orange;
 }
@@ -57,90 +58,106 @@ h2:hover, h3:hover {
 	border-color: orange !important;
 	color: white !important;
 }
-   .form-container {
-        max-width: 600px;
-        margin: 70px auto; /* top-bottom: 70px, left-right: auto center */
-        padding: 30px;
-        border-radius: 16px;
-        background-color: #f8f9fa;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    }
 
-    .form-container h3 {
-        margin-bottom: 20px;
-        font-weight: bold;
-        color: #333;
-    }
+.form-container {
+	max-width: 600px;
+	margin: 70px auto; /* top-bottom: 70px, left-right: auto center */
+	padding: 30px;
+	border-radius: 16px;
+	background-color: #f8f9fa;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
 
-    .form-container input[type="submit"] {
-        background-color: #ff8800;
-        color: white;
-        border: none;
-        padding: 10px 25px;
-        font-weight: 500;
-        border-radius: 8px;
-        transition: background-color 0.3s ease;
-    }
+.form-container h3 {
+	margin-bottom: 20px;
+	font-weight: bold;
+	color: #333;
+}
 
-    .form-container input[type="submit"]:hover {
-        background-color: #ff6a00;
-    }
+.form-container input[type="submit"] {
+	background-color: #ff8800;
+	color: white;
+	border: none;
+	padding: 10px 25px;
+	font-weight: 500;
+	border-radius: 8px;
+	transition: background-color 0.3s ease;
+}
 
-    .success-message {
-        margin-top: 15px;
-        color: green;
-        font-weight: bold;
-    }
+.form-container input[type="submit"]:hover {
+	background-color: #ff6a00;
+}
+
+.success-message {
+	margin-top: 15px;
+	color: green;
+	font-weight: bold;
+}
 </style>
 <body>
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
 		style="background-color: #303841; margin-bottom: 0;">
 		<div class="container">
-<a class="navbar-brand d-flex align-items-center" href="/">
-  <img src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="40" height="40"
-       class="d-inline-block align-text-top rounded-circle me-2">
-  <span class="fw-bold brand-hover" style="font-size: 28px; color: white;">
-    <span class="turbo">Turbo</span><span class="text-primary">Clean</span>
-  </span>
-</a>
+			<a class="navbar-brand d-flex align-items-center" href="/"> <img
+				src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="40"
+				height="40"
+				class="d-inline-block align-text-top rounded-circle me-2"> <span
+				class="fw-bold brand-hover" style="font-size: 28px; color: white;">
+					<span class="turbo">Turbo</span><span class="text-primary">Clean</span>
+			</span>
+			</a>
 			<!-- Navigation Links -->
-			<nav class="d-flex gap-4 flex-wrap my-2 my-md-0">
-				<a href="/customer/home" class="nav-link-custom">Home</a> <a
-					href="/customer/orders" class="nav-link-custom">ALL Orders</a> <a
-					href="/customer/messages" class="nav-link-custom">Messages</a>
-			</nav>
+			<div class="d-flex gap-4 flex-wrap my-2 my-md-0">
+
+				<a href="/customer/home"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/home.png" /> Home
+				</a> <a href="/customer/orders"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/purchase-order.png" />
+					All Orders
+				</a> <a href="/customer/messages"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/sms.png" />
+					Messages
+				</a>
+
+			</div>
+
 			<!-- Logout Button -->
-            <a href="/logout"><button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button></a>
+			<a href="/logout"><button type="submit"
+					class="btn btn-outline-light btn-sm px-4">Logout</button></a>
 
 		</div>
 	</nav>
-	
+
 	<!-- Messages Article -->
-<article class="container my-5 p-4 bg-light rounded shadow-sm" style="min-height: 300px;">
-    <h2 class="mb-4 text-center">Messages</h2>
+	<article class="container my-5 p-4 bg-light rounded shadow-sm"
+		style="min-height: 300px;">
+		<h2 class="mb-4 text-center">Messages</h2>
 
-    <!-- Example: Show messages here -->
-<c:if test="${not empty messages}">
-    <div class="row g-3">
-        <c:forEach var="msg" items="${messages}">
-            <div class="col-md-6">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <p class="card-text">${msg}</p>
-                    </div>
-                </div>
-            </div>
-        </c:forEach>
-    </div>
-</c:if>
+		<!-- Example: Show messages here -->
+		<c:if test="${not empty messages}">
+			<div class="row g-3">
+				<c:forEach var="msg" items="${messages}">
+					<div class="col-md-6">
+						<div class="card shadow-sm">
+							<div class="card-body">
+								<p class="card-text">${msg}</p>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 
 
-    <c:if test="${empty messages}">
-        <p class="text-center text-muted">No messages to display.</p>
-    </c:if>
-</article>
-	
+		<c:if test="${empty messages}">
+			<p class="text-center text-muted">No messages to display.</p>
+		</c:if>
+	</article>
+
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"
 		style="background-color: #303841; color: white;">
@@ -203,7 +220,7 @@ h2:hover, h3:hover {
 				reserved.</div>
 		</div>
 	</footer>
-	
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

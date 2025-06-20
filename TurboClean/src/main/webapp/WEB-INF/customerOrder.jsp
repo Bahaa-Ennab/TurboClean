@@ -110,13 +110,26 @@ tr:nth-child(even) {
 
 			<!-- Navigation Links -->
 			<div class="d-flex gap-4 flex-wrap my-2 my-md-0">
-				<a href="/customer/home" class="nav-link-custom">Home</a> <a
-					href="/customer/orders" class="nav-link-custom">ALL Orders</a> <a
-					href="/customer/messages" class="nav-link-custom">Messages</a>
+
+				<a href="/customer/home"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/home.png" /> Home
+				</a> <a href="/customer/orders"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/purchase-order.png" />
+					All Orders
+				</a> <a href="/customer/messages"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/sms.png" />
+					Messages
+				</a>
+
 			</div>
 
+
 			<!-- Logout Button -->
-            <a href="/logout"><button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button></a>
+			<a href="/logout"><button type="submit"
+					class="btn btn-outline-light btn-sm px-4">Logout</button></a>
 
 		</div>
 	</nav>
