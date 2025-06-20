@@ -126,7 +126,7 @@ h2:hover, h3:hover, a:hover {
 				<!-- تعديل روابط الناف بار -->
 <a href="/admin/dashboard" class="nav-link-custom">New Order</a> 
 <a href="/admin/customers" class="nav-link-custom">All Customers</a> 
-<a href="/admin/orders" class="nav-link-custom">All Orders</a> 
+<a href="/all" class="nav-link-custom">All Orders</a> 
 <a href="/admin/messages" class="nav-link-custom">Messages</a>
 			</div>
 

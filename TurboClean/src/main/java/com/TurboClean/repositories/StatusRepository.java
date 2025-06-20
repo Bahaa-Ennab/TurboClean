@@ -10,5 +10,7 @@ import com.TurboClean.models.Status;
 @Repository
 public interface StatusRepository extends CrudRepository<Status, Long> {
 	Optional<Status> findById(Long id);
+	Optional<Status> findByStatuscondition(String statuscondition);
+
 
 }

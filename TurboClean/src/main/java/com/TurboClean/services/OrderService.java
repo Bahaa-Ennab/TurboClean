@@ -40,6 +40,9 @@ public class OrderService {
     @Autowired
     private StatusRepository statusRepository;
 	
+    public void saveOrder(Order order) {
+        orderRepository.save(order);
+    }
 	public List<Order> allOrders() {
         return orderRepository.findAll();
     }
