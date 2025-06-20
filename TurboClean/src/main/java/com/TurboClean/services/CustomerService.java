@@ -77,4 +77,8 @@ public class CustomerService {
 		return Customerrepo.save(customer);
 
 	}
+
+	public List<Customer> searchCustomers(String keyword) {
+		return null;
+	}
 }

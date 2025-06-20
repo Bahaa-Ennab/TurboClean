@@ -9,13 +9,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.TurboClean.models.Admin;
 import com.TurboClean.models.Customer;
 import com.TurboClean.models.LoginAdmin;
+import com.TurboClean.models.Message;
 import com.TurboClean.repositories.ItemRepository;
 import com.TurboClean.services.AdminServices;
 import com.TurboClean.services.CustomerService;
+import com.TurboClean.services.MessageService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -27,9 +30,12 @@ public class AdminController {
 	
 	@Autowired
 	ItemRepository itemRepository;
+	
+	@Autowired
 	CustomerService customerService;
 	
-	
+	@Autowired
+	MessageService messageService;
 	
 	 @GetMapping("/admin/login")
 	    public String showAdminLogin(Model model) {
@@ -95,5 +101,18 @@ public class AdminController {
 		        return "allCustomer.jsp";                             
 		    }
 		 		 
+		 @GetMapping("/admin/messages")
+		    public String showMessages(Model model) {
+			 	List<Message> messages=messageService.allMessages();
+			 	model.addAttribute("messages", messages);
+		        return "adminMessages.jsp";                             
+		    }
+		 @GetMapping("/admin/search")
+		    public String searchCustomers(@RequestParam("keyword") String keyword, Model model) {
+		        List<Customer> customers = customerService.searchCustomers(keyword);
+		        model.addAttribute("customers", customers);
+		        // ترجع صفحة JSP جزئية ترجع فقط <tr> عناصر بدون الهيكل الكامل
+		        return "fragments/customerRows"; 
+		    }
 		 
 }
