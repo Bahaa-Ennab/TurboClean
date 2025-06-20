@@ -126,10 +126,25 @@ tr:nth-child(even) {
 			</a>
 
 			<div class="d-flex gap-4 flex-wrap my-2 my-md-0">
-				<a href="/admin/dashboard" class="nav-link-custom">New Order</a> <a
-					href="/admin/customers" class="nav-link-custom">All Customers</a> <a
-					href="/admin/orders" class="nav-link-custom">All Orders</a> <a
-					href="/admin/messages" class="nav-link-custom">Messages</a>
+
+				<a href="/admin/dashboard"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/add-shopping-cart.png" />
+					New Order
+				</a> <a href="/admin/customers"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/user-group-man-man.png" />
+					All Customers
+				</a> <a href="/orders/all"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/purchase-order.png" />
+					All Orders
+				</a> <a href="/admin/messages"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/sms.png" />
+					Messages
+				</a>
+
 			</div>
 
 			<a href="/logout">
@@ -137,29 +152,73 @@ tr:nth-child(even) {
 			</a>
 		</div>
 	</nav>
+	<div class="container mt-4">
+		<div class="row justify-content-center text-center g-4">
 
-<table>
-				<tr>
-					<th>ID</th>
-					<th>Customer Name</th>
-					<th>Phonenumber</th>
-					<th>pickupTime</th>
-					<th>messageDetails</th>
-					<th>Location</th>
+			<!-- Waiting -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/waiting"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-hourglass-split fs-3 d-block mb-2"></i> Waiting
+				</a>
+			</div>
 
-				</tr>
-				<c:forEach var="message" items="${messages}">
-					<tr>
-						<td><c:out value="${message.id}" /></td>
-						<td><c:out value="${message.customer.firstName} ${message.customer.lastName}" /></td>
-						<td><c:out value="${message.customer.phoneNumber}" /></td>
-						<td><c:out value="${message.pickupTime}" /></td>
-						<td><c:out value="${message.messageDetails}" /></td>
-						<td><c:out value="${message.customer.location}" /></td>
+			<!-- In Progress -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/inprogress"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-gear-wide-connected fs-3 d-block mb-2"></i> In
+					Progress
+				</a>
+			</div>
 
-					</tr>
-				</c:forEach>
-			</table>
+			<!-- Finished -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/finished"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-check-circle fs-3 d-block mb-2"></i> Finished
+				</a>
+			</div>
+
+			<!-- Paid -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/paid"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-cash-stack fs-3 d-block mb-2"></i> Paid
+				</a>
+			</div>
+		</div>
+	</div>
+
+
+
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Customer Name</th>
+			<th>Phonenumber</th>
+			<th>pickupTime</th>
+			<th>messageDetails</th>
+			<th>Location</th>
+
+		</tr>
+		<c:forEach var="message" items="${messages}">
+			<tr>
+				<td><c:out value="${message.id}" /></td>
+				<td><c:out
+						value="${message.customer.firstName} ${message.customer.lastName}" /></td>
+				<td><c:out value="${message.customer.phoneNumber}" /></td>
+				<td><c:out value="${message.pickupTime}" /></td>
+				<td><c:out value="${message.messageDetails}" /></td>
+				<td><c:out value="${message.customer.location}" /></td>
+
+			</tr>
+		</c:forEach>
+	</table>
 
 
 	<!-- Footer -->

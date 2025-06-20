@@ -1,5 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page isErrorPage="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,24 +13,11 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<!-- Bootstrap Icons -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
 	rel="stylesheet">
 
 <style>
-.custom-btn-orange {
-	background-color: #f5a623;
-	color: white;
-	border: none;
-	transition: background-color 0.3s ease;
-}
-
-.custom-btn-orange:hover {
-	background-color: #e07b00;
-	color: white;
-}
-
 html, body {
 	height: 100%;
 	margin: 0;
@@ -35,7 +25,7 @@ html, body {
 	flex-direction: column;
 }
 
-body>.container, body>main {
+body>main, body>.container {
 	flex: 1;
 }
 
@@ -47,7 +37,7 @@ footer {
 	color: orange;
 }
 
-h2:hover, h3:hover, a:hover {
+h2:hover, h3:hover, h1:hover, a:hover {
 	color: orange !important;
 	cursor: pointer;
 }
@@ -69,139 +59,228 @@ h2:hover, h3:hover, a:hover {
 	border-color: orange !important;
 	color: white !important;
 }
-
-.form-container {
-	max-width: 600px;
-	margin: 70px auto;
-	padding: 30px;
-	border-radius: 16px;
-	background-color: #f8f9fa;
-	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+/* Search */
+.search-form {
+	max-width: 700px;
+	margin: 40px auto 20px;
+	display: flex;
+	gap: 10px;
 }
 
-.form-container h3 {
-	margin-bottom: 20px;
-	font-weight: bold;
-	color: #333;
+.search-form input[type="text"] {
+	width: 100%;
+	padding: 14px 18px;
+	border-radius: 12px;
+	border: 1px solid #ccc;
+	font-size: 16px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.form-container input[type="submit"] {
+.search-form button {
+	padding: 14px 22px;
 	background-color: #ff8800;
 	color: white;
 	border: none;
-	padding: 10px 25px;
-	font-weight: 500;
-	border-radius: 8px;
-	transition: background-color 0.3s ease;
+	border-radius: 10px;
+	transition: 0.3s ease;
 }
 
-.form-container input[type="submit"]:hover {
-	background-color: #ff6a00;
+.search-form button:hover {
+	background-color: #e67600;
+}
+/* Table */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	background-color: white;
 }
 
-.success-message {
-	margin-top: 15px;
-	color: green;
-	font-weight: bold;
+thead {
+	background-color: #eceff1;
+}
+
+th, td {
+	padding: 16px;
+	text-align: left;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
 }
 </style>
 </head>
-<body class="container py-4">
 
-<!-- Navbar -->
+<body style="background-color: #cad1d1;">
+
+	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
 		style="background-color: #303841;">
 		<div class="container">
 			<a class="navbar-brand d-flex align-items-center" href="/"> <img
 				src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="40"
-				height="40"
-				class="d-inline-block align-text-top rounded-circle me-2"> <span
+				height="40" class="rounded-circle me-2"> <span
 				class="fw-bold brand-hover" style="font-size: 28px; color: white;">
 					<span class="turbo">Turbo</span><span class="text-primary">Clean</span>
 			</span>
 			</a>
 
-			<!-- Navigation Links -->
 			<div class="d-flex gap-4 flex-wrap my-2 my-md-0">
-				<!-- تعديل روابط الناف بار -->
-<a href="/admin/dashboard" class="nav-link-custom">New Order</a> 
-<a href="/admin/customers" class="nav-link-custom">All Customers</a> 
-<a href="/admin/orders" class="nav-link-custom">All Orders</a> 
-<a href="/admin/messages" class="nav-link-custom">Messages</a>
+
+				<a href="/admin/dashboard"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/add-shopping-cart.png" />
+					New Order
+				</a> <a href="/admin/customers"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/user-group-man-man.png" />
+					All Customers
+				</a> <a href="/orders/all"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/purchase-order.png" />
+					All Orders
+				</a> <a href="/admin/messages"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/sms.png" />
+					Messages
+				</a>
+
 			</div>
 
-			<!-- Logout Button -->
-			<a href="/logout"><button type="submit"
-					class="btn btn-outline-light btn-sm px-4">Logout</button></a>
+			<a href="/logout">
+				<button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button>
+			</a>
 		</div>
 	</nav>
 
-	<h2 class="mb-4">Create New Order</h2>
-	<!-- Customer Info -->
-	<div class="mb-3">
-		<label for="customerId" class="form-label">Customer ID</label> <input
-			type="number" class="form-control" id="customerId" required>
-	</div>
+	<div class="container mt-4">
+		<div class="row justify-content-center text-center g-4">
 
-	<div class="mb-3">
-		<label for="address" class="form-label">Address</label> <input
-			type="text" class="form-control" id="address" required>
-	</div>
-
-	<!-- Items Grid -->
-	<h4>Select Items</h4>
-	<div class="row g-3 mb-4" id="itemGrid">
-		<c:forEach items="${items}" var="item">
-			<div class="col-3">
-				<button type="button"
-					class="btn btn-outline-primary w-100 item-button"
-					data-id="${item.id}" data-name="${item.itemName}"
-					data-price="${item.cost}">
-				<div class="text-center">${item.itemName}</div>
-				</button>
+			<!-- Waiting -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/waiting"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-hourglass-split fs-3 d-block mb-2"></i> Waiting
+				</a>
 			</div>
-		</c:forEach>
+
+			<!-- In Progress -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/inprogress"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-gear-wide-connected fs-3 d-block mb-2"></i> In
+					Progress
+				</a>
+			</div>
+
+			<!-- Finished -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/finished"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-check-circle fs-3 d-block mb-2"></i> Finished
+				</a>
+			</div>
+
+			<!-- Paid -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/paid"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-cash-stack fs-3 d-block mb-2"></i> Paid
+				</a>
+			</div>
+		</div>
 	</div>
 
-	<!-- Order Table -->
-	<h4>Order Summary</h4>
-	<table class="table table-bordered" id="orderTable">
-		<thead class="table-light">
-  <tr>
-    <th>Item</th>
-    <th>Qty</th>
-    <th>Price</th>
-    <th>Total</th>
-    <th>Remove</th> <!-- مضافة -->
-  </tr>
-</thead>
 
-		<tbody></tbody>
-		<tfoot>
-			<tr>
-				<td colspan="3" class="text-end fw-bold">Grand Total</td>
-				<td id="grandTotal" class="fw-bold">0</td>
-			</tr>
-		</tfoot>
-	</table>
+	<main
+		style="padding: 50px 40px; width: 80%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
 
-	<button class="btn btn-success" id="submitBtn" onclick="submitOrder()">Submit Order</button>
+		<h2 class="text-center text-white fw-bold mb-5"
+			style="font-size: 32px;">📝 Create New Order</h2>
 
-		
-		
+		<!-- Customer Info -->
+		<div class="mb-4 bg-white p-4 rounded-4 shadow"
+			style="max-width: 700px; margin: auto;">
+			<div class="mb-3">
+				<label for="customerId" class="form-label fw-bold">Customer
+					ID</label> <input type="number" class="form-control" id="customerId"
+					placeholder="Enter customer ID" required>
+			</div>
+
+			<div class="mb-3">
+				<label for="address" class="form-label fw-bold">Address</label> <input
+					type="text" class="form-control" id="address"
+					placeholder="Enter address" required>
+			</div>
+		</div>
+
+		<!-- Items Grid -->
+		<div class="mt-5">
+			<h4 class="text-white fw-bold mb-4">🧺 Select Items</h4>
+			<div class="row g-3 mb-4" id="itemGrid">
+				<c:forEach items="${items}" var="item">
+					<div class="col-6 col-md-3">
+						<button type="button"
+							class="btn btn-outline-light w-100 item-button p-3 rounded-4 shadow-sm"
+							style="background-color: #cad1d1; border: 2px solid transparent; transition: 0.3s;"
+							onmouseover="this.style.border='2px solid #ffa726'"
+							onmouseout="this.style.border='2px solid transparent'"
+							data-id="${item.id}" data-name="${item.itemName}"
+							data-price="${item.cost}">
+							<div class="text-center fw-semibold">${item.itemName}</div>
+						</button>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+
+		<!-- Order Summary Table -->
+		<h4 class="text-white fw-bold mb-4">📦 Order Summary</h4>
+		<div class="bg-white p-4 rounded-4 shadow" style="overflow-x: auto;">
+			<table class="table table-bordered" id="orderTable"
+				style="min-width: 600px;">
+				<thead class="table-light">
+					<tr>
+						<th>Item</th>
+						<th>Qty</th>
+						<th>Price</th>
+						<th>Total</th>
+						<th>Remove</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+				<tfoot>
+					<tr>
+						<td colspan="3" class="text-end fw-bold">Grand Total</td>
+						<td id="grandTotal" class="fw-bold">0</td>
+						<td></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+
+		<!-- Submit Button -->
+		<div class="text-center mt-5">
+			<button class="btn btn-success px-5 py-3 fs-5 rounded-4 shadow"
+				id="submitBtn" onclick="submitOrder()">Submit Order</button>
+		</div>
+	</main>
+
+
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"
 		style="background-color: #303841; color: white;">
 		<div class="container">
 			<div class="row">
-				<!-- Company Info -->
 				<div class="col-md-4 mb-4">
 					<h3 class="text-uppercase fw-bold">TurboClean</h3>
 					<p>Fast · Reliable · Door-to-door dry cleaning service based in
 						Ramallah. Book online, and we'll handle the rest.</p>
 				</div>
-
-				<!-- Quick Links -->
 				<div class="col-md-2 mb-4">
 					<h3 class="fw-bold mb-3">Quick Links</h3>
 					<ul class="list-unstyled">
@@ -217,8 +296,6 @@ h2:hover, h3:hover, a:hover {
 							style="color: white;">Policy</a></li>
 					</ul>
 				</div>
-
-				<!-- Contact Info -->
 				<div class="col-md-3 mb-4">
 					<h3 class="fw-bold mb-3">Contact</h3>
 					<p>
@@ -231,8 +308,6 @@ h2:hover, h3:hover, a:hover {
 						<i class="bi bi-envelope-fill me-2"></i> info@turboclean.ps
 					</p>
 				</div>
-
-				<!-- Social Links -->
 				<div class="col-md-3 mb-4">
 					<h3 class="fw-bold mb-3">Follow Us</h3>
 					<a href="#" class="d-block mb-2" style="color: white;"><i
@@ -243,7 +318,6 @@ h2:hover, h3:hover, a:hover {
 						class="bi bi-whatsapp me-1"></i> WhatsApp</a>
 				</div>
 			</div>
-
 			<hr style="border-color: rgba(255, 255, 255, 0.2);">
 			<div class="text-center small">© 2025 TurboClean. All rights
 				reserved.</div>
