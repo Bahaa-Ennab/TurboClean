@@ -7,6 +7,105 @@
 <head>
 <meta charset="UTF-8">
 <title>Order Page</title>
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+	rel="stylesheet">
+
+<style>
+.custom-btn-orange {
+	background-color: #f5a623;
+	color: white;
+	border: none;
+	transition: background-color 0.3s ease;
+}
+
+.custom-btn-orange:hover {
+	background-color: #e07b00;
+	color: white;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+body>.container, body>main {
+	flex: 1;
+}
+
+footer {
+	margin-top: auto;
+}
+
+.brand-hover span.turbo:hover {
+	color: orange;
+}
+
+h2:hover, h3:hover, a:hover {
+	color: orange !important;
+	cursor: pointer;
+}
+
+.nav-link-custom {
+	color: #ffffff;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 22px;
+	transition: color 0.3s ease;
+}
+
+.nav-link-custom:hover {
+	color: #FFA726;
+}
+
+.btn-outline-light:hover {
+	background-color: orange !important;
+	border-color: orange !important;
+	color: white !important;
+}
+
+.form-container {
+	max-width: 600px;
+	margin: 70px auto;
+	padding: 30px;
+	border-radius: 16px;
+	background-color: #f8f9fa;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h3 {
+	margin-bottom: 20px;
+	font-weight: bold;
+	color: #333;
+}
+
+.form-container input[type="submit"] {
+	background-color: #ff8800;
+	color: white;
+	border: none;
+	padding: 10px 25px;
+	font-weight: 500;
+	border-radius: 8px;
+	transition: background-color 0.3s ease;
+}
+
+.form-container input[type="submit"]:hover {
+	background-color: #ff6a00;
+}
+
+.success-message {
+	margin-top: 15px;
+	color: green;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 <header>
@@ -14,10 +113,8 @@
     <div class="logo">Turbo Clean</div>
 
     <div class="nav-links">
-        <a href="">New Order</a>
-        <a href="">Customer</a>
-        <a href="">All Order</a>
-        <a href="">Messages</a>
+        <a href="/admin/dashboard">New Order</a> <a href="/admin/customers">Customer</a> <a href="">All
+					Order</a> <a href="/admin/messages">Messages</a>
         
     </div>
 
