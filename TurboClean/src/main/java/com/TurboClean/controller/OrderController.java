@@ -17,7 +17,6 @@ import com.TurboClean.services.StatusService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/orders")
 public class OrderController {
 
 	@Autowired
@@ -26,7 +25,7 @@ public class OrderController {
 	@Autowired
 	StatusService statusService;
 
-	@GetMapping("/all")
+	@GetMapping("/orders/all")
 	public String allOrders(Model model, HttpSession session) {
 		List<Order> orders = orderService.allOrders();
 		model.addAttribute("orders", orders);
@@ -34,7 +33,7 @@ public class OrderController {
 
 	}
 	
-	@GetMapping("/waiting_display")
+	@GetMapping("/admin/orders/waiting")
 	public String waiting(Model model, HttpSession session) {
 		Status status = statusService.findStatus(1L);
 		List<Order> orders = orderService.findAllByStatus(status);
@@ -43,7 +42,7 @@ public class OrderController {
 
 	}
 	
-	@GetMapping("/inprogress_display")
+	@GetMapping("/admin/orders/inprogress")
 	public String inProgress(Model model, HttpSession session) {
 		Status status = statusService.findStatus(2L);
 		List<Order> orders = orderService.findAllByStatus(status);
@@ -52,7 +51,7 @@ public class OrderController {
 
 	}
 	
-	@GetMapping("/finished_display")
+	@GetMapping("/admin/orders/finished")
 	public String finished(Model model, HttpSession session) {
 		Status status = statusService.findStatus(3L);
 		List<Order> orders = orderService.findAllByStatus(status);
@@ -61,12 +60,12 @@ public class OrderController {
 
 	}
 	
-	@GetMapping("/paid_display")
+	@GetMapping("/admin/orders/paid")
 	public String paid(Model model, HttpSession session) {
 		Status status = statusService.findStatus(4L);
 		List<Order> orders = orderService.findAllByStatus(status);
 		model.addAttribute("orders", orders);
-		return "waiting.jsp";
+		return "paid.jsp";
 
 	}
 }

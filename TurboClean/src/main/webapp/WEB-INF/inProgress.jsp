@@ -200,39 +200,63 @@ tr:nth-child(even) {
 		</div>
 	</div>
 </div>
-<form action="/admin/search" method="get" class="search-form">
-    <input type="text" name="keyword" placeholder="Search by name, ID..." required />
-    <button type="submit">🔍 Search</button>
-</form>
-<article>
-    <form:form action="" modelAttribute="order" method="post">
-	<h1>All Orders</h1>
-        <table>
-            <tr>
-                <th>ID Order</th>
-                <th>Customer Name</th>
-                <th>Phonenumber</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Receipt</th>
-                <th>Action</th>
-            </tr>
-           <c:forEach var="order" items="${orders}">
-                <tr>
-                    <td><c:out value="${order.id}"/></td>
-                    <td><c:out value="${order.customer.name}"/></td>
-                    <td><c:out value="${order.customer.phone}"/></td>
-                    <td><c:out value="${order.date}"/></td>
-                    <td><c:out value="${order.status}"/></td>
-                    <td><c:out value="${order.details}"/></td>
-                    <td>$<c:out value="${order.action}"/></td><!-- linke to change status to finished -->
-                </tr>
-            </c:forEach>
-        </table>
+<main style="padding: 50px 40px; width: 80%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
 
-    </form:form>
+	<!-- Search Input -->
+	<div class="mb-5" style="max-width: 700px; margin: auto;">
+		<form action="/admin/orders/search" method="get" class="d-flex gap-3">
+			<input type="text" name="keyword" placeholder="🔍 Search by name, ID..." required
+				   style="flex: 1; padding: 16px 20px; border-radius: 12px; border: 1px solid #ccc; font-size: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+			<button type="submit" class="btn btn-warning px-4 fw-bold">Search</button>
+		</form>
+	</div>
 
-</article>
+	<!-- Heading -->
+	<h1 class="text-center fw-bold mb-5 text-white" style="font-size: 36px;">📦 All Orders</h1>
+
+	<!-- Orders Table -->
+	<div class="bg-white p-4 rounded-4 shadow" style="overflow-x: auto;">
+		<table class="table table-bordered" style="min-width: 900px;">
+			<thead class="table-light">
+				<tr>
+					<th>ID Order</th>
+					<th>Name</th>
+					<th>Phone Number</th>
+					<th>Email</th>
+					<th>Location</th>
+					<th>Status</th>
+					<th>Total Cost</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="order" items="${orders}">
+					<tr>
+						<td>
+							<a href="/orders/${order.id}" class="text-decoration-none fw-bold text-primary">
+								<c:out value="${order.id}" />
+							</a>
+						</td>
+						<td><c:out value="${order.customer.firstName}" /> <c:out value="${order.customer.lastName}" /></td>
+						<td><c:out value="${order.customer.phoneNumber}" /></td>
+						<td><c:out value="${order.customer.email}" /></td>
+						<td><c:out value="${order.customer.location}" /></td>
+						<td>
+							<span class="badge text-bg-info"><c:out value="${order.status.statuscondition}" /></span>
+						</td>
+						<td>$<c:out value="${order.total_cost}" /></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+		<!-- Total Price Display -->
+		<div class="text-end mt-3 fs-5 fw-bold">
+			Total Price: <span id="totalPrice">7</span> $
+		</div>
+	</div>
+
+</main>
+
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"
 		style="background-color: #303841; color: white;">
