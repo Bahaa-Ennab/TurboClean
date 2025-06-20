@@ -78,8 +78,7 @@ public class AdminController {
 		 @GetMapping("/admin/dashboard")
 		    public String showAdmindashboard(Model model) {
 		        model.addAttribute("items", itemRepository.findAll());
-		        System.out.println("Items count: " + itemRepository.findAll().size());
-
+		        
 		        return "adminDashboard.jsp";      
 		        }
 		 
