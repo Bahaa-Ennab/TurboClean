@@ -127,6 +127,7 @@ tr:nth-child(even) {
 
 			<div class="d-flex gap-4 flex-wrap my-2 my-md-0">
 
+
 				<a href="/admin/dashboard"
 					class="nav-link-custom d-flex align-items-center gap-1"> <img
 					src="https://img.icons8.com/ios-filled/20/ffffff/add-shopping-cart.png" />
