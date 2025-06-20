@@ -249,10 +249,6 @@ tr:nth-child(even) {
 			</tbody>
 		</table>
 
-		<!-- Total Price Display -->
-		<div class="text-end mt-3 fs-5 fw-bold">
-			Total Price: <span id="totalPrice">7</span> $
-		</div>
 	</div>
 
 </main>

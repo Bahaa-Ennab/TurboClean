@@ -128,10 +128,22 @@ h2:hover, h3:hover, a:hover {
 
 			<!-- Navigation Links -->
 			<div class="d-flex gap-4 flex-wrap my-2 my-md-0">
-				<a href="/customer/home" class="nav-link-custom">Home</a> <a
-					href="/customer/orders" class="nav-link-custom">ALL Orders</a> <a
-					href="/customer/messages" class="nav-link-custom">Messages</a>
+
+				<a href="/customer/home"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/home.png" /> Home
+				</a> <a href="/customer/orders"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/purchase-order.png" />
+					All Orders
+				</a> <a href="/customer/messages"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/sms.png" />
+					Messages
+				</a>
+
 			</div>
+
 
 			<!-- Logout Button -->
 			<a href="/logout"><button type="submit"
@@ -139,82 +151,108 @@ h2:hover, h3:hover, a:hover {
 		</div>
 	</nav>
 
-<main class="py-5" style="background-color: #cad1d1;">
-  <div class="container">
-    <div class="d-flex gap-4 overflow-auto pb-4" style="scroll-snap-type: x mandatory;">
-     <!-- Image Gallery: 3x3 Grid -->
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-  <div class="col text-center">
-    <img src="https://i.imgur.com/RsOelut.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 1">
-    <h6 class="fw-bold">Coat 5$</h6>
-  </div>
-  <div class="col text-center">
-    <img src="https://i.imgur.com/2p1JfkJ.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 2">
-    <h6 class="fw-bold">Shirt 2$</h6>
-  </div>
-  <div class="col text-center">
-    <img src="https://i.imgur.com/5uGwD6k.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 3">
-    <h6 class="fw-bold">Dress 10$</h6>
-  </div>
-  <div class="col text-center">
-    <img src="https://i.imgur.com/njYMh1c.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 4">
-    <h6 class="fw-bold">Jacket 4$</h6>
-  </div>
-  <div class="col text-center">
-    <img src="https://i.imgur.com/SuBzoAZ.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 5">
-    <h6 class="fw-bold">Suit 8$</h6>
-  </div>
-  <div class="col text-center">
-    <img src="https://i.imgur.com/ELsNPQ9.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 6">
-    <h6 class="fw-bold">T-shirt 2$</h6>
-  </div>
-  <div class="col text-center">
-    <img src="https://i.imgur.com/oWY8mrZ.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 7">
-    <h6 class="fw-bold">Man Thobe 7$</h6>
-  </div>
-  <div class="col text-center">
-    <img src="https://i.imgur.com/J2YwZA3.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 8">
-    <h6 class="fw-bold">Women Thobe 10$</h6>
-  </div>
-  <div class="col text-center">
-    <img src="https://i.imgur.com/h5qQRiN.jpeg" class="img-fluid rounded mb-2" style="height: 120px; object-fit: cover;" alt="Image 9">
-    <h6 class="fw-bold">Trouser 2$</h6>
-  </div>
-</div>
+	<main class="py-5" style="background-color: #cad1d1;">
+		<div class="container">
+			<div class="d-flex gap-4 overflow-auto pb-4"
+				style="scroll-snap-type: x mandatory;">
+				<!-- Image Gallery: 3x3 Grid -->
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+					<div class="col text-center">
+						<img src="https://i.imgur.com/RsOelut.jpeg"
+							class="img-fluid rounded mb-2"
+							style="height: 120px; object-fit: cover;" alt="Image 1">
+						<h6 class="fw-bold">Coat 5$</h6>
+					</div>
+					<div class="col text-center">
+						<img src="https://i.imgur.com/2p1JfkJ.jpeg"
+							class="img-fluid rounded mb-2"
+							style="height: 120px; object-fit: cover;" alt="Image 2">
+						<h6 class="fw-bold">Shirt 2$</h6>
+					</div>
+					<div class="col text-center">
+						<img src="https://i.imgur.com/5uGwD6k.jpeg"
+							class="img-fluid rounded mb-2"
+							style="height: 120px; object-fit: cover;" alt="Image 3">
+						<h6 class="fw-bold">Dress 10$</h6>
+					</div>
+					<div class="col text-center">
+						<img src="https://i.imgur.com/njYMh1c.jpeg"
+							class="img-fluid rounded mb-2"
+							style="height: 120px; object-fit: cover;" alt="Image 4">
+						<h6 class="fw-bold">Jacket 4$</h6>
+					</div>
+					<div class="col text-center">
+						<img src="https://i.imgur.com/SuBzoAZ.jpeg"
+							class="img-fluid rounded mb-2"
+							style="height: 120px; object-fit: cover;" alt="Image 5">
+						<h6 class="fw-bold">Suit 8$</h6>
+					</div>
+					<div class="col text-center">
+						<img src="https://i.imgur.com/ELsNPQ9.jpeg"
+							class="img-fluid rounded mb-2"
+							style="height: 120px; object-fit: cover;" alt="Image 6">
+						<h6 class="fw-bold">T-shirt 2$</h6>
+					</div>
+					<div class="col text-center">
+						<img src="https://i.imgur.com/oWY8mrZ.jpeg"
+							class="img-fluid rounded mb-2"
+							style="height: 120px; object-fit: cover;" alt="Image 7">
+						<h6 class="fw-bold">Man Thobe 7$</h6>
+					</div>
+					<div class="col text-center">
+						<img src="https://i.imgur.com/J2YwZA3.jpeg"
+							class="img-fluid rounded mb-2"
+							style="height: 120px; object-fit: cover;" alt="Image 8">
+						<h6 class="fw-bold">Women Thobe 10$</h6>
+					</div>
+					<div class="col text-center">
+						<img src="https://i.imgur.com/h5qQRiN.jpeg"
+							class="img-fluid rounded mb-2"
+							style="height: 120px; object-fit: cover;" alt="Image 9">
+						<h6 class="fw-bold">Trouser 2$</h6>
+					</div>
+				</div>
 
-      <!-- Form Section -->
-      <div class="card shadow-lg border-0 rounded-4 p-4" style="min-width: 800px;margin-left:40px; background-color: #5f7081; scroll-snap-align: start;">
-        <h2 class="fw-bold mb-4 text-white">Welcome, ${loggedCustomer.firstName}</h2>
+				<!-- Form Section -->
+				<div class="card shadow-lg border-0 rounded-4 p-4"
+					style="min-width: 800px; margin-left: 40px; background-color: #5f7081; scroll-snap-align: start;">
+					<h2 class="fw-bold mb-4 text-white">Welcome,
+						${loggedCustomer.firstName}</h2>
 
-        <form:form action="/customer/sendMessage" modelAttribute="customerMessage" method="post">
-          <h4 class="fw-semibold mb-3 text-white">Your Details</h4>
+					<form:form action="/customer/sendMessage"
+						modelAttribute="customerMessage" method="post">
+						<h4 class="fw-semibold mb-3 text-white">Your Details</h4>
 
-          <!-- Message Textarea -->
-          <div class="mb-3">
-            <label class="form-label fw-semibold text-white">Message Details:</label>
-            <form:textarea path="messageDetails" cssClass="form-control" rows="4" />
-          </div>
+						<!-- Message Textarea -->
+						<div class="mb-3">
+							<label class="form-label fw-semibold text-white">Message
+								Details:</label>
+							<form:textarea path="messageDetails" cssClass="form-control"
+								rows="4" />
+						</div>
 
-          <!-- Pickup Time -->
-          <div class="mb-3">
-            <label class="form-label fw-semibold text-white">Pickup Time:</label>
-            <form:input type="datetime-local" path="pickupTime" cssClass="form-control" />
-          </div>
+						<!-- Pickup Time -->
+						<div class="mb-3">
+							<label class="form-label fw-semibold text-white">Pickup
+								Time:</label>
+							<form:input type="datetime-local" path="pickupTime"
+								cssClass="form-control" />
+						</div>
 
-          <!-- Submit Button -->
-          <div class="text-end">
-            <button type="submit" class="btn btn-lg px-4 custom-btn-orange">Submit</button>
-          </div>
-        </form:form>
+						<!-- Submit Button -->
+						<div class="text-end">
+							<button type="submit" class="btn btn-lg px-4 custom-btn-orange">Submit</button>
+						</div>
+					</form:form>
 
-        <!-- Success Message -->
-        <c:if test="${not empty message}">
-          <div class="alert alert-success mt-4" role="alert">${message}</div>
-        </c:if>
-      </div>
-    </div>
-  </div>
-</main>
+					<!-- Success Message -->
+					<c:if test="${not empty message}">
+						<div class="alert alert-success mt-4" role="alert">${message}</div>
+					</c:if>
+				</div>
+			</div>
+		</div>
+	</main>
 
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"
