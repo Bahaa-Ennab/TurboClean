@@ -204,6 +204,8 @@ tr:nth-child(even) {
 			<th>pickupTime</th>
 			<th>messageDetails</th>
 			<th>Location</th>
+			<th>Action</th>
+
 
 		</tr>
 		<c:forEach var="message" items="${messages}">
@@ -215,6 +217,11 @@ tr:nth-child(even) {
 				<td><c:out value="${message.pickupTime}" /></td>
 				<td><c:out value="${message.messageDetails}" /></td>
 				<td><c:out value="${message.customer.location}" /></td>
+				<td><form action="/admin/neworder/${message.customer.id}" method="get">
+						<button type="submit" class="badge border-0"
+							style="cursor: pointer; background-color: #64d0ea; color: black;">
+							Make Order</button>
+					</form></td>
 
 			</tr>
 		</c:forEach>
