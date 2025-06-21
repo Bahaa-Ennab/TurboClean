@@ -34,7 +34,7 @@ public class MessageService {
 		return messageRepository.findAllByCustomer(customer);
 	}
 	
-	public void deleteMessage(Long id) {
+	public void deleteById(Long id) {
 		messageRepository.deleteById(id);
 	}
 	

@@ -214,6 +214,7 @@ tr:nth-child(even) {
 					placeholder="Enter address" required>
 			</div>
 			<input type="hidden" id="customerId" value="${customerId}" />
+<input type="hidden" id="messageId" value="${messageId}" />
 
 		</div>
 <!-- Parent Flex Container -->
@@ -340,154 +341,157 @@ tr:nth-child(even) {
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
-	  const itemImages = {
-			    "Coat": "https://i.imgur.com/RsOelut.jpeg",
-			    "Shirt": "https://i.imgur.com/2p1JfkJ.jpeg",
-			    "Dress": "https://i.imgur.com/5uGwD6k.jpeg",
-			    "Jacket": "https://i.imgur.com/njYMh1c.jpeg",
-			    "Suit": "https://i.imgur.com/SuBzoAZ.jpeg",
-			    "T-shirt": "https://i.imgur.com/ELsNPQ9.jpeg",
-			    "Man Thobe": "https://i.imgur.com/oWY8mrZ.jpeg",
-			    "Women Thobe": "https://i.imgur.com/J2YwZA3.jpeg",
-			    "Trouser": "https://i.imgur.com/h5qQRiN.jpeg"
-			  };
+  const itemImages = {
+    "Coat": "https://i.imgur.com/RsOelut.jpeg",
+    "Shirt": "https://i.imgur.com/2p1JfkJ.jpeg",
+    "Dress": "https://i.imgur.com/5uGwD6k.jpeg",
+    "Jacket": "https://i.imgur.com/njYMh1c.jpeg",
+    "Suit": "https://i.imgur.com/SuBzoAZ.jpeg",
+    "T-shirt": "https://i.imgur.com/ELsNPQ9.jpeg",
+    "Man Thobe": "https://i.imgur.com/oWY8mrZ.jpeg",
+    "Women Thobe": "https://i.imgur.com/J2YwZA3.jpeg",
+    "Trouser": "https://i.imgur.com/h5qQRiN.jpeg"
+  };
 
-			  document.querySelectorAll('.item-button').forEach(button => {
-			    const name = button.getAttribute('data-name');
-			    const img = button.querySelector('.item-image');
-			    if (itemImages[name]) {
-			      img.src = itemImages[name];
-			    } else {
-			      img.src = 'https://via.placeholder.com/150?text=No+Image';
-			    }
-			  });
-	
-	
-    let orderItems = {};
+  document.querySelectorAll('.item-button').forEach(button => {
+    const name = button.getAttribute('data-name');
+    const img = button.querySelector('.item-image');
+    if (itemImages[name]) {
+      img.src = itemImages[name];
+    } else {
+      img.src = 'https://via.placeholder.com/150?text=No+Image';
+    }
+  });
 
-    function renderTable() {
-        console.log("Rendering table...");
-        const tbody = document.querySelector("#orderTable tbody");
-        tbody.innerHTML = "";
+  let orderItems = {};
 
-        let total = 0;
+  function renderTable() {
+    console.log("Rendering table...");
+    const tbody = document.querySelector("#orderTable tbody");
+    tbody.innerHTML = "";
 
-        for (let id in orderItems) {
-            const item = orderItems[id];
-            const qty = item.qty;
-            const price = item.price;
-            const itemTotal = qty * price;
-            total += itemTotal;
+    let total = 0;
 
-            const row = document.createElement("tr");
+    for (let id in orderItems) {
+      const item = orderItems[id];
+      const qty = item.qty;
+      const price = item.price;
+      const itemTotal = qty * price;
+      total += itemTotal;
 
-            const tdName = document.createElement("td");
-            tdName.textContent = item.name;
+      const row = document.createElement("tr");
 
-            const tdQty = document.createElement("td");
-            const inputQty = document.createElement("input");
-            inputQty.type = "number";
-            inputQty.min = "1";
-            inputQty.value = qty;
-            inputQty.className = "form-control form-control-sm";
-            inputQty.onchange = function () {
-                updateQty(id, inputQty.value);
-            };
-            tdQty.appendChild(inputQty);
+      const tdName = document.createElement("td");
+      tdName.textContent = item.name;
 
-            const tdPrice = document.createElement("td");
-            tdPrice.textContent = price.toFixed(2);
+      const tdQty = document.createElement("td");
+      const inputQty = document.createElement("input");
+      inputQty.type = "number";
+      inputQty.min = "1";
+      inputQty.value = qty;
+      inputQty.className = "form-control form-control-sm";
+      inputQty.onchange = function () {
+        updateQty(id, inputQty.value);
+      };
+      tdQty.appendChild(inputQty);
 
-            const tdTotal = document.createElement("td");
-            tdTotal.textContent = itemTotal.toFixed(2);
+      const tdPrice = document.createElement("td");
+      tdPrice.textContent = price.toFixed(2);
 
-            row.appendChild(tdName);
-            row.appendChild(tdQty);
-            row.appendChild(tdPrice);
-            row.appendChild(tdTotal);
+      const tdTotal = document.createElement("td");
+      tdTotal.textContent = itemTotal.toFixed(2);
 
-            tbody.appendChild(row);
-        }
+      row.appendChild(tdName);
+      row.appendChild(tdQty);
+      row.appendChild(tdPrice);
+      row.appendChild(tdTotal);
 
-        document.getElementById("grandTotal").innerText = total.toFixed(2);
+      tbody.appendChild(row);
     }
 
+    document.getElementById("grandTotal").innerText = total.toFixed(2);
+  }
 
-    function updateQty(id, qty) {
-        const intQty = parseInt(qty);
-        if (intQty > 0) {
-            orderItems[id].qty = intQty;
-            renderTable();
-        }
+  function updateQty(id, qty) {
+    const intQty = parseInt(qty);
+    if (intQty > 0) {
+      orderItems[id].qty = intQty;
+      renderTable();
     }
+  }
 
-    // مهم جدًا: تأكد أن DOM جاهز
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".item-button").forEach(btn => {
-            btn.addEventListener("click", function () {
-                const id = this.dataset.id;
-                const name = this.dataset.name;
-                const price = parseFloat(this.dataset.price);
+  // مهم جدًا: تأكد أن DOM جاهز
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".item-button").forEach(btn => {
+      btn.addEventListener("click", function () {
+        const id = this.dataset.id;
+        const name = this.dataset.name;
+        const price = parseFloat(this.dataset.price);
 
-                console.log("CLICKED:", { id, name, price });
+        console.log("CLICKED:", { id, name, price });
 
-                if (orderItems[id]) {
-                    orderItems[id].qty += 1;
-                } else {
-                    orderItems[id] = {
-                        name: name,
-                        price: price,
-                        qty: 1
-                    };
-                }
+        if (orderItems[id]) {
+          orderItems[id].qty += 1;
+        } else {
+          orderItems[id] = {
+            name: name,
+            price: price,
+            qty: 1
+          };
+        }
 
-                renderTable();
-            });
-        });
+        renderTable();
+      });
     });
+  });
 
-    function submitOrder() {
-        const customerId = document.getElementById("customerId").value.trim();
-        const address = document.getElementById("address").value.trim();
+  function submitOrder() {
+    const customerId = document.getElementById("customerId").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const messageId = document.getElementById("messageId")?.value?.trim(); // ✅ optional
 
-        if (!customerId || !address || Object.keys(orderItems).length === 0) {
-            alert("يرجى تعبئة كل الحقول واختيار عناصر.");
-            return;
-        }
-
-        const items = Object.entries(orderItems).map(([id, item]) => ({
-            id: parseInt(id),
-            qty: item.qty
-        }));
-
-        const data = {
-            adminId: 1,
-            customerId,
-            address,
-            items
-        };
-
-        fetch("/admin/orders", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        }).then(res => {
-            if (res.ok) {
-                alert("Order saved!");
-                location.reload();
-            } else {
-                res.text().then(err => {
-                    console.error("Error response:", err);
-                    alert("فشل حفظ الطلب: " + err);
-                });
-            }
-        }).catch(err => {
-            console.error("Network error:", err);
-            alert("فشل في الاتصال بالخادم.");
-        });
+    if (!customerId || !address || Object.keys(orderItems).length === 0) {
+      alert("يرجى تعبئة كل الحقول واختيار عناصر.");
+      return;
     }
 
+    const items = Object.entries(orderItems).map(([id, item]) => ({
+      id: parseInt(id),
+      qty: item.qty
+    }));
+
+    const data = {
+      customerId,
+      address,
+      items
+    };
+
+    let url = "/admin/orders";
+    if (messageId) {
+      url += `?messageId=${messageId}`;
+    }
+
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    }).then(res => {
+      if (res.ok) {
+        alert("Order saved!");
+        location.href = `/admin/user-details?keyword=${customerId}`;
+      } else {
+        res.text().then(err => {
+          console.error("Error response:", err);
+          alert("فشل حفظ الطلب: " + err);
+        });
+      }
+    }).catch(err => {
+      console.error("Network error:", err);
+      alert("فشل في الاتصال بالخادم.");
+    });
+  }
 </script>
+
 
 </body>
 </html>

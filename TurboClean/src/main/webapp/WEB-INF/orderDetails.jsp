@@ -205,7 +205,7 @@ tr:nth-child(even) {
 						💵 Total Cost: <span class="fw-normal">$<c:out
 								value="${order.total_cost}" /></span>
 					</h3>
-					<a href="/admin/user-details?keyword=${order.customer.id}"
+					<a href="javascript:history.back()"
 						class="btn btn-warning text-white"
 									data-bs-toggle="modal" data-bs-target="#editCustomerModal"> ⬅ Back </a>
 				</div>

@@ -230,6 +230,7 @@ tr:nth-child(even) {
 				<tbody>
 					<c:forEach var="customer" items="${customers}">
 						<tr>
+						
 							<td><c:out value="${customer.id}" /></td>
 							<td><a href="/admin/user-details?keyword=${customer.id}"
 								class="text-decoration-none fw-bold text-primary"> <c:out
