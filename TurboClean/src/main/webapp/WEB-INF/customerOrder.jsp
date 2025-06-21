@@ -137,12 +137,7 @@ tr:nth-child(even) {
 	<!-- Main Section -->
 	<main
 		style="padding: 50px 40px; width: 80%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
-		<!-- Search Input -->
-		<div class="mb-5" style="max-width: 700px; margin: auto;">
-			<input type="text" id="searchInput"
-				placeholder="🔍 Search orders by ID, date, or status"
-				style="width: 100%; padding: 18px 20px; border-radius: 12px; border: 1px solid #ccc; font-size: 18px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-		</div>
+
 
 		<!-- Heading -->
 		<h1 class="text-center fw-bold mb-5"
@@ -173,7 +168,7 @@ tr:nth-child(even) {
 									value="${order.total_cost}" /></td>
 							<td style="padding: 16px;"><span
 								style="background-color: #ffcc80; color: #333; padding: 6px 14px; border-radius: 20px; font-weight: 500;">
-									<c:out value="${order.status.condition}" />
+									<c:out value="${order.status.statuscondition}" />
 							</span></td>
 						</tr>
 					</c:forEach>
