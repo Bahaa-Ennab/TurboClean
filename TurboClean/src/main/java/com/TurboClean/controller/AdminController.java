@@ -19,6 +19,7 @@ import com.TurboClean.repositories.ItemRepository;
 import com.TurboClean.services.AdminServices;
 import com.TurboClean.services.CustomerService;
 import com.TurboClean.services.MessageService;
+import com.TurboClean.services.OrderService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -36,6 +37,9 @@ public class AdminController {
 	
 	@Autowired
 	MessageService messageService;
+	
+	@Autowired
+	OrderService orderService;
 	
 	 @GetMapping("/admin/login")
 	    public String showAdminLogin(Model model) {
