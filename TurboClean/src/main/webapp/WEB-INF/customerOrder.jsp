@@ -166,10 +166,24 @@ tr:nth-child(even) {
 							<td style="padding: 16px;"><c:out value="${order.address}" /></td>
 							<td style="padding: 16px;">$<c:out
 									value="${order.total_cost}" /></td>
-							<td style="padding: 16px;"><span
-								style="background-color: #ffcc80; color: #333; padding: 6px 14px; border-radius: 20px; font-weight: 500;">
-									<c:out value="${order.status.statuscondition}" />
-							</span></td>
+							<td><c:choose>
+									<c:when test="${order.status.statuscondition == 'Waiting'}">
+										<span style="color: gray; font-weight: bold;">Waiting</span>
+									</c:when>
+									<c:when test="${order.status.statuscondition == 'In Progress'}">
+										<span style="color: #64d0ea; font-weight: bold;">In
+											Progress</span>
+									</c:when>
+									<c:when test="${order.status.statuscondition == 'Finished'}">
+										<span style="color: #ff8800; font-weight: bold;">Finished</span>
+									</c:when>
+									<c:when test="${order.status.statuscondition == 'Paid'}">
+										<span style="color: #4CAF50; font-weight: bold;">Paid</span>
+									</c:when>
+									<c:otherwise>
+										<span style="color: black;">${order.status.statuscondition}</span>
+									</c:otherwise>
+								</c:choose></td>
 						</tr>
 					</c:forEach>
 				</tbody>
