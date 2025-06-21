@@ -1,6 +1,7 @@
 package com.TurboClean.services;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,8 +12,8 @@ import org.springframework.validation.BindingResult;
 
 import com.TurboClean.models.Customer;
 import com.TurboClean.models.LoginCustomer;
-import com.TurboClean.models.Order;
 import com.TurboClean.repositories.CustomerRepository;
+
 
 @Service
 public class CustomerService {
@@ -77,8 +78,45 @@ public class CustomerService {
 		return Customerrepo.save(customer);
 
 	}
-
 	public List<Customer> searchCustomers(String keyword) {
-		return null;
+	    List<Customer> results = new ArrayList<>();
+	    
+	    try {
+	        Long id = Long.parseLong(keyword);
+	        Customer byId = Customerrepo.findById(id).orElse(null);
+	        if (byId != null) results.add(byId);
+	    } catch (NumberFormatException e) {
+	        // Not an ID, ignore
+	    }
+
+	    results.addAll(Customerrepo.findByFirstNameContainingIgnoreCase(keyword));
+	    results.addAll(Customerrepo.findByFirstNameContainingIgnoreCase(keyword));
+
+	    // ممكن تشيل التكرارات لو بدك
+	    return results;
 	}
+
+	
+	public void updateCustomer(Customer updatedCustomer) {
+	    Optional<Customer> optionalCustomer = Customerrepo.findById(updatedCustomer.getId());
+	    if (optionalCustomer.isPresent()) {
+	        Customer existingCustomer = optionalCustomer.get();
+
+	        existingCustomer.setFirstName(updatedCustomer.getFirstName());
+	        existingCustomer.setLastName(updatedCustomer.getLastName());
+	        existingCustomer.setPhoneNumber(updatedCustomer.getPhoneNumber());
+
+	        // ✅ فقط إذا الإيميل مش مكرر أو لم يتغير
+	        existingCustomer.setEmail(updatedCustomer.getEmail());
+
+	        existingCustomer.setLocation(updatedCustomer.getLocation());
+
+	        Customerrepo.save(existingCustomer);
+	    } else {
+	        throw new RuntimeException("Customer not found");
+	    }
+	}
+
+
+
 }

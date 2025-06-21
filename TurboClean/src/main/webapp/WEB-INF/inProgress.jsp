@@ -127,131 +127,132 @@ tr:nth-child(even) {
 
 			<div class="d-flex gap-4 flex-wrap my-2 my-md-0">
 
-	<a href="/admin/dashboard" class="nav-link-custom d-flex align-items-center gap-1">
-		<img src="https://img.icons8.com/ios-filled/20/ffffff/add-shopping-cart.png" />
-		New Order
-	</a>
+				<a href="/admin/dashboard"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/add-shopping-cart.png" />
+					New Order
+				</a> <a href="/admin/customers"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/user-group-man-man.png" />
+					All Customers
+				</a> <a href="/orders/all"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/purchase-order.png" />
+					All Orders
+				</a> <a href="/admin/messages"
+					class="nav-link-custom d-flex align-items-center gap-1"> <img
+					src="https://img.icons8.com/ios-filled/20/ffffff/sms.png" />
+					Messages
+				</a>
 
-	<a href="/admin/customers" class="nav-link-custom d-flex align-items-center gap-1">
-	<img src="https://img.icons8.com/ios-filled/20/ffffff/user-group-man-man.png" />
-	All Customers
-</a>
+			</div>
 
-	<a href="/orders/all" class="nav-link-custom d-flex align-items-center gap-1">
-		<img src="https://img.icons8.com/ios-filled/20/ffffff/purchase-order.png" />
-		All Orders
-	</a>
-
-	<a href="/admin/messages" class="nav-link-custom d-flex align-items-center gap-1">
-		<img src="https://img.icons8.com/ios-filled/20/ffffff/sms.png" />
-		Messages
-	</a>
-
-</div>
-			
 
 			<a href="/logout">
 				<button type="submit" class="btn btn-outline-light btn-sm px-4">Logout</button>
 			</a>
 		</div>
 	</nav>
-	
+
 	<div class="container mt-4">
-	<div class="row justify-content-center text-center g-4" >
+		<div class="row justify-content-center text-center g-4">
 
-		<!-- Waiting -->
-		<div class="col-6 col-md-3" >
-			<a href="/admin/orders/waiting"
-				class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
-				style="background-color: #5f7081; color: white;">
-				<i class="bi bi-hourglass-split fs-3 d-block mb-2"></i>
-				Waiting
-			</a>
-		</div>
+			<!-- Waiting -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/waiting"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-hourglass-split fs-3 d-block mb-2"></i> Waiting
+				</a>
+			</div>
 
-		<!-- In Progress -->
-		<div class="col-6 col-md-3">
-			<a href="/admin/orders/inprogress"
-				class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
-				style="background-color: #5f7081; color: white;">
-				<i class="bi bi-gear-wide-connected fs-3 d-block mb-2"></i>
-				In Progress
-			</a>
-		</div>
+			<!-- In Progress -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/inprogress"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-gear-wide-connected fs-3 d-block mb-2"></i> In
+					Progress
+				</a>
+			</div>
 
-		<!-- Finished -->
-		<div class="col-6 col-md-3">
-			<a href="/admin/orders/finished"
-				class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
-				style="background-color: #5f7081; color: white;">
-				<i class="bi bi-check-circle fs-3 d-block mb-2"></i>
-				Finished
-			</a>
-		</div>
+			<!-- Finished -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/finished"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-check-circle fs-3 d-block mb-2"></i> Finished
+				</a>
+			</div>
 
-		<!-- Paid -->
-		<div class="col-6 col-md-3">
-			<a href="/admin/orders/paid"
-				class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
-				style="background-color: #5f7081; color: white;">
-				<i class="bi bi-cash-stack fs-3 d-block mb-2"></i>
-				Paid
-			</a>
+			<!-- Paid -->
+			<div class="col-6 col-md-3">
+				<a href="/admin/orders/paid"
+					class="d-block p-4 rounded-4 text-decoration-none fw-bold shadow-sm dashboard-link"
+					style="background-color: #5f7081; color: white;"> <i
+					class="bi bi-cash-stack fs-3 d-block mb-2"></i> Paid
+				</a>
+			</div>
 		</div>
 	</div>
-</div>
-<main style="padding: 50px 40px; width: 80%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
+	<main
+		style="padding: 50px 40px; width: 80%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
 
-	<!-- Search Input -->
-	<div class="mb-5" style="max-width: 700px; margin: auto;">
-		<form action="/admin/orders/search" method="get" class="d-flex gap-3">
-			<input type="text" name="keyword" placeholder="🔍 Search by name, ID..." required
-				   style="flex: 1; padding: 16px 20px; border-radius: 12px; border: 1px solid #ccc; font-size: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-			<button type="submit" class="btn btn-warning px-4 fw-bold">Search</button>
-		</form>
-	</div>
+		<!-- Search Input -->
+		<div class="mb-5" style="max-width: 700px; margin: auto;">
+			<form action="/admin/orders/search" method="get" class="d-flex gap-3">
+				<input type="text" name="keyword"
+					placeholder="🔍 Search by name, ID..." required
+					style="flex: 1; padding: 16px 20px; border-radius: 12px; border: 1px solid #ccc; font-size: 18px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+				<button type="submit" class="btn btn-warning px-4 fw-bold">Search</button>
+			</form>
+		</div>
 
-	<!-- Heading -->
-	<h1 class="text-center fw-bold mb-5 text-white" style="font-size: 36px;">📦 All Orders</h1>
+		<!-- Heading -->
+		<h1 class="text-center fw-bold mb-5 text-white"
+			style="font-size: 36px;">📦 All Orders</h1>
 
-	<!-- Orders Table -->
-	<div class="bg-white p-4 rounded-4 shadow" style="overflow-x: auto;">
-		<table class="table table-bordered" style="min-width: 900px;">
-			<thead class="table-light">
-				<tr>
-					<th>ID Order</th>
-					<th>Name</th>
-					<th>Phone Number</th>
-					<th>Email</th>
-					<th>Location</th>
-					<th>Status</th>
-					<th>Total Cost</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="order" items="${orders}">
+		<!-- Orders Table -->
+		<div class="bg-white p-4 rounded-4 shadow" style="overflow-x: auto;">
+			<table class="table table-bordered" style="min-width: 900px;">
+				<thead class="table-light">
 					<tr>
-						<td>
-							<a href="/orders/${order.id}" class="text-decoration-none fw-bold text-primary">
-								<c:out value="${order.id}" />
-							</a>
-						</td>
-						<td><c:out value="${order.customer.firstName}" /> <c:out value="${order.customer.lastName}" /></td>
-						<td><c:out value="${order.customer.phoneNumber}" /></td>
-						<td><c:out value="${order.customer.email}" /></td>
-						<td><c:out value="${order.customer.location}" /></td>
-						<td>
-							<span class="badge text-bg-info"><c:out value="${order.status.statuscondition}" /></span>
-						</td>
-						<td>$<c:out value="${order.total_cost}" /></td>
+						<th>ID Order</th>
+						<th>Name</th>
+						<th>Phone Number</th>
+						<th>Email</th>
+						<th>Location</th>
+						<th>Status</th>
+						<th>Total Cost</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<c:forEach var="order" items="${orders}">
+						<tr>
+							<td><a href="/orders/${order.id}"
+								class="text-decoration-none fw-bold text-primary"> <c:out
+										value="${order.id}" />
+							</a></td>
+							<td><a
+								href="/admin/user-details?keyword=${order.customer.id}"
+								class="text-decoration-none fw-bold text-primary"> <c:out
+										value="${order.customer.firstName}" /> <c:out
+										value="${order.customer.lastName}" />
+							</a></td>
+							<td><c:out value="${order.customer.phoneNumber}" /></td>
+							<td><c:out value="${order.customer.email}" /></td>
+							<td><c:out value="${order.customer.location}" /></td>
+							<td><span class="badge text-bg-info"><c:out
+										value="${order.status.statuscondition}" /></span></td>
+							<td>$<c:out value="${order.total_cost}" /></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 
-	</div>
+		</div>
 
-</main>
+	</main>
 
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"
