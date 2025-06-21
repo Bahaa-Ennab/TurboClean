@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page isErrorPage="true"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +12,7 @@
 <title>Order Details</title>
 </head>
 <body>
-<header>
+	<header>
 		<div class="navbar">
 			<div class="logo">Turbo Clean</div>
 
@@ -20,29 +25,36 @@
 			</form>
 		</div>
 	</header>
-	
-	<h1>My Orders</h1>
-	<table>
-            <tr>
-                <th>Item</th>
-                <th>Cost for one Item</th>
-                <th>Number of Item</th>
-                <th>Total</th>
 
-            </tr>
-           <c:forEach var="order" items="${orders}">
-                <tr>
-                    <td><c:out value="${order.item.name}"/></td><!--  edit all of this -->
-                    <td><c:out value="${item.customer.cost}"/></td>
-                    <td><c:out value="${order.customer.details}"/></td>
-                    <td><c:out value="${order.status}"/></td>
-                </tr>
-            </c:forEach>
-        </table>
-        
-            <strong>Total Cost:</strong> <span id="totalCost">7</span> $
-        
-<footer class="bg-white border-top mt-20 py-4">
+	<h1> Customer: 
+		<c:out value="${order.customer.firstName}" />
+		<c:out value=" ${order.customer.lastName}" />
+	</h1>
+	<h1>
+		Address: <c:out value="${order.address}" />
+	</h1>
+	<table border="1">
+		<tr>
+			<th>Items</th>
+			<th>Cost for one Item</th>
+			<th>Number of Items</th>
+			<th>Total</th>
+		</tr>
+			<c:forEach var="item" items="${order.orderItems}">
+		<tr>
+				<td><c:out value="${item.item.itemName}" /></td>
+				<td><c:out value="${item.item.cost}" /></td>
+				<td><c:out value="${item.quantity}" /></td>
+				<td><c:out value="${item.item.cost * item.quantity}" /></td>
+		</tr>
+			</c:forEach>
+	</table>
+		<h1>
+		Total Cost: <c:out value="${order.total_cost}" />
+	</h1>
+<a href="/order/edit/${order.id}"><button>Edit Order</button></a>
+
+	<footer class="bg-white border-top mt-20 py-4">
 		<div class="container text-center small text-muted">
 			<p class="mb-1">© 2025 TurboClean – Ramallah, Palestine · Fast ·
 				Reliable · Door-to-Door Dry Cleaning</p>
@@ -63,6 +75,6 @@
 			</p>
 		</div>
 	</footer>
-	
+
 </body>
 </html>

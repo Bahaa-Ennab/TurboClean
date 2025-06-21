@@ -210,7 +210,7 @@ tr:nth-child(even) {
 
 		<!-- Heading -->
 		<h1 class="text-center fw-bold mb-5 text-white"
-			style="font-size: 36px;">📦 All Orders</h1>
+			style="font-size: 36px;">📦 Orders Paid</h1>
 
 		<!-- Orders Table -->
 		<div class="bg-white p-4 rounded-4 shadow" style="overflow-x: auto;">
