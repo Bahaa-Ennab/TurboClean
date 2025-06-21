@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.TurboClean.models.Admin;
 import com.TurboClean.models.Order;
@@ -105,4 +107,11 @@ public class OrderController {
 		Order order =orderService.findOrder(id);
 		model.addAttribute("order", order);
 		return "orderDetails.jsp";	}
+	
+	
+	@GetMapping("/orders/search")
+	@ResponseBody
+	public List<Order> searchOrdersByCustomerName(@RequestParam("keyword") String keyword) {
+	    return orderService.findOrdersByCustomerName(keyword); // customize this to your service
+	}
 }

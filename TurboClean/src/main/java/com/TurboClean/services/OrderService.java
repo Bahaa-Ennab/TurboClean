@@ -110,4 +110,7 @@ public class OrderService {
         // عند الحفظ سيحفظ الأوامر والعناصر بسبب CascadeType.ALL في العلاقة
         return orderRepository.save(order);
     }
+	public List<Order> findOrdersByCustomerName(String keyword) {
+	    return orderRepository.findByCustomerFirstNameContainingIgnoreCaseOrCustomerLastNameContainingIgnoreCase(keyword, keyword);
+	}
 }

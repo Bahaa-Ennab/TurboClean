@@ -205,9 +205,9 @@ tr:nth-child(even) {
 		style="padding: 50px 40px; width: 80%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
 
 		<!-- Search Form -->
-		<form action="/admin/search" method="get" class="search-form">
-			<input type="text" name="keyword"
-				placeholder="🔍 Search by name, ID..." required />
+		<form id="searchForm" class="search-form">
+			<input type="text" id="searchInput" name="keyword"
+				placeholder="🔍 Search by name..." autocomplete="off" required />
 		</form>
 
 		<!-- Heading -->
@@ -309,6 +309,27 @@ tr:nth-child(even) {
             .then(data => {
                 document.querySelector("tbody").innerHTML = data;
             });
+    });
+    
+    $(document).ready(function () {
+        $('#searchInput').on('input', function () {
+            let keyword = $(this).val();
+            if (keyword.length >= 2) {
+                $.ajax({
+                    url: '/admin/search',
+                    method: 'GET',
+                    data: { keyword: keyword },
+                    success: function (data) {
+                        $('#searchResults').html(data);
+                    },
+                    error: function () {
+                        $('#searchResults').html('<p class="text-danger">خطأ في تحميل النتائج</p>');
+                    }
+                });
+            } else {
+                $('#searchResults').empty();
+            }
+        });
     });
 </script>
 </body>
