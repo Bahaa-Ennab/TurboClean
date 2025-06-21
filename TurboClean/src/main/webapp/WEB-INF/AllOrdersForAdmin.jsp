@@ -219,7 +219,6 @@ tr:nth-child(even) {
 				<th>Location</th>
 				<th>Status</th>
 				<th>Total Cost</th>
-				<th>Action</th>
 			</tr>
 			<c:forEach var="order" items="${orders}">
 				<tr>
@@ -232,12 +231,6 @@ tr:nth-child(even) {
 					<td><c:out value="${order.customer.location}" /></td>
 					<td><c:out value="${order.status.statuscondition}" /></td>
 					<td>$<c:out value="${order.total_cost}" /></td>
-					<td><form action="/inprogress/${order.id}"
-							method="post">
-							<button type="submit" class="btn btn-link p-0 m-0 align-baseline">move
-								it to in progress</button>
-						</form></td>
-
 				</tr>
 			</c:forEach>
         </table>
