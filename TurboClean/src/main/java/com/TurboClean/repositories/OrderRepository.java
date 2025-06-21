@@ -18,6 +18,7 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 	List<Order> findAllByStatus(Status status);
 	List<Order> findAllByAdmin(Admin admin);
 	Optional<Order> findById(Long id);
+	Long countByStatus_Statuscondition(String statuscondition);
 	
 
 }

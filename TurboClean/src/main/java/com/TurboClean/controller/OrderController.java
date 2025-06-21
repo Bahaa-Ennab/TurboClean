@@ -8,9 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.TurboClean.models.Admin;
 import com.TurboClean.models.Order;
 import com.TurboClean.models.Status;
 import com.TurboClean.services.OrderService;
@@ -104,5 +102,35 @@ public class OrderController {
 	public String displayEditOrder(@PathVariable Long id, Model model, HttpSession session) {
 		Order order =orderService.findOrder(id);
 		model.addAttribute("order", order);
-		return "orderDetails.jsp";	}
+		return "orderDetails.jsp";	
+		
+	}
+	
+	@GetMapping("/orders/list")
+	public String showAllOrders(Model model) {
+	    List<Order> orders = orderService.findAll();
+
+	    long waitingCount = orders.stream()
+	        .filter(o -> "Waiting".equalsIgnoreCase(o.getStatus().getStatuscondition()))
+	        .count();
+	    long inProgressCount = orders.stream()
+	        .filter(o -> "In Progress".equalsIgnoreCase(o.getStatus().getStatuscondition()))
+	        .count();
+	    long finishedCount = orders.stream()
+	        .filter(o -> "Finished".equalsIgnoreCase(o.getStatus().getStatuscondition()))
+	        .count();
+	    long paidCount = orders.stream()
+	        .filter(o -> "Paid".equalsIgnoreCase(o.getStatus().getStatuscondition()))
+	        .count();
+
+	    model.addAttribute("orders", orders);
+	    model.addAttribute("waitingCount", waitingCount);
+	    model.addAttribute("inProgressCount", inProgressCount);
+	    model.addAttribute("finishedCount", finishedCount);
+	    model.addAttribute("paidCount", paidCount);
+
+	    return "allOrders.jsp";
+	}
 }
+
+

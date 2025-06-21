@@ -202,7 +202,7 @@ tr:nth-child(even) {
 
 	<!-- Main Content -->
 	<main
-		style="padding: 50px 40px; width: 80%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
+		style="padding: 30px 30px; width: 85%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
 
 		<!-- Search Form -->
 		<form action="/admin/search" method="get" class="search-form">

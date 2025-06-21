@@ -198,7 +198,7 @@ tr:nth-child(even) {
 
 
 	<main
-		style="padding: 50px 40px; width: 80%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
+		style="padding: 30px 30px; width: 85%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
 
 		<h2 class="text-center text-white fw-bold mb-5"
 			style="font-size: 32px;">📝 Create New Order</h2>
@@ -219,57 +219,69 @@ tr:nth-child(even) {
 			</div>
 		</div>
 
-		<div class="mt-5">
-  <h4 class="text-white fw-bold mb-4">🧺 Select Items</h4>
-  <div class="row g-3 mb-4" id="itemGrid">
-    <c:forEach items="${items}" var="item">
-      <div class="col-6 col-md-3">
-        <button type="button"
-          class="btn btn-outline-light w-100 item-button p-3 rounded-4 shadow-sm"
-          style="background-color: #cad1d1; border: 2px solid transparent; transition: 0.3s;"
-          onmouseover="this.style.border='2px solid #ffa726'"
-          onmouseout="this.style.border='2px solid transparent'"
-          data-id="${item.id}" data-name="${item.itemName}"
-          data-price="${item.cost}">
+		<div class="d-flex flex-wrap gap-5 mt-5 justify-content-between">
 
-          <img class="item-image mb-2 rounded" alt="${item.itemName}" style="max-width:100%; height:120px; object-fit: contain;" />
-          <div class="text-center fw-semibold">${item.itemName}</div>
-        </button>
-      </div>
-    </c:forEach>
-  </div>
-</div>
+			<!-- 🧺 Select Items -->
+			<div style="flex: 1; min-width: 280px;">
+				<h4 class="text-white fw-bold mb-4">🧺 Select Items</h4>
+				<div class="row g-2 mb-4" id="itemGrid">
+					<c:forEach items="${items}" var="item">
+						<div class="col-6 col-md-6 col-lg-4">
+							<button type="button"
+								class="btn btn-outline-light w-100 item-button p-2 rounded-4 shadow-sm"
+								style="background-color: #cad1d1; border: 2px solid transparent; transition: 0.3s;"
+								onmouseover="this.style.border='2px solid #ffa726'"
+								onmouseout="this.style.border='2px solid transparent'"
+								data-id="${item.id}" data-name="${item.itemName}"
+								data-price="${item.cost}">
 
-		<!-- Order Summary Table -->
-		<h4 class="text-white fw-bold mb-4">📦 Order Summary</h4>
-		<div class="bg-white p-4 rounded-4 shadow" style="overflow-x: auto;">
-			<table class="table table-bordered" id="orderTable"
-				style="min-width: 600px;">
-				<thead class="table-light">
-					<tr>
-						<th>Item</th>
-						<th>Qty</th>
-						<th>Price</th>
-						<th>Total</th>
-						<th>Remove</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-				<tfoot>
-					<tr>
-						<td colspan="3" class="text-end fw-bold">Grand Total</td>
-						<td id="grandTotal" class="fw-bold">0</td>
-						<td></td>
-					</tr>
-				</tfoot>
-			</table>
+								<img class="item-image mb-2 rounded" alt="${item.itemName}"
+									style="max-width: 100%; height: 90px; object-fit: contain;" />
+								<div class="text-center fw-semibold" style="font-size: 14px;">
+									${item.itemName}</div>
+							</button>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+
+			<!-- 📦 Order Summary -->
+			<div style="flex: 1; min-width: 400px;">
+				<h4 class="text-white fw-bold mb-4">📦 Order Summary</h4>
+				<div class="bg-white p-4 rounded-4 shadow" style="overflow-x: auto;">
+					<table class="table table-bordered" id="orderTable"
+						style="min-width: 600px;">
+						<thead class="table-light">
+							<tr>
+								<th>Item</th>
+								<th>Qty</th>
+								<th>Price</th>
+								<th>Total</th>
+								<th>Remove</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+						<tfoot>
+							<tr>
+								<td colspan="3" class="text-end fw-bold">Grand Total</td>
+								<td id="grandTotal" class="fw-bold">0</td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+				<!-- Submit Button -->
+				<div class="text-center mt-5">
+					<button class="btn btn-success px-5 py-3 fs-5 rounded-4 shadow"
+						id="submitBtn" onclick="submitOrder()">Submit Order</button>
+				</div>
+			</div>
+
+
 		</div>
 
-		<!-- Submit Button -->
-		<div class="text-center mt-5">
-			<button class="btn btn-success px-5 py-3 fs-5 rounded-4 shadow"
-				id="submitBtn" onclick="submitOrder()">Submit Order</button>
-		</div>
+
+
 	</main>
 
 
