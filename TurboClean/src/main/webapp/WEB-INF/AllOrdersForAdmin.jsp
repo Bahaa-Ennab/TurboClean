@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page isErrorPage="true"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -196,8 +197,20 @@ tr:nth-child(even) {
 	</div>
 
 
-	<main
-		style="padding: 50px 40px; width: 80%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
+
+		style="padding: 30px 30px; width: 85%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
+
+		<!-- Search Bar -->
+		<form action="/admin/orders/search" method="get"
+			class="search-form mb-4 d-flex gap-3"
+			style="max-width: 600px; margin: auto;">
+			<input type="text" name="keyword"
+				placeholder="🔍 Search by name, ID..." required
+				style="flex-grow: 1; padding: 14px 18px; border-radius: 12px; border: 1px solid #ccc; font-size: 16px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+			<button type="submit"
+				class="btn btn-warning px-4 py-2 rounded-3 fw-bold">Search</button>
+		</form>
+
 		<!-- Page Title -->
 		<h1 class="text-center fw-bold text-white mb-5"
 			style="font-size: 36px;">📄 All Orders</h1>
@@ -219,6 +232,7 @@ tr:nth-child(even) {
 						<td><a href="/orders/${order.id}"><c:out
 									value="${order.id}" /></a></td>
 
+
 						<td><a
 							href="/admin/user-details?keyword=${order.customer.id}"
 							class="text-decoration-none fw-bold text-primary"> <c:out
@@ -234,6 +248,29 @@ tr:nth-child(even) {
 				</c:forEach>
 			</table>
 
+						<td><a
+							href="/admin/user-details?keyword=${order.customer.id}"
+							class="text-decoration-none fw-bold text-primary"> <c:out
+									value="${order.customer.firstName}" /> <c:out
+									value="${order.customer.lastName}" />
+						</a></td>
+						<td><c:out value="${order.customer.phoneNumber}" /></td>
+						<td><c:out value="${order.customer.email}" /></td>
+						<td><c:out value="${order.customer.location}" /></td>
+						<td><c:out value="${order.status.statuscondition}" /></td>
+						<td>$<c:out value="${order.total_cost}" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+
+			<!-- Polar Area Chart -->
+			<div class="container my-5">
+				<h2 class="text-black text-center mb-4">📊 Order Status Chart</h2>
+				<div class="bg-white rounded-4 shadow p-4"
+					style="max-width: 600px; margin: auto;">
+					<canvas id="orderStatusChart" width="400" height="400"></canvas>
+				</div>
+			</div>
 
 		</div>
 	</main>
@@ -289,5 +326,42 @@ tr:nth-child(even) {
 				reserved.</div>
 		</div>
 	</footer>
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const waitingCount = <c:out value="${waitingCount != null ? waitingCount : 0}" />;
+const inProgressCount = <c:out value="${inProgressCount != null ? inProgressCount : 0}" />;
+const finishedCount = <c:out value="${finishedCount != null ? finishedCount : 0}" />;
+const paidCount = <c:out value="${paidCount != null ? paidCount : 0}" />;
+
+const ctx = document.getElementById('orderStatusChart').getContext('2d');
+const chart = new Chart(ctx, {
+    type: 'polarArea',
+    data: {
+        labels: ['Waiting', 'In Progress', 'Finished', 'Paid'],
+        datasets: [{
+            data: [waitingCount, inProgressCount, finishedCount, paidCount],
+            backgroundColor: [
+                'silver',
+                '#64d0ea',
+                '#ff8800',
+                '#4CAF50'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'right'
+            }
+        }
+    }
+});
+</script>
+
+
 </body>
 </html>
