@@ -210,7 +210,8 @@ tr:nth-child(even) {
 
 		<!-- Heading -->
 		<h1 class="text-center fw-bold mb-5 text-white"
-			style="font-size: 36px;">📦 All Orders</h1>
+
+			style="font-size: 36px;">📦 Orders In Progress</h1>
 
 		<!-- Orders Table -->
 		<div class="bg-white p-4 rounded-4 shadow" style="overflow-x: auto;">
@@ -224,6 +225,9 @@ tr:nth-child(even) {
 						<th>Location</th>
 						<th>Status</th>
 						<th>Total Cost</th>
+
+						<th>Action</th>
+
 					</tr>
 				</thead>
 				<tbody>
@@ -239,12 +243,17 @@ tr:nth-child(even) {
 										value="${order.customer.firstName}" /> <c:out
 										value="${order.customer.lastName}" />
 							</a></td>
+
 							<td><c:out value="${order.customer.phoneNumber}" /></td>
 							<td><c:out value="${order.customer.email}" /></td>
 							<td><c:out value="${order.customer.location}" /></td>
 							<td><span class="badge text-bg-info"><c:out
 										value="${order.status.statuscondition}" /></span></td>
 							<td>$<c:out value="${order.total_cost}" /></td>
+							<td><form action="/finished/${order.id}" method="post">
+									<button type="submit" class="badge text-bg-info">move
+										it to finished</button>
+								</form></td>
 						</tr>
 					</c:forEach>
 				</tbody>

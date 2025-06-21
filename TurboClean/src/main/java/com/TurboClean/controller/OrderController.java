@@ -39,8 +39,23 @@ public class OrderController {
 		Order ord =orderService.findOrder(id);
 		ord.setStatus(statusService.findByStatuscondition("In Progress"));
 		orderService.saveOrder(ord);
-		return "redirect:/orders/all";	}
+		return "redirect:/admin/orders/waiting";	}
+	
+	@PostMapping("/finished/{id}")
+	public String moveToFinished(@PathVariable Long id, Model model, HttpSession session) {
+		Order ord =orderService.findOrder(id);
+		ord.setStatus(statusService.findByStatuscondition("Finished"));
+		orderService.saveOrder(ord);
+		return "redirect:/admin/orders/inprogress";	}
 
+	@PostMapping("/paid/{id}")
+	public String moveTopaid(@PathVariable Long id, Model model, HttpSession session) {
+		Order ord =orderService.findOrder(id);
+		ord.setStatus(statusService.findByStatuscondition("Paid"));
+		orderService.saveOrder(ord);
+		return "redirect:/admin/orders/finished";	}
+
+	
 	@GetMapping("/admin/orders/waiting")
 	public String waiting(Model model, HttpSession session) {
 		Status status = statusService.findStatus(1L);
@@ -76,4 +91,10 @@ public class OrderController {
 		return "paid.jsp";
 
 	}
+	
+	@GetMapping("/orders/{id}")
+	public String showOrderDetails(@PathVariable Long id, Model model, HttpSession session) {
+		Order order =orderService.findOrder(id);
+		model.addAttribute("order", order);
+		return "orderDetails.jsp";	}
 }
