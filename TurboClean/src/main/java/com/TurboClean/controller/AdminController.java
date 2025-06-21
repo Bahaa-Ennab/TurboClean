@@ -125,11 +125,11 @@ public class AdminController {
 
 		     Customer customer = customers.get(0);
 		     model.addAttribute("customer", customer);
-
+		     model.addAttribute("editCustomer", customer);
 		     return "userDetails.jsp"; // ✅ المسار الصحيح
 		 }
 		 @PostMapping("/admin/customers/update")
-		 public String updateCustomer(@ModelAttribute Customer customer) {
+		 public String updateCustomer(@ModelAttribute("editCustomer") Customer customer) {
 		     customerService.updateCustomer(customer);
 		     return "redirect:/admin/user-details?keyword=" + customer.getId();  // ✅ يرجع للتفاصيل بعد الحفظ
 		 }
