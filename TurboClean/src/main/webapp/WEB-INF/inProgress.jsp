@@ -210,6 +210,7 @@ tr:nth-child(even) {
 
 		<!-- Heading -->
 		<h1 class="text-center fw-bold mb-5 text-white"
+
 			style="font-size: 36px;">📦 Orders In Progress</h1>
 
 		<!-- Orders Table -->
@@ -224,6 +225,7 @@ tr:nth-child(even) {
 						<th>Location</th>
 						<th>Status</th>
 						<th>Total Cost</th>
+
 						<th>Action</th>
 
 					</tr>
@@ -235,8 +237,13 @@ tr:nth-child(even) {
 								class="text-decoration-none fw-bold text-primary"> <c:out
 										value="${order.id}" />
 							</a></td>
-							<td><c:out value="${order.customer.firstName}" /> <c:out
-									value="${order.customer.lastName}" /></td>
+							<td><a
+								href="/admin/user-details?keyword=${order.customer.id}"
+								class="text-decoration-none fw-bold text-primary"> <c:out
+										value="${order.customer.firstName}" /> <c:out
+										value="${order.customer.lastName}" />
+							</a></td>
+
 							<td><c:out value="${order.customer.phoneNumber}" /></td>
 							<td><c:out value="${order.customer.email}" /></td>
 							<td><c:out value="${order.customer.location}" /></td>

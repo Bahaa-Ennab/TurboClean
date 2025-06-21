@@ -231,8 +231,11 @@ tr:nth-child(even) {
 					<c:forEach var="customer" items="${customers}">
 						<tr>
 							<td><c:out value="${customer.id}" /></td>
-							<td><c:out
-									value="${customer.firstName} ${customer.lastName}" /></td>
+							<td><a href="/admin/user-details?keyword=${customer.id}"
+								class="text-decoration-none fw-bold text-primary"> <c:out
+										value="${customer.firstName}" /> <c:out
+										value="${customer.lastName}" />
+							</a></td>
 							<td><c:out value="${customer.phoneNumber}" /></td>
 							<td><c:out value="${customer.email}" /></td>
 							<td><c:out value="${customer.location}" /></td>

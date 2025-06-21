@@ -115,4 +115,23 @@ public class AdminController {
 		        return "fragments/customerRows"; 
 		    }
 		 
+		 @GetMapping("/admin/user-details")
+		 public String userDetails(@RequestParam("keyword") String keyword, Model model) {
+		     List<Customer> customers = customerService.searchCustomers(keyword);
+
+		     if (customers.isEmpty()) {
+		         return "redirect:/admin/customers?notFound";
+		     }
+
+		     Customer customer = customers.get(0);
+		     model.addAttribute("customer", customer);
+
+		     return "userDetails.jsp"; // ✅ المسار الصحيح
+		 }
+		 @PostMapping("/admin/customers/update")
+		 public String updateCustomer(@ModelAttribute Customer customer) {
+		     customerService.updateCustomer(customer);
+		     return "redirect:/admin/user-details?keyword=" + customer.getId();  // ✅ يرجع للتفاصيل بعد الحفظ
+		 }
+		 
 }

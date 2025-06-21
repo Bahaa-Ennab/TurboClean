@@ -235,8 +235,12 @@ tr:nth-child(even) {
 								class="text-decoration-none fw-bold text-primary"> <c:out
 										value="${order.id}" />
 							</a></td>
-							<td><c:out value="${order.customer.firstName}" /> <c:out
-									value="${order.customer.lastName}" /></td>
+							<td><a
+								href="/admin/user-details?keyword=${order.customer.id}"
+								class="text-decoration-none fw-bold text-primary"> <c:out
+										value="${order.customer.firstName}" /> <c:out
+										value="${order.customer.lastName}" />
+							</a></td>
 							<td><c:out value="${order.customer.phoneNumber}" /></td>
 							<td><c:out value="${order.customer.email}" /></td>
 							<td><c:out value="${order.customer.location}" /></td>

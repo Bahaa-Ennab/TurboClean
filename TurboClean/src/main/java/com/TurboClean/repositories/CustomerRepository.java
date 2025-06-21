@@ -1,5 +1,6 @@
 package com.TurboClean.repositories;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,4 +15,5 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 	Optional<Customer> findByEmail(String email);
 	List<Customer> findAll();
 	Optional<Customer> findById(Long id);
+	Collection<? extends Customer> findByFirstNameContainingIgnoreCase(String keyword);
 }
