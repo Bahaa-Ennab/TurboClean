@@ -52,7 +52,7 @@
 		<h1>
 		Total Cost: <c:out value="${order.total_cost}" />
 	</h1>
-<a href="/order/edit/${order.id}"><button>Edit Order</button></a>
+<a href="/order/edit_display/${order.id}"><button>Edit Order</button></a>
 
 	<footer class="bg-white border-top mt-20 py-4">
 		<div class="container text-center small text-muted">

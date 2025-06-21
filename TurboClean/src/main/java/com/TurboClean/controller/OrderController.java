@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.TurboClean.models.Admin;
 import com.TurboClean.models.Order;
 import com.TurboClean.models.Status;
 import com.TurboClean.services.OrderService;
@@ -94,6 +96,12 @@ public class OrderController {
 	
 	@GetMapping("/orders/{id}")
 	public String showOrderDetails(@PathVariable Long id, Model model, HttpSession session) {
+		Order order =orderService.findOrder(id);
+		model.addAttribute("order", order);
+		return "orderDetails.jsp";	}
+	
+	@GetMapping("/order/edit_display/{id}")
+	public String displayEditOrder(@PathVariable Long id, Model model, HttpSession session) {
 		Order order =orderService.findOrder(id);
 		model.addAttribute("order", order);
 		return "orderDetails.jsp";	}
