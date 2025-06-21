@@ -228,7 +228,9 @@ tr:nth-child(even) {
 						<td><c:out value="${message.messageDetails}" /></td>
 						<td><c:out value="${message.customer.location}" /></td>
 						<td>
-							<form action="/admin/neworder/${message.customer.id}" method="get">
+							<form action="/admin/neworder/${message.customer.id}"  method="get">
+							    <input type="hidden" name="messageId" value="${message.id}" />
+							
 								<button type="submit" class="badge border-0"
 									style="cursor: pointer; background-color: #64d0ea; color: black; font-size: 15px; padding: 6px 12px; border-radius: 10px;">
 									Make Order

@@ -32,154 +32,148 @@ import jakarta.validation.Valid;
 public class AdminController {
 	@Autowired
 	AdminServices adminService;
-	
+
 	@Autowired
 	ItemRepository itemRepository;
-	
+
 	@Autowired
 	CustomerService customerService;
-	
+
 	@Autowired
 	MessageService messageService;
-	
+
 	@Autowired
 	OrderService orderService;
-	
+
 	@Autowired
 	OrderRepository orderrepo;
-	 @GetMapping("/admin/login")
-	    public String showAdminLogin(Model model) {
-	        model.addAttribute("adminLogin", new LoginAdmin()); 
-	        model.addAttribute("newAdmin", new Admin());  
-	        return "Adminlogin.jsp";                            
-	    }
-	    
-		@PostMapping("/admin/login")
-		public String login(@Valid @ModelAttribute("adminLogin") LoginAdmin newLogin, BindingResult result, Model model,
-				HttpSession session) {
-			Admin admin = adminService.login(newLogin, result);
-			if (result.hasErrors()) {
-				model.addAttribute("adminLogin", new Admin());
-				return "index.jsp";
-			}
-			
-			session.setAttribute("loggedAdmin", admin);
-			return "redirect:/admin/dashboard";
+
+	@GetMapping("/admin/login")
+	public String showAdminLogin(Model model) {
+		model.addAttribute("adminLogin", new LoginAdmin());
+		model.addAttribute("newAdmin", new Admin());
+		return "Adminlogin.jsp";
+	}
+
+	@PostMapping("/admin/login")
+	public String login(@Valid @ModelAttribute("adminLogin") LoginAdmin newLogin, BindingResult result, Model model,
+			HttpSession session) {
+		Admin admin = adminService.login(newLogin, result);
+		if (result.hasErrors()) {
+			model.addAttribute("adminLogin", new Admin());
+			return "index.jsp";
 		}
-		
-		
 
-	    /* ========== 2) صفحة التسجيل ========== */
+		session.setAttribute("loggedAdmin", admin);
+		return "redirect:/admin/dashboard";
+	}
 
-	    @GetMapping("/register/admin")
-	    public String showAdminRegister(Model model) {
-	        model.addAttribute("adminSignup", new Admin());
+	/* ========== 2) صفحة التسجيل ========== */
 
-	        return "adminRegister.jsp";                          // /WEB-INF/admin/register.jsp
-	    }
+	@GetMapping("/register/admin")
+	public String showAdminRegister(Model model) {
+		model.addAttribute("adminSignup", new Admin());
 
-	    @PostMapping("/admin/register")
-	    public String processAdminRegister(
-	    		 @Valid @ModelAttribute("adminSignup") Admin admin,
-	    	        BindingResult result,
-	    	        HttpSession session) {
-			Admin signedUpAdmin = adminService.register(admin, result);
-			
-	        if (result.hasErrors()) {
+		return "adminRegister.jsp"; // /WEB-INF/admin/register.jsp
+	}
 
-	            return "adminRegister.jsp";
-	        }
-	        
-	        session.setAttribute("loggedAdmin", admin);
-	        return "redirect:/admin/dashboard";
+	@PostMapping("/admin/register")
+	public String processAdminRegister(@Valid @ModelAttribute("adminSignup") Admin admin, BindingResult result,
+			HttpSession session) {
+		Admin signedUpAdmin = adminService.register(admin, result);
 
-	    }
+		if (result.hasErrors()) {
 
-	    /* ========== 3) لوحة التحكم ========== */
-	    
-		 @GetMapping("/admin/dashboard")
-		    public String showAdmindashboard(Model model) {
-		        model.addAttribute("items", itemRepository.findAll());
-		        
-		        return "adminDashboard.jsp";      
-		        }
+			return "adminRegister.jsp";
+		}
+
+		session.setAttribute("loggedAdmin", admin);
+		return "redirect:/admin/dashboard";
+
+	}
+
+	/* ========== 3) لوحة التحكم ========== */
+
+	@GetMapping("/admin/dashboard")
+	public String showAdmindashboard(Model model) {
+		model.addAttribute("items", itemRepository.findAll());
+
+		return "adminDashboard.jsp";
+	}
+
 //-------------------------------------------------------------------------------------------------------------		 
-		 @GetMapping("/admin/neworder/{id}")
-		    public String newOrder(@PathVariable Long id,Model model) {
-		        model.addAttribute("items", itemRepository.findAll());
-		        model.addAttribute("customerId", id);
-		        Customer customer =customerService.getUserById(id);
-		        model.addAttribute("customer", customer);
+	@GetMapping("/admin/neworder/{id}")
+	public String newOrder(@PathVariable Long id, @RequestParam(value = "messageId", required = false) Long messageId,
+			Model model) {
+		model.addAttribute("items", itemRepository.findAll());
+		model.addAttribute("customerId", id);
+		model.addAttribute("messageId", messageId);
+		Customer customer = customerService.getUserById(id);
+		model.addAttribute("customer", customer);
 
-		        return "NewOrder.jsp";      
-		        }
-		 
+		return "NewOrder.jsp";
+	}
+
 //	------------------------------------------------------------------------------------------------------------	 
-		 
-		 @GetMapping("/admin/customers")
-		    public String showCustomers(Model model) {
-			 	List<Customer> customers=customerService.allCustomers();
-			 	model.addAttribute("customers", customers);
-		        return "allCustomer.jsp";                             
-		    }
-		 		 
-		 @GetMapping("/admin/messages")
-		    public String showMessages(Model model) {
-			 	List<Message> messages=messageService.allMessages();
-			 	model.addAttribute("messages", messages);
-		        return "adminMessages.jsp";                             
-		    }
-		 
-		 @GetMapping("/admin/user-details")
-		 public String userDetails(@RequestParam("keyword") String keyword, Model model) {
-		     List<Customer> customers = customerService.searchCustomers(keyword);
 
-		     if (customers.isEmpty()) {
-		         return "redirect:/admin/customers?notFound";
-		     }
+	@GetMapping("/admin/customers")
+	public String showCustomers(Model model) {
+		List<Customer> customers = customerService.allCustomers();
+		model.addAttribute("customers", customers);
+		return "allCustomer.jsp";
+	}
 
-		     Customer customer = customers.get(0);
-		     model.addAttribute("customer", customer);
-		     model.addAttribute("editCustomer", customer);
-		     model.addAttribute("orders", orderService.findAllByCustomer(customer));
-		     return "userDetails.jsp"; // ✅ المسار الصحيح
-		 }
-		 @PostMapping("/admin/customers/update")
-		 public String updateCustomer(@ModelAttribute("editCustomer") Customer customer) {
-		     customerService.updateCustomer(customer);
-		     return "redirect:/admin/user-details?keyword=" + customer.getId();  // ✅ يرجع للتفاصيل بعد الحفظ
-		 }
-		 
-		 @GetMapping("/admin/search")
-		 @ResponseBody
-		 public String searchCustomers(@RequestParam("keyword") String keyword) {
-		     List<Customer> customers = customerService.searchByKeyword(keyword);
+	@GetMapping("/admin/messages")
+	public String showMessages(Model model) {
+		List<Message> messages = messageService.allMessages();
+		model.addAttribute("messages", messages);
+		return "adminMessages.jsp";
+	}
 
-		     if (keyword.matches("\\d+")) {
-		         customers.addAll(customerService.searchById(Long.parseLong(keyword)));
-		     }
+	@GetMapping("/admin/user-details")
+	public String userDetails(@RequestParam("keyword") String keyword, Model model) {
+		List<Customer> customers = customerService.searchCustomers(keyword);
 
-		     if (customers.isEmpty()) {
-		         return "<tr><td colspan='5' class='text-center text-muted'>لا توجد نتائج</td></tr>";
-		     }
+		if (customers.isEmpty()) {
+			return "redirect:/admin/customers?notFound";
+		}
 
-		     StringBuilder html = new StringBuilder();
-		     for (Customer c : customers) {
-		         html.append("<tr>")
-		             .append("<td>").append(c.getId()).append("</td>")
-		             .append("<td><a href='/admin/user-details?keyword=")
-		             .append(c.getId()).append("' class='text-decoration-none fw-bold text-primary'>")
-		             .append(c.getFirstName()).append(" ").append(c.getLastName())
-		             .append("</a></td>")
-		             .append("<td>").append(c.getPhoneNumber()).append("</td>")
-		             .append("<td>").append(c.getEmail()).append("</td>")
-		             .append("<td>").append(c.getLocation()).append("</td>")
-		             .append("</tr>");
-		     }
-		     return html.toString();
-		 }
-		 
+		Customer customer = customers.get(0);
+		model.addAttribute("customer", customer);
+		model.addAttribute("editCustomer", customer);
+		model.addAttribute("orders", orderService.findAllByCustomer(customer));
+		return "userDetails.jsp"; // ✅ المسار الصحيح
+	}
 
-		
-		 
+	@PostMapping("/admin/customers/update")
+	public String updateCustomer(@ModelAttribute("editCustomer") Customer customer) {
+		customerService.updateCustomer(customer);
+		return "redirect:/admin/user-details?keyword=" + customer.getId(); // ✅ يرجع للتفاصيل بعد الحفظ
+	}
+
+	@GetMapping("/admin/search")
+	@ResponseBody
+	public String searchCustomers(@RequestParam("keyword") String keyword) {
+		List<Customer> customers = customerService.searchByKeyword(keyword);
+
+		if (keyword.matches("\\d+")) {
+			customers.addAll(customerService.searchById(Long.parseLong(keyword)));
+		}
+
+		if (customers.isEmpty()) {
+			return "<tr><td colspan='5' class='text-center text-muted'>لا توجد نتائج</td></tr>";
+		}
+
+		StringBuilder html = new StringBuilder();
+		for (Customer c : customers) {
+			html.append("<tr>").append("<td>").append(c.getId()).append("</td>")
+					.append("<td><a href='/admin/user-details?keyword=").append(c.getId())
+					.append("' class='text-decoration-none fw-bold text-primary'>").append(c.getFirstName()).append(" ")
+					.append(c.getLastName()).append("</a></td>").append("<td>").append(c.getPhoneNumber())
+					.append("</td>").append("<td>").append(c.getEmail()).append("</td>").append("<td>")
+					.append(c.getLocation()).append("</td>").append("</tr>");
+		}
+		return html.toString();
+	}
+
 }
