@@ -134,51 +134,54 @@ h2:hover, h3:hover {
 		</div>
 	</nav>
 
-	<!-- Messages Article -->
-	<article class="container my-5 p-4 bg-light rounded shadow-sm"
-		style="min-height: 300px;">
-		<h2 class="mb-4 text-center">Messages</h2>
+<!-- Messages Section -->
+<main
+	style="padding: 50px 40px; width: 80%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
 
-		<!-- Example: Show messages here -->
+	<h1 class="text-center fw-bold mb-5"
+		style="font-size: 36px; color: white;">💬 Customer Messages</h1>
+
+	<div class="mx-auto"
+		style="max-width: 96%; background-color: #ffffff; padding: 30px 40px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);">
+
 		<c:if test="${not empty messages}">
-			<div class="row g-3">
+			<div class="row g-4">
 				<c:forEach var="msg" items="${messages}">
 					<div class="col-md-6">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<!-- Message Content -->
-								<p class="card-text fw-semibold text-dark mb-3">
-									Message Content: <c:out value="${msg.messageDetails}" />
-								</p>
+						<div class="p-4 rounded-4 shadow-sm border"
+							style="background-color: #f9f9f9; min-height: 180px;">
+							
+							<!-- Message Text -->
+							<p class="fw-semibold mb-3 text-dark">
+								📝 <strong>Message:</strong>
+								<c:out value="${msg.messageDetails}" />
+							</p>
 
-								<!-- Pickup Time (optional) -->
-								<c:if test="${not empty msg.pickupTime}">
-									<p class="mb-1">
-										<span class="fw-bold">🕒 Pickup Time:</span>
-										<fmt:formatDate value="${msg.pickupTime}"
-											pattern="yyyy-MM-dd HH:mm" />
-									</p>
-								</c:if>
-
-								<!-- Created At -->
-								<p class="mb-0 text-muted">
-									<small> 📅 Submitted: <fmt:formatDate
-											value="${msg.createdAt}" pattern="yyyy-MM-dd HH:mm" />
-									</small>
+							<!-- Pickup Time -->
+							<c:if test="${not empty msg.pickupTime}">
+								<p class="mb-2">
+									🕒 <strong>Pickup Time:</strong>
+									<fmt:formatDate value="${msg.pickupTime}" pattern="yyyy-MM-dd HH:mm" />
 								</p>
-							</div>
+							</c:if>
+
+							<!-- Submitted At -->
+							<p class="text-muted mb-0">
+								📅 <small>Submitted: 
+								<fmt:formatDate value="${msg.createdAt}" pattern="yyyy-MM-dd HH:mm" /></small>
+							</p>
 						</div>
 					</div>
 				</c:forEach>
 			</div>
 		</c:if>
 
-
-
 		<c:if test="${empty messages}">
-			<p class="text-center text-muted">No messages to display.</p>
+			<p class="text-center text-muted fs-5">No messages to display.</p>
 		</c:if>
-	</article>
+
+	</div>
+</main>
 
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"

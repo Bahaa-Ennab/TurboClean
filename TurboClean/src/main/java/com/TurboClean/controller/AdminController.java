@@ -178,40 +178,7 @@ public class AdminController {
 		     return html.toString();
 		 }
 		 
-		 @GetMapping("/admin/order-search")
-		 @ResponseBody
-		 public String searchOrders(@RequestParam("keyword") String keyword) {
-		     List<Order> orders = orderService.findOrdersByCustomerName(keyword); // your existing logic
 
-		     if (orders.isEmpty()) {
-		         return "<tr><td colspan='7' class='text-center text-muted'>No orders found.</td></tr>";
-		     }
-
-		     StringBuilder html = new StringBuilder();
-		     for (Order order : orders) {
-		         html.append("<tr>")
-		             .append("<td><a href='/orders/").append(order.getId()).append("'>")
-		             .append(order.getId()).append("</a></td>")
-
-		             .append("<td><a href='/admin/user-details?keyword=").append(order.getCustomer().getId())
-		             .append("' class='text-decoration-none fw-bold text-primary'>")
-		             .append(order.getCustomer().getFirstName()).append(" ").append(order.getCustomer().getLastName())
-		             .append("</a></td>")
-
-		             .append("<td>").append(order.getCustomer().getPhoneNumber()).append("</td>")
-		             .append("<td>").append(order.getCustomer().getEmail()).append("</td>")
-		             .append("<td>").append(order.getCustomer().getLocation()).append("</td>")
-		             .append("<td>").append(order.getStatus().getStatuscondition()).append("</td>")
-		             .append("<td>$").append(order.getTotal_cost()).append("</td>")
-		             .append("</tr>");
-		     }
-		     return html.toString();
-		 }
-
-		 @GetMapping("/test-orders")
-		 @ResponseBody
-		 public List<Order> testSearch(@RequestParam String keyword) {
-		     return orderrepo.findByCustomerFirstNameContainingIgnoreCaseOrCustomerLastNameContainingIgnoreCase(keyword, keyword);
-		 }
+		
 		 
 }

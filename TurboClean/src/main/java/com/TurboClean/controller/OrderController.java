@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.TurboClean.models.Order;
 import com.TurboClean.models.Status;
 import com.TurboClean.services.OrderService;
@@ -32,6 +29,25 @@ public class OrderController {
 	public String allOrders(Model model, HttpSession session) {
 		List<Order> orders = orderService.allOrders();
 		model.addAttribute("orders", orders);
+
+		    long waitingCount = orders.stream()
+		        .filter(o -> "Waiting".equalsIgnoreCase(o.getStatus().getStatuscondition()))
+		        .count();
+		    long inProgressCount = orders.stream()
+		        .filter(o -> "In Progress".equalsIgnoreCase(o.getStatus().getStatuscondition()))
+		        .count();
+		    long finishedCount = orders.stream()
+		        .filter(o -> "Finished".equalsIgnoreCase(o.getStatus().getStatuscondition()))
+		        .count();
+		    long paidCount = orders.stream()
+		        .filter(o -> "Paid".equalsIgnoreCase(o.getStatus().getStatuscondition()))
+		        .count();
+
+		    model.addAttribute("waitingCount", waitingCount);
+		    model.addAttribute("inProgressCount", inProgressCount);
+		    model.addAttribute("finishedCount", finishedCount);
+		    model.addAttribute("paidCount", paidCount);
+
 		return "AllOrdersForAdmin.jsp";
 
 	}
@@ -108,40 +124,9 @@ public class OrderController {
 		return "orderDetails.jsp";	
 		
 	}
+
 	
-	@GetMapping("/orders/list")
-	public String showAllOrders(Model model) {
-	    List<Order> orders = orderService.findAll();
 
-	    long waitingCount = orders.stream()
-	        .filter(o -> "Waiting".equalsIgnoreCase(o.getStatus().getStatuscondition()))
-	        .count();
-	    long inProgressCount = orders.stream()
-	        .filter(o -> "In Progress".equalsIgnoreCase(o.getStatus().getStatuscondition()))
-	        .count();
-	    long finishedCount = orders.stream()
-	        .filter(o -> "Finished".equalsIgnoreCase(o.getStatus().getStatuscondition()))
-	        .count();
-	    long paidCount = orders.stream()
-	        .filter(o -> "Paid".equalsIgnoreCase(o.getStatus().getStatuscondition()))
-	        .count();
-
-	    model.addAttribute("orders", orders);
-	    model.addAttribute("waitingCount", waitingCount);
-	    model.addAttribute("inProgressCount", inProgressCount);
-	    model.addAttribute("finishedCount", finishedCount);
-	    model.addAttribute("paidCount", paidCount);
-
-	    return "allOrders.jsp";
-
-		}
-	
-	
-	@GetMapping("/orders/search")
-	@ResponseBody
-	public List<Order> searchOrdersByCustomerName(@RequestParam("keyword") String keyword) {
-	    return orderService.findOrdersByCustomerName(keyword); // customize this to your service
-	}
 }
 
 
