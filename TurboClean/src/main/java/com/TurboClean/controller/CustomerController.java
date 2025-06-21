@@ -104,17 +104,19 @@ public class CustomerController {
 	}
 
 	@GetMapping("/customer/messages")
-	public String customerMessages() {
+	public String customerMessages(Model model, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("loggedCustomer");
+		model.addAttribute("messages", messageService.findAllByCustomer(customer));
 		return "customerMessages.jsp";
 
 	}
 
 	// -------------------------------------------------------------------------------------------------------
 
-	@PostMapping("/customer/orders")
+	@GetMapping("/customer/orders")
 	public String customerOrders(Model model, HttpSession session) {
-		Customer custom = (Customer) session.getAttribute("signedUpCustomer");
-		List<Order> orders = orderService.findAllByCustomer(custom);
+		Customer customer = (Customer) session.getAttribute("loggedCustomer");
+		List<Order> orders = orderService.findAllByCustomer(customer);
 		model.addAttribute("orders", orders);
 
 		return "customerOrder.jsp";

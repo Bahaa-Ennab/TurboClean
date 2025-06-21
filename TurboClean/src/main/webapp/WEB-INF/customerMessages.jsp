@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -144,13 +146,33 @@ h2:hover, h3:hover {
 					<div class="col-md-6">
 						<div class="card shadow-sm">
 							<div class="card-body">
-								<p class="card-text">${msg}</p>
+								<!-- Message Content -->
+								<p class="card-text fw-semibold text-dark mb-3">
+									Message Content: <c:out value="${msg.messageDetails}" />
+								</p>
+
+								<!-- Pickup Time (optional) -->
+								<c:if test="${not empty msg.pickupTime}">
+									<p class="mb-1">
+										<span class="fw-bold">🕒 Pickup Time:</span>
+										<fmt:formatDate value="${msg.pickupTime}"
+											pattern="yyyy-MM-dd HH:mm" />
+									</p>
+								</c:if>
+
+								<!-- Created At -->
+								<p class="mb-0 text-muted">
+									<small> 📅 Submitted: <fmt:formatDate
+											value="${msg.createdAt}" pattern="yyyy-MM-dd HH:mm" />
+									</small>
+								</p>
 							</div>
 						</div>
 					</div>
 				</c:forEach>
 			</div>
 		</c:if>
+
 
 
 		<c:if test="${empty messages}">

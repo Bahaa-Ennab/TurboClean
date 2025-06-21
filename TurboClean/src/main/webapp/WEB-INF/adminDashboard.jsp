@@ -219,25 +219,26 @@ tr:nth-child(even) {
 			</div>
 		</div>
 
-		<!-- Items Grid -->
 		<div class="mt-5">
-			<h4 class="text-white fw-bold mb-4">🧺 Select Items</h4>
-			<div class="row g-3 mb-4" id="itemGrid">
-				<c:forEach items="${items}" var="item">
-					<div class="col-6 col-md-3">
-						<button type="button"
-							class="btn btn-outline-light w-100 item-button p-3 rounded-4 shadow-sm"
-							style="background-color: #cad1d1; border: 2px solid transparent; transition: 0.3s;"
-							onmouseover="this.style.border='2px solid #ffa726'"
-							onmouseout="this.style.border='2px solid transparent'"
-							data-id="${item.id}" data-name="${item.itemName}"
-							data-price="${item.cost}">
-							<div class="text-center fw-semibold">${item.itemName}</div>
-						</button>
-					</div>
-				</c:forEach>
-			</div>
-		</div>
+  <h4 class="text-white fw-bold mb-4">🧺 Select Items</h4>
+  <div class="row g-3 mb-4" id="itemGrid">
+    <c:forEach items="${items}" var="item">
+      <div class="col-6 col-md-3">
+        <button type="button"
+          class="btn btn-outline-light w-100 item-button p-3 rounded-4 shadow-sm"
+          style="background-color: #cad1d1; border: 2px solid transparent; transition: 0.3s;"
+          onmouseover="this.style.border='2px solid #ffa726'"
+          onmouseout="this.style.border='2px solid transparent'"
+          data-id="${item.id}" data-name="${item.itemName}"
+          data-price="${item.cost}">
+
+          <img class="item-image mb-2 rounded" alt="${item.itemName}" style="max-width:100%; height:120px; object-fit: contain;" />
+          <div class="text-center fw-semibold">${item.itemName}</div>
+        </button>
+      </div>
+    </c:forEach>
+  </div>
+</div>
 
 		<!-- Order Summary Table -->
 		<h4 class="text-white fw-bold mb-4">📦 Order Summary</h4>
@@ -328,6 +329,29 @@ tr:nth-child(even) {
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
+	  const itemImages = {
+			    "Coat": "https://i.imgur.com/RsOelut.jpeg",
+			    "Shirt": "https://i.imgur.com/2p1JfkJ.jpeg",
+			    "Dress": "https://i.imgur.com/5uGwD6k.jpeg",
+			    "Jacket": "https://i.imgur.com/njYMh1c.jpeg",
+			    "Suit": "https://i.imgur.com/SuBzoAZ.jpeg",
+			    "T-shirt": "https://i.imgur.com/ELsNPQ9.jpeg",
+			    "Man Thobe": "https://i.imgur.com/oWY8mrZ.jpeg",
+			    "Women Thobe": "https://i.imgur.com/J2YwZA3.jpeg",
+			    "Trouser": "https://i.imgur.com/h5qQRiN.jpeg"
+			  };
+
+			  document.querySelectorAll('.item-button').forEach(button => {
+			    const name = button.getAttribute('data-name');
+			    const img = button.querySelector('.item-image');
+			    if (itemImages[name]) {
+			      img.src = itemImages[name];
+			    } else {
+			      img.src = 'https://via.placeholder.com/150?text=No+Image';
+			    }
+			  });
+	
+	
     let orderItems = {};
 
     function renderTable() {
