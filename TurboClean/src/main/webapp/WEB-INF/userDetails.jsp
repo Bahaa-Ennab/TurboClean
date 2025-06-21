@@ -254,73 +254,83 @@ tr:nth-child(even) {
 	<div class="modal fade" id="editCustomerModal" tabindex="-1"
 		aria-labelledby="editCustomerModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
-			<!-- مركّز المودال عموديًا -->
 			<div class="modal-content"
 				style="border-radius: 20px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);">
 				<form:form action="/admin/customers/update" method="post"
 					modelAttribute="editCustomer">
-					<form:input type="hidden" path="id" value="${customer.id}" />
-					<!-- Name (First + Last) -->
-					<div class="row g-3 mb-3">
-						<div class="col-md-6 mb-3">
-							<form:label path="firstName">First Name</form:label>
-							<form:input path="firstName" cssClass="form-control"
-								placeholder="First Name" />
-							<form:errors path="firstName" cssClass="text-danger small" />
+
+					<div class="modal-header"
+						style="background-color: #5f7081; color: white; border-top-left-radius: 20px; border-top-right-radius: 20px;">
+						<h5 class="modal-title" id="editCustomerModalLabel">✏️ Edit
+							Customer</h5>
+						<button type="button" class="btn-close btn-close-white"
+							data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+
+					<div class="modal-body"
+						style="background-color: white; padding: 30px;">
+						<form:input type="hidden" path="id" value="${customer.id}" />
+
+						<div class="row g-3 mb-3">
+							<div class="col-md-6 mb-3">
+								<form:label path="firstName" cssClass="form-label fw-bold">First Name</form:label>
+								<form:input path="firstName" cssClass="form-control rounded-3"
+									placeholder="First Name" />
+								<form:errors path="firstName" cssClass="text-danger small" />
+							</div>
+
+							<div class="col-md-6 mb-3">
+								<form:label path="lastName" cssClass="form-label fw-bold">Last Name</form:label>
+								<form:input path="lastName" cssClass="form-control rounded-3"
+									placeholder="Last Name" />
+								<form:errors path="lastName" cssClass="text-danger small" />
+							</div>
 						</div>
 
-						<div class="col-md-6 mb-3">
-							<form:label path="lastName">Last Name</form:label>
-							<form:input path="lastName" cssClass="form-control"
-								placeholder="Last Name" />
-							<form:errors path="lastName" cssClass="text-danger small" />
+						<div class="mb-3">
+							<form:label path="email" cssClass="form-label fw-bold">Email</form:label>
+							<form:input path="email" cssClass="form-control rounded-3"
+								placeholder="Email address" />
+							<form:errors path="email" cssClass="text-danger small" />
+						</div>
+
+						<div class="mb-3">
+							<form:label path="password" cssClass="form-label fw-bold">Password</form:label>
+							<form:input path="password" type="password"
+								cssClass="form-control rounded-3" placeholder="Password" />
+							<form:errors path="password" cssClass="text-danger small" />
+						</div>
+
+						<div class="mb-3">
+							<form:label path="confirmPassword" cssClass="form-label fw-bold">Confirm Password</form:label>
+							<form:input path="confirmPassword" type="password"
+								cssClass="form-control rounded-3" placeholder="Confirm password" />
+							<form:errors path="confirmPassword" cssClass="text-danger small" />
+						</div>
+
+						<div class="mb-3">
+							<form:label path="location" cssClass="form-label fw-bold">Location</form:label>
+							<form:input path="location" cssClass="form-control rounded-3"
+								placeholder="Location" />
+							<form:errors path="location" cssClass="text-danger small" />
+						</div>
+
+						<div class="mb-3">
+							<form:label path="phoneNumber" cssClass="form-label fw-bold">Phone Number</form:label>
+							<form:input path="phoneNumber" cssClass="form-control rounded-3"
+								placeholder="Phone Number" />
+							<form:errors path="phoneNumber" cssClass="text-danger small" />
 						</div>
 					</div>
 
-					<!-- Email -->
-					<div class="mb-3">
-						<form:label path="email">Email address</form:label>
-						<form:input path="email" cssClass="form-control"
-							placeholder="Email address" />
-						<form:errors path="email" cssClass="text-danger small" />
-					</div>
-
-					<!-- Password -->
-					<div class="mb-3">
-						<form:label path="password">Password</form:label>
-						<form:input path="password" type="password"
-							cssClass="form-control" placeholder="Password" />
-						<form:errors path="password" cssClass="text-danger small" />
-					</div>
-
-					<!-- Confirm Password -->
-					<div class="mb-4">
-						<form:label path="confirmPassword">Confirm password</form:label>
-						<form:input path="confirmPassword" type="password"
-							cssClass="form-control" placeholder="Confirm password" />
-						<form:errors path="confirmPassword" cssClass="text-danger small" />
-					</div>
-
-					<!-- Location -->
-					<div class="mb-4">
-						<form:label path="location">Location</form:label>
-						<form:input path="location" cssClass="form-control"
-							placeholder="Location" />
-						<form:errors path="location" cssClass="text-danger small" />
-					</div>
-
-					<!-- Phone Number -->
-					<div class="mb-4">
-						<form:label path="phoneNumber">Phone Number</form:label>
-						<form:input path="phoneNumber" cssClass="form-control"
-							placeholder="Phone Number" />
-						<form:errors path="phoneNumber" cssClass="text-danger small" />
-					</div>
-
-					<!-- Submit -->
-					<div class="d-grid">
-						<button type="submit" class="btn btn-primary btn-lg fw-semibold">
-							Apply!</button>
+					<div class="modal-footer"
+						style="background-color: #5f7081; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+						<button type="button" class="btn btn-secondary rounded-3"
+							data-bs-dismiss="modal"
+							style="background-color: #ccc; border-color: #ccc; color: #333;">Cancel</button>
+						<button type="submit" class="btn btn-warning rounded-3"
+							style="background-color: #FFA726; border-color: #FFA726; color: white;">Save
+							changes</button>
 					</div>
 
 				</form:form>
