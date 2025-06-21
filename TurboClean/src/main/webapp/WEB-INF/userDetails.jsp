@@ -231,11 +231,11 @@ tr:nth-child(even) {
 										<tr>
 											<td><strong><c:out value="${order.id}" /></strong></td>
 											<td><c:out value="${order.date}" /></td>
-											<td><c:out value="${order.address}" /></td>
+											<td><a href="/orders/${order.id}">Details</a></td>
 											<td>$<c:out value="${order.total_cost}" /></td>
 											<td><span
 												style="background-color: #ffcc80; color: #333; padding: 6px 14px; border-radius: 20px;">
-													<c:out value="${order.status.condition}" />
+													<c:out value="${order.status.statuscondition}" />
 											</span></td>
 										</tr>
 									</c:forEach>

@@ -2,21 +2,23 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ page isErrorPage="true"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<title>Order Details</title>
+
+<!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-</head>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+	rel="stylesheet">
+
 <style>
 html, body {
 	height: 100%;
@@ -25,7 +27,7 @@ html, body {
 	flex-direction: column;
 }
 
-body>.container, body>main {
+body>main, body>.container {
 	flex: 1;
 }
 
@@ -37,8 +39,7 @@ footer {
 	color: orange;
 }
 
-/* Hover effect for all major headers */
-h2:hover, h3:hover {
+h2:hover, h3:hover, h1:hover, a:hover {
 	color: orange !important;
 	cursor: pointer;
 }
@@ -47,12 +48,12 @@ h2:hover, h3:hover {
 	color: #ffffff;
 	font-weight: bold;
 	text-decoration: none;
-	font-size: 22px; /* Slightly bigger */
+	font-size: 22px;
 	transition: color 0.3s ease;
 }
 
 .nav-link-custom:hover {
-	color: #FFA726; /* Light orange */
+	color: #FFA726;
 }
 
 .btn-outline-light:hover {
@@ -60,46 +61,62 @@ h2:hover, h3:hover {
 	border-color: orange !important;
 	color: white !important;
 }
-
-.form-container {
-	max-width: 600px;
-	margin: 70px auto; /* top-bottom: 70px, left-right: auto center */
-	padding: 30px;
-	border-radius: 16px;
-	background-color: #f8f9fa;
-	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+/* Search */
+.search-form {
+	max-width: 700px;
+	margin: 40px auto 20px;
+	display: flex;
+	gap: 10px;
 }
 
-.form-container h3 {
-	margin-bottom: 20px;
-	font-weight: bold;
-	color: #333;
+.search-form input[type="text"] {
+	width: 100%;
+	padding: 14px 18px;
+	border-radius: 12px;
+	border: 1px solid #ccc;
+	font-size: 16px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.form-container input[type="submit"] {
+.search-form button {
+	padding: 14px 22px;
 	background-color: #ff8800;
 	color: white;
 	border: none;
-	padding: 10px 25px;
-	font-weight: 500;
-	border-radius: 8px;
-	transition: background-color 0.3s ease;
+	border-radius: 10px;
+	transition: 0.3s ease;
 }
 
-.form-container input[type="submit"]:hover {
-	background-color: #ff6a00;
+.search-form button:hover {
+	background-color: #e67600;
+}
+/* Table */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	background-color: white;
 }
 
-.success-message {
-	margin-top: 15px;
-	color: green;
-	font-weight: bold;
+thead {
+	background-color: #eceff1;
+}
+
+th, td {
+	padding: 16px;
+	text-align: left;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
 }
 </style>
-<body>
+</head>
+<body style="background-color: #cad1d1;">
+
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm"
-		style="background-color: #303841; margin-bottom: 0;">
+		style="background-color: #303841;">
 		<div class="container">
 			<a class="navbar-brand d-flex align-items-center" href="/"> <img
 				src="https://i.imgur.com/KSZMAPl.png" alt="Logo" width="40"
@@ -109,6 +126,7 @@ h2:hover, h3:hover {
 					<span class="turbo">Turbo</span><span class="text-primary">Clean</span>
 			</span>
 			</a>
+
 			<!-- Navigation Links -->
 			<div class="d-flex gap-4 flex-wrap my-2 my-md-0">
 
@@ -127,63 +145,71 @@ h2:hover, h3:hover {
 
 			</div>
 
+
 			<!-- Logout Button -->
 			<a href="/logout"><button type="submit"
 					class="btn btn-outline-light btn-sm px-4">Logout</button></a>
-
 		</div>
 	</nav>
+	<article class="my-5">
+		<div class="container" style="max-width: 900px;">
+			<div class="card shadow rounded-4 p-4"
+				style="background-color: #5f7081; color: white;">
 
-<!-- Messages Section -->
-<main
-	style="padding: 50px 40px; width: 80%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
+				<!-- Customer & Address -->
+				<h2 class="mb-3">
+					👤 Customer: <span class="fw-normal"> <c:out
+							value="${order.customer.firstName}" /> <c:out
+							value=" ${order.customer.lastName}" />
+					</span>
+				</h2>
 
-	<h1 class="text-center fw-bold mb-5"
-		style="font-size: 36px; color: white;">💬 Customer Messages</h1>
+				<h4 class="mb-4">
+					📍 Address: <span class="fw-normal"> <c:out
+							value="${order.address}" />
+					</span>
+				</h4>
 
-	<div class="mx-auto"
-		style="max-width: 96%; background-color: #ffffff; padding: 30px 40px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);">
+				<!-- Order Table -->
+				<div
+					style="background-color: white; padding: 30px 40px; border-radius: 20px;">
+					<table class="table table-bordered text-center align-middle"
+						style="font-size: 18px;">
+						<thead class="table-light">
+							<tr>
+								<th>🧺 Items</th>
+								<th>💰 Cost per Item</th>
+								<th>🔢 Quantity</th>
+								<th>🧾 Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="item" items="${order.orderItems}">
+								<tr>
+									<td><c:out value="${item.item.itemName}" /></td>
+									<td>$<c:out value="${item.item.cost}" /></td>
+									<td><c:out value="${item.quantity}" /></td>
+									<td>$<c:out value="${item.item.cost * item.quantity}" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 
-		<c:if test="${not empty messages}">
-			<!-- Flex container for vertical alignment -->
-			<div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
-				<c:forEach var="msg" items="${messages}">
-					<!-- Message wrapper -->
-					<div style="width: 80%;">
-						<div class="p-3 rounded-4 shadow-sm border"
-							style="background-color: #f9f9f9; min-height: 100px;">
-							
-							<!-- Message Text -->
-							<p class="fw-semibold mb-2 text-dark">
-								📝 <strong>Message:</strong>
-								<c:out value="${msg.messageDetails}" />
-							</p>
+				<div class="d-flex justify-content-between align-items-center mt-4">
+					<h3 class="mb-0">
+						💵 Total Cost: <span class="fw-normal">$<c:out
+								value="${order.total_cost}" /></span>
+					</h3>
+					<a href="/customer/orders?keyword=${order.customer.id}"
+						class="btn btn-warning text-white" data-bs-toggle="modal"
+						data-bs-target="#editCustomerModal"> ⬅ Back </a>
+				</div>
 
-							<!-- Pickup Time -->
-							<c:if test="${not empty msg.pickupTime}">
-								<p class="mb-1">
-									🕒 <strong>Pickup Time:</strong>
-									<fmt:formatDate value="${msg.pickupTime}" pattern="yyyy-MM-dd HH:mm" />
-								</p>
-							</c:if>
-
-							<!-- Submitted At -->
-							<p class="text-muted mb-0">
-								📅 <small>Submitted: 
-								<fmt:formatDate value="${msg.createdAt}" pattern="yyyy-MM-dd HH:mm" /></small>
-							</p>
-						</div>
-					</div>
-				</c:forEach>
 			</div>
-		</c:if>
+		</div>
+	</article>
 
-		<c:if test="${empty messages}">
-			<p class="text-center text-muted fs-5">No messages to display.</p>
-		</c:if>
-
-	</div>
-</main>
 
 
 	<!-- Footer -->
@@ -191,15 +217,11 @@ h2:hover, h3:hover {
 		style="background-color: #303841; color: white;">
 		<div class="container">
 			<div class="row">
-
-				<!-- Company Info -->
 				<div class="col-md-4 mb-4">
 					<h3 class="text-uppercase fw-bold">TurboClean</h3>
 					<p>Fast · Reliable · Door-to-door dry cleaning service based in
 						Ramallah. Book online, and we'll handle the rest.</p>
 				</div>
-
-				<!-- Quick Links -->
 				<div class="col-md-2 mb-4">
 					<h3 class="fw-bold mb-3">Quick Links</h3>
 					<ul class="list-unstyled">
@@ -215,8 +237,6 @@ h2:hover, h3:hover {
 							style="color: white;">Policy</a></li>
 					</ul>
 				</div>
-
-				<!-- Contact Info -->
 				<div class="col-md-3 mb-4">
 					<h3 class="fw-bold mb-3">Contact</h3>
 					<p>
@@ -229,8 +249,6 @@ h2:hover, h3:hover {
 						<i class="bi bi-envelope-fill me-2"></i> info@turboclean.ps
 					</p>
 				</div>
-
-				<!-- Social Links -->
 				<div class="col-md-3 mb-4">
 					<h3 class="fw-bold mb-3">Follow Us</h3>
 					<a href="#" class="d-block mb-2" style="color: white;"><i
@@ -240,16 +258,21 @@ h2:hover, h3:hover {
 						class="d-block mb-2" style="color: white;"><i
 						class="bi bi-whatsapp me-1"></i> WhatsApp</a>
 				</div>
-
 			</div>
-
 			<hr style="border-color: rgba(255, 255, 255, 0.2);">
 			<div class="text-center small">© 2025 TurboClean. All rights
 				reserved.</div>
+
 		</div>
 	</footer>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		function openEditPopup(orderId) {
+			const url = `/order/edit/${orderId}`;
+			window
+					.open(url, 'Edit Order',
+							'width=800,height=600,left=100,top=100,resizable=yes,scrollbars=yes');
+		}
+	</script>
 </body>
 </html>

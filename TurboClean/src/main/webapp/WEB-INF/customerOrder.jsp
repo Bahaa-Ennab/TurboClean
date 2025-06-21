@@ -163,7 +163,7 @@ tr:nth-child(even) {
 							<td style="padding: 16px;"><strong><c:out
 										value="${order.id}" /></strong></td>
 							<td style="padding: 16px;"><c:out value="${order.date}" /></td>
-							<td style="padding: 16px;"><c:out value="${order.address}" /></td>
+							<td><a href="/customer/orders/${order.id}">Details</a></td>
 							<td style="padding: 16px;">$<c:out
 									value="${order.total_cost}" /></td>
 							<td><c:choose>

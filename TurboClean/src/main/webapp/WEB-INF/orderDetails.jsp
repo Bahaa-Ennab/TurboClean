@@ -198,13 +198,17 @@ tr:nth-child(even) {
 					</table>
 				</div>
 
-				<!-- Total Cost -->
-				<h3 class="mt-4">
-					💵 Total Cost: <span class="fw-normal">$<c:out
-							value="${order.total_cost}" /></span>
-				</h3>
 
 
+				<div class="d-flex justify-content-between align-items-center mt-4">
+					<h3 class="mb-0">
+						💵 Total Cost: <span class="fw-normal">$<c:out
+								value="${order.total_cost}" /></span>
+					</h3>
+					<a href="/admin/user-details?keyword=${order.customer.id}"
+						class="btn btn-warning text-white"
+									data-bs-toggle="modal" data-bs-target="#editCustomerModal"> ⬅ Back </a>
+				</div>
 			</div>
 		</div>
 	</article>

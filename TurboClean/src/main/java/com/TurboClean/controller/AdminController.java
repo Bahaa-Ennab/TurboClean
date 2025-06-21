@@ -141,6 +141,7 @@ public class AdminController {
 		     Customer customer = customers.get(0);
 		     model.addAttribute("customer", customer);
 		     model.addAttribute("editCustomer", customer);
+		     model.addAttribute("orders", orderService.findAllByCustomer(customer));
 		     return "userDetails.jsp"; // ✅ المسار الصحيح
 		 }
 		 @PostMapping("/admin/customers/update")

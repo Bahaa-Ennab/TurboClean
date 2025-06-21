@@ -1,5 +1,6 @@
 package com.TurboClean.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
@@ -106,10 +108,12 @@ public class CustomerController {
 	@GetMapping("/customer/messages")
 	public String customerMessages(Model model, HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("loggedCustomer");
-		model.addAttribute("messages", messageService.findAllByCustomer(customer));
+		List<Message> messages = messageService.findAllByCustomer(customer);
+		Collections.reverse(messages); // reverse to newest-first
+		model.addAttribute("messages", messages);
 		return "customerMessages.jsp";
-
 	}
+
 
 	// -------------------------------------------------------------------------------------------------------
 
@@ -122,5 +126,11 @@ public class CustomerController {
 		return "customerOrder.jsp";
 
 	}
+	
+	@GetMapping("/customer/orders/{id}")
+	public String showOrderDetails(@PathVariable Long id, Model model, HttpSession session) {
+		Order order =orderService.findOrder(id);
+		model.addAttribute("order", order);
+		return "customerOrderDetails.jsp";	}
 
-}
+	}
