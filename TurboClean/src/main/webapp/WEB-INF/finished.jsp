@@ -244,13 +244,19 @@ tr:nth-child(even) {
 							<td><c:out value="${order.customer.phoneNumber}" /></td>
 							<td><c:out value="${order.customer.email}" /></td>
 							<td><c:out value="${order.customer.location}" /></td>
-							<td><span class="badge text-bg-info"><c:out
-										value="${order.status.statuscondition}" /></span></td>
+							<td><span class="badge"
+								style="background-color: #ff8800; color: black;"> <c:out
+										value="${order.status.statuscondition}" />
+							</span></td>
+
 							<td>$<c:out value="${order.total_cost}" /></td>
-							<td><form action="/paid/${order.id}" method="post">
-									<button type="submit" class="badge text-bg-info">move
-										it to paid</button>
-								</form></td>
+							<td>
+								<form action="/paid/${order.id}" method="post">
+									<button type="submit" class="badge border-0"
+										style="background-color: #28a745; color: black; cursor: pointer;">
+										move it to paid</button>
+								</form>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

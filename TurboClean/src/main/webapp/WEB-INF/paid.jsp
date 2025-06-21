@@ -242,8 +242,10 @@ tr:nth-child(even) {
 							<td><c:out value="${order.customer.phoneNumber}" /></td>
 							<td><c:out value="${order.customer.email}" /></td>
 							<td><c:out value="${order.customer.location}" /></td>
-							<td><span class="badge text-bg-info"><c:out
-										value="${order.status.statuscondition}" /></span></td>
+							<td><span class="badge"
+								style="background-color: #28a745; color: black;"> <c:out
+										value="${order.status.statuscondition}" />
+							</span></td>
 							<td>$<c:out value="${order.total_cost}" /></td>
 						</tr>
 					</c:forEach>
