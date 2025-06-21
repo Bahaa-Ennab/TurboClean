@@ -180,5 +180,30 @@ h2:hover, h3:hover, a:hover {
 			</p>
 		</div>
 	</footer>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#searchForm').on('submit', function (e) {
+            e.preventDefault();
+            const keyword = $('#searchInput').val().trim();
+
+            if (!keyword) return;
+
+            $.ajax({
+                url: '/admin/order-search',
+                method: 'GET',
+                data: { keyword: keyword },
+                success: function (html) {
+                    $('#ordersTable tbody').html(html);
+                },
+                error: function () {
+                    alert('Error fetching orders. Please try again.');
+                }
+            });
+        });
+    });
+</script>
+	
 </body>
 </html>

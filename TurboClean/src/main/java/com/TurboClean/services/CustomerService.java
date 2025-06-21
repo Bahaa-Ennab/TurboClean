@@ -116,6 +116,16 @@ public class CustomerService {
 	        throw new RuntimeException("Customer not found");
 	    }
 	}
+	
+
+    public List<Customer> searchByKeyword(String keyword) {
+        return Customerrepo.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(keyword, keyword);
+    }
+    
+    public List<Customer> searchById(Long id) {
+        Optional<Customer> optional = Customerrepo.findById(id);
+        return optional.map(List::of).orElseGet(List::of);
+    }
 
 
 

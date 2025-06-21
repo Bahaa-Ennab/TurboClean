@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.TurboClean.models.Admin;
 import com.TurboClean.models.Customer;
 import com.TurboClean.models.LoginAdmin;
 import com.TurboClean.models.Message;
+import com.TurboClean.models.Order;
 import com.TurboClean.repositories.ItemRepository;
+import com.TurboClean.repositories.OrderRepository;
 import com.TurboClean.services.AdminServices;
 import com.TurboClean.services.CustomerService;
 import com.TurboClean.services.MessageService;
@@ -41,6 +44,8 @@ public class AdminController {
 	@Autowired
 	OrderService orderService;
 	
+	@Autowired
+	OrderRepository orderrepo;
 	 @GetMapping("/admin/login")
 	    public String showAdminLogin(Model model) {
 	        model.addAttribute("adminLogin", new LoginAdmin()); 
@@ -111,13 +116,6 @@ public class AdminController {
 			 	model.addAttribute("messages", messages);
 		        return "adminMessages.jsp";                             
 		    }
-		 @GetMapping("/admin/search")
-		    public String searchCustomers(@RequestParam("keyword") String keyword, Model model) {
-		        List<Customer> customers = customerService.searchCustomers(keyword);
-		        model.addAttribute("customers", customers);
-		        // ترجع صفحة JSP جزئية ترجع فقط <tr> عناصر بدون الهيكل الكامل
-		        return "fragments/customerRows"; 
-		    }
 		 
 		 @GetMapping("/admin/user-details")
 		 public String userDetails(@RequestParam("keyword") String keyword, Model model) {
@@ -136,6 +134,71 @@ public class AdminController {
 		 public String updateCustomer(@ModelAttribute("editCustomer") Customer customer) {
 		     customerService.updateCustomer(customer);
 		     return "redirect:/admin/user-details?keyword=" + customer.getId();  // ✅ يرجع للتفاصيل بعد الحفظ
+		 }
+		 
+		 @GetMapping("/admin/search")
+		 @ResponseBody
+		 public String searchCustomers(@RequestParam("keyword") String keyword) {
+		     List<Customer> customers = customerService.searchByKeyword(keyword);
+
+		     if (keyword.matches("\\d+")) {
+		         customers.addAll(customerService.searchById(Long.parseLong(keyword)));
+		     }
+
+		     if (customers.isEmpty()) {
+		         return "<tr><td colspan='5' class='text-center text-muted'>لا توجد نتائج</td></tr>";
+		     }
+
+		     StringBuilder html = new StringBuilder();
+		     for (Customer c : customers) {
+		         html.append("<tr>")
+		             .append("<td>").append(c.getId()).append("</td>")
+		             .append("<td><a href='/admin/user-details?keyword=")
+		             .append(c.getId()).append("' class='text-decoration-none fw-bold text-primary'>")
+		             .append(c.getFirstName()).append(" ").append(c.getLastName())
+		             .append("</a></td>")
+		             .append("<td>").append(c.getPhoneNumber()).append("</td>")
+		             .append("<td>").append(c.getEmail()).append("</td>")
+		             .append("<td>").append(c.getLocation()).append("</td>")
+		             .append("</tr>");
+		     }
+		     return html.toString();
+		 }
+		 
+		 @GetMapping("/admin/order-search")
+		 @ResponseBody
+		 public String searchOrders(@RequestParam("keyword") String keyword) {
+		     List<Order> orders = orderService.findOrdersByCustomerName(keyword); // your existing logic
+
+		     if (orders.isEmpty()) {
+		         return "<tr><td colspan='7' class='text-center text-muted'>No orders found.</td></tr>";
+		     }
+
+		     StringBuilder html = new StringBuilder();
+		     for (Order order : orders) {
+		         html.append("<tr>")
+		             .append("<td><a href='/orders/").append(order.getId()).append("'>")
+		             .append(order.getId()).append("</a></td>")
+
+		             .append("<td><a href='/admin/user-details?keyword=").append(order.getCustomer().getId())
+		             .append("' class='text-decoration-none fw-bold text-primary'>")
+		             .append(order.getCustomer().getFirstName()).append(" ").append(order.getCustomer().getLastName())
+		             .append("</a></td>")
+
+		             .append("<td>").append(order.getCustomer().getPhoneNumber()).append("</td>")
+		             .append("<td>").append(order.getCustomer().getEmail()).append("</td>")
+		             .append("<td>").append(order.getCustomer().getLocation()).append("</td>")
+		             .append("<td>").append(order.getStatus().getStatuscondition()).append("</td>")
+		             .append("<td>$").append(order.getTotal_cost()).append("</td>")
+		             .append("</tr>");
+		     }
+		     return html.toString();
+		 }
+
+		 @GetMapping("/test-orders")
+		 @ResponseBody
+		 public List<Order> testSearch(@RequestParam String keyword) {
+		     return orderrepo.findByCustomerFirstNameContainingIgnoreCaseOrCustomerLastNameContainingIgnoreCase(keyword, keyword);
 		 }
 		 
 }

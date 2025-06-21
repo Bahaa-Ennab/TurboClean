@@ -20,5 +20,7 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 	Optional<Order> findById(Long id);
 	Long countByStatus_Statuscondition(String statuscondition);
 	
+	List<Order> findByCustomerFirstNameContainingIgnoreCaseOrCustomerLastNameContainingIgnoreCase(String firstName, String lastName);
+
 
 }

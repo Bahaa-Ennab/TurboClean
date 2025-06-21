@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.TurboClean.models.Customer;
 import com.TurboClean.models.Order;
 import com.TurboClean.models.OrderRequestDTO;
+import com.TurboClean.services.CustomerService;
 import com.TurboClean.services.OrderService;
 
 @RestController
@@ -19,6 +21,9 @@ public class AdminOrderController {
     public AdminOrderController(OrderService orderService) {
         this.orderService = orderService;
     }
+    
+	@Autowired
+	CustomerService customerService;
 
     @PostMapping("/orders")
     public ResponseEntity<?> createOrder(@RequestBody OrderRequestDTO orderRequest) {
@@ -35,4 +40,7 @@ public class AdminOrderController {
             return ResponseEntity.badRequest().body("Failed to create order: " + e.getMessage());
         }
     }
+    
+
+    
 }

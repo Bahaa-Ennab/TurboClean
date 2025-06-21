@@ -117,4 +117,9 @@ public class OrderService {
 	    return orderRepository.findAll();
 	}
 
+
+	public List<Order> findOrdersByCustomerName(String keyword) {
+	    return orderRepository.findByCustomerFirstNameContainingIgnoreCaseOrCustomerLastNameContainingIgnoreCase(keyword, keyword);
+	}
+
 }

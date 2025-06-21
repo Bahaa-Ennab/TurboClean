@@ -197,7 +197,7 @@ tr:nth-child(even) {
 	</div>
 
 
-	<main
+
 		style="padding: 30px 30px; width: 85%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
 
 		<!-- Search Bar -->
@@ -232,6 +232,22 @@ tr:nth-child(even) {
 						<td><a href="/orders/${order.id}"><c:out
 									value="${order.id}" /></a></td>
 
+
+						<td><a
+							href="/admin/user-details?keyword=${order.customer.id}"
+							class="text-decoration-none fw-bold text-primary"> <c:out
+									value="${order.customer.firstName}" /> <c:out
+									value="${order.customer.lastName}" />
+						</a></td>
+						<td><c:out value="${order.customer.phoneNumber}" /></td>
+						<td><c:out value="${order.customer.email}" /></td>
+						<td><c:out value="${order.customer.location}" /></td>
+						<td><c:out value="${order.status.statuscondition}" /></td>
+						<td>$<c:out value="${order.total_cost}" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+
 						<td><a
 							href="/admin/user-details?keyword=${order.customer.id}"
 							class="text-decoration-none fw-bold text-primary"> <c:out
@@ -255,6 +271,7 @@ tr:nth-child(even) {
 					<canvas id="orderStatusChart" width="400" height="400"></canvas>
 				</div>
 			</div>
+
 		</div>
 	</main>
 	<!-- Footer -->
@@ -344,6 +361,7 @@ const chart = new Chart(ctx, {
     }
 });
 </script>
+
 
 </body>
 </html>
