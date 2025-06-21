@@ -200,70 +200,75 @@ tr:nth-child(even) {
 	<main
 		style="padding: 30px 30px; width: 85%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
 
-
-
 		<!-- Page Title -->
 		<h1 class="text-center fw-bold text-white mb-5"
 			style="font-size: 36px;">📄 All Orders</h1>
 
-		<!-- Table -->
-		<div class="bg-white p-4 rounded-4 shadow" style="overflow-x: auto;">
-			<table class="table table-bordered" style="min-width: 800px;">
-				<tr>
-					<th>ID Order</th>
-					<th>Name</th>
-					<th>Phonenumber</th>
-					<th>Email</th>
-					<th>Location</th>
-					<th>Status</th>
-					<th>Total Cost</th>
-				</tr>
-				<c:forEach var="order" items="${orders}">
-					<tr>
-						<td><a href="/orders/${order.id}"><c:out
-									value="${order.id}" /></a></td>
+		<!-- Flex Container -->
+		<div
+			class="d-flex flex-column flex-lg-row gap-4 justify-content-between">
 
-						<td><a
-							href="/admin/user-details?keyword=${order.customer.id}"
-							class="text-decoration-none fw-bold text-primary"> <c:out
-									value="${order.customer.firstName}" /> <c:out
-									value="${order.customer.lastName}" />
-						</a></td>
-						<td><c:out value="${order.customer.phoneNumber}" /></td>
-						<td><c:out value="${order.customer.email}" /></td>
-						<td><c:out value="${order.customer.location}" /></td>
-						<td><c:choose>
-								<c:when test="${order.status.statuscondition == 'Waiting'}">
-									<span style="color: gray; font-weight: bold;">Waiting</span>
-								</c:when>
-								<c:when test="${order.status.statuscondition == 'In Progress'}">
-									<span style="color: #64d0ea; font-weight: bold;">In
-										Progress</span>
-								</c:when>
-								<c:when test="${order.status.statuscondition == 'Finished'}">
-									<span style="color: #ff8800; font-weight: bold;">Finished</span>
-								</c:when>
-								<c:when test="${order.status.statuscondition == 'Paid'}">
-									<span style="color: #4CAF50; font-weight: bold;">Paid</span>
-								</c:when>
-								<c:otherwise>
-									<span style="color: black;">${order.status.statuscondition}</span>
-								</c:otherwise>
-							</c:choose></td>
-						<td>$<c:out value="${order.total_cost}" /></td>
+			<!-- Table Section -->
+			<div class="bg-white p-4 rounded-4 shadow flex-fill"
+				style="overflow-x: auto; min-width: 60%;">
+				<table class="table table-bordered" style="min-width: 800px;">
+					<tr>
+						<th>ID Order</th>
+						<th>Name</th>
+						<th>Phonenumber</th>
+						<th>Email</th>
+						<th>Location</th>
+						<th>Status</th>
+						<th>Total Cost</th>
 					</tr>
-				</c:forEach>
-			</table>
-			<!-- Polar Area Chart -->
-			<div class="container my-5">
-				<div
-					style="max-width: 600px; margin: auto; padding: 30px; background: #f4f7f9; border-radius: 20px; color: #333;">
-					<h2 class="text-center mb-4">Order Status Overview</h2>
-					<canvas id="orderStatusChart" width="400" height="400"></canvas>
-				</div>
+					<c:forEach var="order" items="${orders}">
+						<tr>
+							<td><a href="/orders/${order.id}"><c:out
+										value="${order.id}" /></a></td>
+
+							<td><a
+								href="/admin/user-details?keyword=${order.customer.id}"
+								class="text-decoration-none fw-bold text-primary"> <c:out
+										value="${order.customer.firstName}" /> <c:out
+										value="${order.customer.lastName}" />
+							</a></td>
+
+							<td><c:out value="${order.customer.phoneNumber}" /></td>
+							<td><c:out value="${order.customer.email}" /></td>
+							<td><c:out value="${order.customer.location}" /></td>
+							<td><c:choose>
+									<c:when test="${order.status.statuscondition == 'Waiting'}">
+										<span style="color: gray; font-weight: bold;">Waiting</span>
+									</c:when>
+									<c:when test="${order.status.statuscondition == 'In Progress'}">
+										<span style="color: #64d0ea; font-weight: bold;">In
+											Progress</span>
+									</c:when>
+									<c:when test="${order.status.statuscondition == 'Finished'}">
+										<span style="color: #ff8800; font-weight: bold;">Finished</span>
+									</c:when>
+									<c:when test="${order.status.statuscondition == 'Paid'}">
+										<span style="color: #4CAF50; font-weight: bold;">Paid</span>
+									</c:when>
+									<c:otherwise>
+										<span style="color: black;">${order.status.statuscondition}</span>
+									</c:otherwise>
+								</c:choose></td>
+							<td>$<c:out value="${order.total_cost}" /></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+
+			<!-- Chart Section -->
+			<div class="bg-white p-4 rounded-4 shadow text-center"
+				style="min-width: 300px; max-width: 400px;">
+				<h4 class="mb-4">Order Status Overview</h4>
+				<canvas id="orderStatusChart" style="height: 300px; width: 100%;"></canvas>
 			</div>
 		</div>
 	</main>
+
 	<!-- Footer -->
 	<footer class="pt-5 pb-4 border-top"
 		style="background-color: #303841; color: white;">
