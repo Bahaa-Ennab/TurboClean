@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -83,7 +84,7 @@ public class AdminController {
 	    	        BindingResult result,
 	    	        HttpSession session) {
 			Admin signedUpAdmin = adminService.register(admin, result);
-
+			
 	        if (result.hasErrors()) {
 
 	            return "adminRegister.jsp";
@@ -102,7 +103,19 @@ public class AdminController {
 		        
 		        return "adminDashboard.jsp";      
 		        }
+//-------------------------------------------------------------------------------------------------------------		 
+		 @GetMapping("/admin/neworder/{id}")
+		    public String newOrder(@PathVariable Long id,Model model) {
+		        model.addAttribute("items", itemRepository.findAll());
+		        model.addAttribute("customerId", id);
+		        Customer customer =customerService.getUserById(id);
+		        model.addAttribute("customer", customer);
 
+		        return "NewOrder.jsp";      
+		        }
+		 
+//	------------------------------------------------------------------------------------------------------------	 
+		 
 		 @GetMapping("/admin/customers")
 		    public String showCustomers(Model model) {
 			 	List<Customer> customers=customerService.allCustomers();
