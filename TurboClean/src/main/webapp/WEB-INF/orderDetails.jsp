@@ -261,6 +261,7 @@ tr:nth-child(even) {
 			<hr style="border-color: rgba(255, 255, 255, 0.2);">
 			<div class="text-center small">© 2025 TurboClean. All rights
 				reserved.</div>
+
 		</div>
 	</footer>
 
