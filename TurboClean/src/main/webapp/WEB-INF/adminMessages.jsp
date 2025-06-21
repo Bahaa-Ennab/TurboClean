@@ -196,36 +196,51 @@ tr:nth-child(even) {
 
 
 
-	<table>
-		<tr>
-			<th>ID</th>
-			<th>Customer Name</th>
-			<th>Phonenumber</th>
-			<th>pickupTime</th>
-			<th>messageDetails</th>
-			<th>Location</th>
-			<th>Action</th>
+<!-- Main Content -->
+<main
+	style="padding: 30px 30px; width: 85%; margin: auto; background-color: #5f7081; margin-bottom: 120px; margin-top: 75px; border-radius: 20px;">
 
+	<!-- Heading -->
+	<h1 class="text-center fw-bold mb-5" style="font-size: 36px; color: white;">💬 Customer Messages</h1>
 
-		</tr>
-		<c:forEach var="message" items="${messages}">
-			<tr>
-				<td><c:out value="${message.id}" /></td>
-				<td><c:out
-						value="${message.customer.firstName} ${message.customer.lastName}" /></td>
-				<td><c:out value="${message.customer.phoneNumber}" /></td>
-				<td><c:out value="${message.pickupTime}" /></td>
-				<td><c:out value="${message.messageDetails}" /></td>
-				<td><c:out value="${message.customer.location}" /></td>
-				<td><form action="/admin/neworder/${message.customer.id}" method="get">
-						<button type="submit" class="badge border-0"
-							style="cursor: pointer; background-color: #64d0ea; color: black;">
-							Make Order</button>
-					</form></td>
-
-			</tr>
-		</c:forEach>
-	</table>
+	<!-- Messages Table -->
+	<div class="mx-auto"
+		style="max-width: 96%; background-color: #ffffff; padding: 30px 40px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); overflow-x: auto;">
+		<table style="font-size: 18px; min-width: 900px;" class="table table-bordered">
+			<thead style="color: #333;">
+				<tr>
+					<th>ID</th>
+					<th>Customer Name</th>
+					<th>Phone Number</th>
+					<th>Pickup Time</th>
+					<th>Message Details</th>
+					<th>Location</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="message" items="${messages}">
+					<tr>
+						<td><c:out value="${message.id}" /></td>
+						<td><c:out value="${message.customer.firstName} ${message.customer.lastName}" /></td>
+						<td><c:out value="${message.customer.phoneNumber}" /></td>
+						<td><c:out value="${message.pickupTime}" /></td>
+						<td><c:out value="${message.messageDetails}" /></td>
+						<td><c:out value="${message.customer.location}" /></td>
+						<td>
+							<form action="/admin/neworder/${message.customer.id}" method="get">
+								<button type="submit" class="badge border-0"
+									style="cursor: pointer; background-color: #64d0ea; color: black; font-size: 15px; padding: 6px 12px; border-radius: 10px;">
+									Make Order
+								</button>
+							</form>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+</main>
 
 
 	<!-- Footer -->

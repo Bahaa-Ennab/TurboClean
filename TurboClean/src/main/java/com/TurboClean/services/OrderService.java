@@ -69,7 +69,9 @@ public class OrderService {
 	public Order updateOrder(Order o) {
 		return orderRepository.save(o);
 	}
-
+	public Long countByStatus(String status) {
+	    return orderRepository.countByStatus_Statuscondition(status);
+	} 
 	@Transactional
 	public Order createOrder(Long adminId, Long customerId, String address, List<OrderRequestDTO.ItemQuantity> items) throws Exception {
         Admin admin = adminRepository.findById(adminId)
@@ -110,16 +112,7 @@ public class OrderService {
         // عند الحفظ سيحفظ الأوامر والعناصر بسبب CascadeType.ALL في العلاقة
         return orderRepository.save(order);
     }
-	public Long countByStatus(String status) {
-	    return orderRepository.countByStatus_Statuscondition(status);
-	}
 	public List<Order> findAll() {
-	    return orderRepository.findAll();
+		return 	orderRepository.findAll();
 	}
-
-
-	public List<Order> findOrdersByCustomerName(String keyword) {
-	    return orderRepository.findByCustomerFirstNameContainingIgnoreCaseOrCustomerLastNameContainingIgnoreCase(keyword, keyword);
-	}
-
 }
